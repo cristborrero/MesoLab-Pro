@@ -94,17 +94,76 @@ export function Header() {
             <span className="text-teal-dark">Pro</span>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav Links with Premium Mega Menú */}
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
-            {NAV_LINKS.map((link) => (
+            <div className="group/menu relative py-5">
               <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-navy/80 transition-colors hover:text-teal-dark"
+                href="/tienda"
+                className="flex items-center gap-1 text-sm font-medium text-navy/80 transition-colors hover:text-teal-dark"
               >
-                {link.label}
+                Tienda
+                <svg className="h-4.5 w-4.5 text-muted/60 transition-transform duration-200 group-hover/menu:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
               </Link>
-            ))}
+              
+              {/* Mega Menu Container with blur & scale transition */}
+              <div className="absolute top-full -left-48 z-50 w-[600px] origin-top scale-95 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/menu:scale-100 group-hover/menu:opacity-100 group-hover/menu:pointer-events-auto">
+                <div className="mt-2 rounded-[var(--radius-lg)] border border-border bg-white/95 p-6 shadow-modal backdrop-blur-md">
+                  <div className="grid grid-cols-3 gap-6">
+                    {/* Columns 1 & 2: Categories */}
+                    <div className="col-span-2 grid grid-cols-2 gap-4 border-r border-border/60 pr-6">
+                      <div className="flex flex-col gap-3">
+                        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Tratamientos</span>
+                        <Link href="/tienda/lipoliticos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                          <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Lipolíticos</span>
+                          <span className="text-[11px] text-muted leading-tight">Reducción localizada y contornos.</span>
+                        </Link>
+                        <Link href="/tienda/vitaminicos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                          <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Vitamínicos</span>
+                          <span className="text-[11px] text-muted leading-tight">Revitalización y nutrición.</span>
+                        </Link>
+                      </div>
+                      <div className="flex flex-col gap-3">
+                        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Especialidades</span>
+                        <Link href="/tienda/anestesicos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                          <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Anestésicos</span>
+                          <span className="text-[11px] text-muted leading-tight">Manejo del dolor en cabina.</span>
+                        </Link>
+                        <Link href="/tienda/insumos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                          <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Insumos</span>
+                          <span className="text-[11px] text-muted leading-tight">Agujas y consumibles.</span>
+                        </Link>
+                      </div>
+                    </div>
+                    
+                    {/* Column 3: Editorial spotlight */}
+                    <div className="flex flex-col gap-3">
+                      <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Spotlight</span>
+                      <div className="flex flex-1 flex-col rounded-lg bg-surface/40 p-3">
+                        <div className="flex h-20 items-center justify-center rounded bg-white p-2">
+                          <svg className="h-10 w-10 text-teal-dark/30" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                            <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" strokeWidth="3" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <span className="mt-2 text-xs font-semibold text-navy leading-tight">L-Carnitina 500mg</span>
+                        <span className="text-[10px] text-muted">Estándar en lipólisis.</span>
+                        <Link href="/producto/l-carnitina" className="mt-auto text-xs font-bold text-teal-dark hover:underline">
+                          Ver detalles →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Link href="/nosotros" className="text-sm font-medium text-navy/80 transition-colors hover:text-teal-dark">
+              Nosotros
+            </Link>
+            <Link href="/contacto" className="text-sm font-medium text-navy/80 transition-colors hover:text-teal-dark">
+              Contacto
+            </Link>
           </nav>
 
           {/* Right Actions */}

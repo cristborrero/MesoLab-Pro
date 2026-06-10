@@ -19,11 +19,8 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated">
       {/* Product Image Beaker/Vial SVG Container */}
-      <Link
-        href={`/producto/${product.slug}`}
-        className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-8"
-      >
-        <div className="relative flex h-full w-full items-center justify-center">
+      <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-8">
+        <Link href={`/producto/${product.slug}`} className="relative flex h-full w-full items-center justify-center">
           {/* Medical Grade Vial SVG */}
           <svg
             className="h-28 w-28 text-navy/15 transition-transform duration-500 group-hover:scale-105"
@@ -63,14 +60,36 @@ export function ProductCard({ product }: ProductCardProps) {
           <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-navy/20">
             Certified ISO 13485
           </span>
+        </Link>
+
+        {/* Specs Hover Overlay (reveals technical specifications cleanly only when needed) */}
+        <div className="absolute inset-0 flex flex-col justify-end bg-navy/90 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px] pointer-events-none">
+          <span className="font-label text-[10px] uppercase tracking-widest text-teal font-bold mb-2">Ficha Técnica</span>
+          <div className="grid grid-cols-2 gap-x-2 gap-y-2 text-white">
+            {Object.entries(product.specs).slice(0, 4).map(([key, val]) => (
+              <div key={key}>
+                <span className="block text-[8px] uppercase tracking-wider text-slate-400 font-label">{key}</span>
+                <span className="block text-[11px] font-medium leading-tight text-white/95">{val}</span>
+              </div>
+            ))}
+          </div>
+          <Link href={`/producto/${product.slug}`} className="mt-3 block border-t border-white/10 pt-2 text-center font-label text-[10px] uppercase tracking-wider text-teal hover:text-white pointer-events-auto">
+            Detalles completos →
+          </Link>
         </div>
 
-        {!product.inStock && (
+        {/* Real-time Stock Badge */}
+        {product.inStock ? (
+          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-border font-label text-[9px] font-bold uppercase tracking-wider text-success">
+            <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
+            Disponible
+          </span>
+        ) : (
           <span className="absolute top-3 right-3 rounded-[var(--radius-sm)] bg-error/10 px-2.5 py-1 font-label text-[10px] font-bold uppercase tracking-wider text-error">
             Agotado
           </span>
         )}
-      </Link>
+      </div>
 
       {/* Product Information */}
       <div className="flex flex-1 flex-col gap-2 p-4 pt-5">
@@ -85,7 +104,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.name}
         </Link>
 
-        {/* Presentation Dropdown Selector (solves variant selection critique) */}
+        {/* Presentation Dropdown Selector */}
         {product.presentations.length > 1 ? (
           <div className="mt-1">
             <select
@@ -120,7 +139,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <button
             onClick={() => addItem(product, selectedPresentation.id)}
             disabled={!product.inStock}
-            className="rounded-[var(--radius-md)] bg-teal px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
+            className="rounded-[var(--radius-md)] bg-teal px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-teal-dark hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
           >
             Agregar
           </button>

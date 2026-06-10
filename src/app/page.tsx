@@ -10,136 +10,170 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ─── HERO ─── */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-20">
-          {/* Text - First on mobile for immediate above-the-fold CTA */}
-          <div className="order-1 text-center lg:order-1 lg:text-left">
-            <h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl lg:text-[56px] lg:leading-[1.1]">
-              Ciencia en cada
-              <br />
-              <span className="text-teal-dark">ampolleta.</span>
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              Insumos de mesoterapia certificados para profesionales de la
-              estética y medicina estética en Colombia.
-            </p>
-            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
-              <Link
-                href="/tienda"
-                className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] bg-teal px-8 text-base font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.98] sm:w-auto shadow-sm"
+      {/* ─── HERO STACKED & NARRATIVA DE VALOR ─── */}
+      <section className="bg-white border-b border-border/40">
+        <div className="mx-auto max-w-4xl px-4 py-20 text-center lg:px-8 lg:py-28 flex flex-col items-center">
+          {/* Scientific badge */}
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-light px-3 py-1 font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark mb-6 border border-teal/15">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            Suministros de Alta Precisión Clínica
+          </span>
+
+          <h1 className="font-display text-4xl font-extrabold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-6xl max-w-3xl">
+            Optimizá tus protocolos con
+            <br />
+            <span className="bg-gradient-to-r from-teal-dark to-navy bg-clip-text text-transparent">
+              insumos de precisión médica.
+            </span>
+          </h1>
+
+          <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg max-w-2xl">
+            Desbloqueá resultados predecibles y seguros en cada ampolleta. 
+            Proporcionamos soluciones de mesoterapia certificadas con trazabilidad 
+            completa y respaldo INVIMA para profesionales exigentes de la estética en Colombia.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row w-full justify-center">
+            <Link
+              href="/tienda"
+              className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] bg-teal px-8 text-base font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.98] sm:w-auto shadow-sm"
+            >
+              Explorar Catálogo
+            </Link>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-md)] border border-navy/15 bg-white px-8 text-base font-medium text-navy transition-all hover:bg-surface active:scale-[0.98] sm:w-auto"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="text-[#25D366]"
               >
-                Ver catálogo
-              </Link>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-md)] border border-navy/15 px-8 text-base font-medium text-navy transition-all hover:bg-surface active:scale-[0.98] sm:w-auto"
-              >
-                {/* Clean inline WhatsApp SVG */}
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="text-[#25D366]"
-                >
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Hablar por WhatsApp
-              </a>
-            </div>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Asesoría Inmediata
+            </a>
           </div>
 
-          {/* Hero Visual - Clean lab illustration SVG instead of emoji */}
-          <div className="order-2 flex items-center justify-center lg:order-2">
-            <div className="relative flex h-64 w-64 items-center justify-center rounded-[var(--radius-xl)] bg-gradient-to-b from-surface to-white p-8 sm:h-80 sm:w-80 lg:h-[420px] lg:w-[420px]">
-              {/* Clinical Lab Art SVG */}
-              <svg
-                className="h-40 w-40 text-teal-dark/10"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-                <path
-                  d="M35 75h30v-5l-10-15V30h-10v25L35 70v5z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <circle cx="50" cy="40" r="10" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M48 62h4M46 68h8" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-
-              {/* Decorative elements */}
-              <div className="absolute inset-0 rounded-[var(--radius-xl)] border border-teal/20" />
-              <div className="absolute -inset-2 rounded-[22px] border border-teal/5" />
-
-              {/* Verified Tag */}
-              <span className="absolute bottom-4 right-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-border font-label text-[10px] font-bold uppercase tracking-wider text-navy">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
-                INVIMA Certificado
-              </span>
+          {/* Centered protagonist visual with architectural guide framing */}
+          <div className="mt-16 w-full max-w-2xl relative flex justify-center items-center rounded-2xl bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 border border-border/60 shadow-sm">
+            <svg
+              className="h-48 w-48 text-teal-dark/15"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+              <path d="M40 70h20" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+              <path d="M40 60h20" stroke="currentColor" strokeWidth="1" />
+            </svg>
+            <span className="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-wider text-navy/35">
+              Ref: L-Carnitina 500mg/5ml
+            </span>
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border font-label text-[10px] font-bold text-navy shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#25D366]" />
+              Stock Disponible
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── CATEGORIES ─── */}
+      {/* ─── BENTO GRID DE CATEGORÍAS ─── */}
       <section className="bg-surface py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="text-center">
-            <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
-              Categorías
+          <div className="mb-12 text-center md:text-left md:max-w-xl">
+            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Líneas de Tratamiento</span>
+            <h2 className="font-display text-3xl font-bold text-navy mt-2">
+              Categorías de Suministros
             </h2>
             <p className="mt-2 text-sm text-muted">
-              Encuentra los insumos que necesitas para tu práctica profesional
+              Explorá nuestra selección de fórmulas avanzadas estructurada para cada objetivo clínico.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/tienda/${cat.slug}`}
-                className="group flex flex-col items-center gap-4 rounded-[var(--radius-lg)] border border-border bg-white p-6 text-center transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated"
-              >
-                {/* Inline SVGs for categories instead of emojis */}
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface text-teal-dark transition-colors group-hover:bg-teal/10">
-                  {cat.slug === "lipoliticos" && (
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M6 3h12v3H6zm4 3v12h4V6zm-5 12h14v3H5z" />
-                    </svg>
-                  )}
-                  {cat.slug === "vitaminicos" && (
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                  )}
-                  {cat.slug === "anestesicos" && (
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="m18 2 4 4M2 22l14-14M11 11l3 3M7 7l3 3M19 5l-5 5" />
-                    </svg>
-                  )}
-                  {cat.slug === "insumos" && (
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <path d="M12 8v8M8 12h8" />
-                    </svg>
-                  )}
-                </div>
-
-                <h3 className="font-display text-base font-semibold text-navy">
-                  {cat.name}
-                </h3>
-                <p className="font-label text-xs text-muted">
-                  {cat.productCount} producto
-                  {cat.productCount !== 1 ? "s" : ""}
+          {/* Bento Grid layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* 1. Lipolíticos - Large Bento Card (Col span 2, Row span 2) */}
+            <Link
+              href="/tienda/lipoliticos"
+              className="group relative md:col-span-2 md:row-span-2 flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated overflow-hidden min-h-[320px]"
+            >
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Reductora</span>
+                <h3 className="font-display text-2xl font-bold text-navy mt-4">Lipolíticos</h3>
+                <p className="mt-2 text-sm text-muted max-w-md">
+                  Soluciones inyectables para protocolos de reducción localizada y lipólisis. Formulaciones con concentraciones óptimas para resultados visibles.
                 </p>
-              </Link>
-            ))}
+              </div>
+              <div className="mt-8 flex items-baseline justify-between">
+                <span className="font-label text-xs text-muted">5 productos activos</span>
+                <span className="text-sm font-bold text-teal-dark group-hover:underline">Ver catálogo →</span>
+              </div>
+              {/* Backing decorative illustration */}
+              <div className="absolute -right-6 -bottom-6 opacity-5 text-navy group-hover:opacity-10 transition-opacity">
+                <svg className="h-40 w-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M6 3h12v3H6zm4 3v12h4V6zm-5 12h14v3H5z" />
+                </svg>
+              </div>
+            </Link>
+
+            {/* 2. Vitamínicos - Vertical Bento Card (Col span 1) */}
+            <Link
+              href="/tienda/vitaminicos"
+              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[260px]"
+            >
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Nutritiva</span>
+                <h3 className="font-display text-xl font-bold text-navy mt-4">Vitamínicos</h3>
+                <p className="mt-2 text-xs text-muted">
+                  Complejos antioxidantes para protocolos de biorevitalización y regeneración dérmica.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="font-label text-xs text-muted">2 productos</span>
+                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
+              </div>
+            </Link>
+
+            {/* 3. Anestésicos - Horizontal Bento Card (Col span 1) */}
+            <Link
+              href="/tienda/anestesicos"
+              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[200px]"
+            >
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Cabina</span>
+                <h3 className="font-display text-xl font-bold text-navy mt-4">Anestésicos</h3>
+                <p className="mt-2 text-xs text-muted">
+                  Anestésicos locales de uso profesional para procedimientos de confort en cabina.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="font-label text-xs text-muted">1 producto</span>
+                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
+              </div>
+            </Link>
+
+            {/* 4. Insumos - Bento Card (Col span 1) */}
+            <Link
+              href="/tienda/insumos"
+              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[200px]"
+            >
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Consumibles</span>
+                <h3 className="font-display text-xl font-bold text-navy mt-4">Insumos</h3>
+                <p className="mt-2 text-xs text-muted">
+                  Jeringas, agujas y materiales complementarios descartables para clínica.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="font-label text-xs text-muted">0 productos</span>
+                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -147,14 +181,12 @@ export default function HomePage() {
       {/* ─── FEATURED PRODUCTS ─── */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
-                Productos destacados
+              <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Catálogo Seleccionado</span>
+              <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl mt-1">
+                Productos Destacados
               </h2>
-              <p className="mt-2 text-sm text-muted">
-                Los más utilizados por profesionales de la estética
-              </p>
             </div>
             <Link
               href="/tienda"
@@ -177,8 +209,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── TRUST SECTION ─── */}
-      <section className="bg-surface py-16 lg:py-24">
+      {/* ─── PRUEBA SOCIAL / INFINITE MARQUEE SLIDER ─── */}
+      <section className="bg-surface py-12 border-t border-b border-border/50 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8 mb-6">
+          <h3 className="text-center font-label text-[10px] font-bold uppercase tracking-widest text-muted/70">
+            Médicos y Clínicas Estéticas Aliadas
+          </h3>
+        </div>
+        <div className="relative w-full overflow-hidden">
+          {/* Fading side masks for marquee visual premium */}
+          <div className="absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
+          
+          <div className="animate-marquee flex gap-12 whitespace-nowrap">
+            {[
+              "Dra. Carolina Martínez • Derma",
+              "INVIMA Registro Sanitario Vigente",
+              "Clínica Cutis Bogotá",
+              "Dr. Alejandro Gómez • Medicina Estética",
+              "Calidad Certificada ISO 13485",
+              "Dra. Laura Rojas • Cirugía Plástica",
+              "Clínica Renacer Cali",
+              "Trazabilidad Controlada por Lote",
+              "Dra. Carolina Martínez • Derma",
+              "INVIMA Registro Sanitario Vigente",
+              "Clínica Cutis Bogotá",
+              "Dr. Alejandro Gómez • Medicina Estética",
+              "Calidad Certificada ISO 13485",
+              "Dra. Laura Rojas • Cirugía Plástica",
+              "Clínica Renacer Cali",
+              "Trazabilidad Controlada por Lote"
+            ].map((text, idx) => (
+              <span key={idx} className="font-display text-sm font-semibold text-navy/50 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                {text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TRUST PILLARS SECTION ─── */}
+      <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
@@ -189,9 +261,9 @@ export default function HomePage() {
                     <path d="m9 11 2 2 4-4" />
                   </svg>
                 ),
-                title: "Productos Certificados",
+                title: "Garantía de Origen",
                 description:
-                  "Todos nuestros productos cuentan con registro sanitario vigente y trazabilidad completa.",
+                  "Trazabilidad documental total de cada ampolleta. Registro INVIMA verificado.",
               },
               {
                 icon: (
@@ -202,9 +274,9 @@ export default function HomePage() {
                     <circle cx="18.5" cy="18.5" r="2.5" />
                   </svg>
                 ),
-                title: "Envío a toda Colombia",
+                title: "Cadena de Custodia",
                 description:
-                  "Despachos rápidos a nivel nacional con embalaje profesional para productos sensibles.",
+                  "Embalaje térmico controlado para mantener la temperatura óptima de los principios activos.",
               },
               {
                 icon: (
@@ -212,16 +284,16 @@ export default function HomePage() {
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                 ),
-                title: "Soporte Profesional",
+                title: "Atención Especializada",
                 description:
-                  "Asesoría técnica por WhatsApp. Resolvemos tus dudas sobre productos y protocolos.",
+                  "Asesoría de farmacéuticos matriculados para guiar tu compra o resolver consultas de protocolos.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] bg-white p-8 text-center shadow-card border border-border/60"
+                className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] bg-surface/50 p-8 text-center border border-border/40"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-surface">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm">
                   {item.icon}
                 </div>
                 <h3 className="font-display text-base font-semibold text-navy">
@@ -237,10 +309,9 @@ export default function HomePage() {
       </section>
 
       {/* ─── TESTIMONIAL ─── */}
-      <section className="py-16 lg:py-24 bg-white border-b border-border/40">
+      <section className="py-16 lg:py-24 bg-white border-t border-border/40">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
-            {/* Visual practitioner icon/badge structure (replaces flat quote) */}
             <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-teal to-teal-dark text-white font-display text-2xl font-bold shadow-md">
               CM
               <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm border border-border">
@@ -271,13 +342,13 @@ export default function HomePage() {
       <section className="bg-navy">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-16 text-center lg:px-8 lg:py-20">
           <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-            ¿Necesitas un pedido personalizado?
+            ¿Necesitás un pedido personalizado?
           </h2>
           <p className="max-w-md text-sm text-white/70">
             Atendemos pedidos por volumen, cotizaciones especiales y asesoría
             técnica para tu práctica profesional.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row w-full sm:w-auto">
+          <div className="flex flex-col gap-3 sm:flex-row w-full sm:w-auto justify-center">
             <a
               href={WHATSAPP_URL}
               target="_blank"
