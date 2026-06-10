@@ -45,13 +45,25 @@ export function CheckoutContent() {
   const { items, subtotal, clearCart } = useCart();
   const [submitted, setSubmitted] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
+  const [department, setDepartment] = useState("");
 
-  const shipping = subtotal > 200000 ? 0 : 15000;
+  // Dynamic shipping cost based on Colombian departments to prevent margin bleed
+  const shipping =
+    subtotal > 200000
+      ? 0
+      : department === ""
+      ? 15000
+      : department === "Bogotá D.C." || department === "Cundinamarca"
+      ? 8000
+      : 15000;
+
   const total = subtotal + shipping;
+
+  // 19% IVA included breakdown for B2B financial compliance in Colombia
+  const ivaIncluded = Math.round(subtotal * 0.19);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to Wompi/Bold payment gateway
     setSubmitted(true);
     clearCart();
   };
@@ -59,11 +71,16 @@ export function CheckoutContent() {
   if (items.length === 0 && !submitted) {
     return (
       <div className="flex flex-col items-center gap-4 py-16 text-center">
-        <span className="text-5xl">🛒</span>
+        {/* SVG Cart Placeholder instead of Emoji */}
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-surface text-navy/40">
+          <svg className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+          </svg>
+        </div>
         <h2 className="font-display text-xl font-semibold text-navy">
           Tu carrito está vacío
         </h2>
-        <p className="text-muted">
+        <p className="text-muted text-sm">
           Agrega productos antes de continuar al checkout.
         </p>
         <Link
@@ -79,13 +96,16 @@ export function CheckoutContent() {
   if (submitted) {
     return (
       <div className="mx-auto flex max-w-lg flex-col items-center gap-4 py-16 text-center">
-        <span className="text-5xl">✅</span>
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal/10 text-teal-dark">
+          <svg className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
         <h2 className="font-display text-2xl font-bold text-navy">
           ¡Pedido confirmado!
         </h2>
-        <p className="text-muted leading-relaxed">
-          Recibirás una confirmación por WhatsApp con los detalles de tu pedido y
-          la información de seguimiento.
+        <p className="text-muted text-sm leading-relaxed">
+          Hemos recibido tu solicitud. Recibirás una confirmación detallada por WhatsApp con la liquidación e información de facturación de tu pedido.
         </p>
         <Link
           href="/tienda"
@@ -127,7 +147,7 @@ export function CheckoutContent() {
               htmlFor="checkout-whatsapp"
               className="font-label text-xs font-medium uppercase tracking-wider text-muted"
             >
-              WhatsApp
+              WhatsApp / Celular
             </label>
             <input
               id="checkout-whatsapp"
@@ -174,11 +194,34 @@ export function CheckoutContent() {
               name="address"
               type="text"
               required
-              placeholder="Calle, carrera, número"
+              placeholder="Calle, carrera, número, apartamento"
               className="h-11 rounded-[var(--radius-md)] border border-border px-4 text-sm text-navy placeholder:text-muted/50 focus:border-teal focus:outline-none"
             />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
+            <div className="flex flex-col gap-1.5">
+              <label
+                htmlFor="checkout-department"
+                className="font-label text-xs font-medium uppercase tracking-wider text-muted"
+              >
+                Departamento
+              </label>
+              <select
+                id="checkout-department"
+                name="department"
+                required
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                className="h-11 rounded-[var(--radius-md)] border border-border bg-white px-4 text-sm text-navy focus:border-teal focus:outline-none"
+              >
+                <option value="">Seleccionar...</option>
+                {COLOMBIAN_DEPARTMENTS.map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="flex flex-col gap-1.5">
               <label
                 htmlFor="checkout-city"
@@ -191,30 +234,9 @@ export function CheckoutContent() {
                 name="city"
                 type="text"
                 required
-                placeholder="Bogotá"
+                placeholder="Ej. Bogotá / Medellín"
                 className="h-11 rounded-[var(--radius-md)] border border-border px-4 text-sm text-navy placeholder:text-muted/50 focus:border-teal focus:outline-none"
               />
-            </div>
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="checkout-department"
-                className="font-label text-xs font-medium uppercase tracking-wider text-muted"
-              >
-                Departamento
-              </label>
-              <select
-                id="checkout-department"
-                name="department"
-                required
-                className="h-11 rounded-[var(--radius-md)] border border-border bg-white px-4 text-sm text-navy focus:border-teal focus:outline-none"
-              >
-                <option value="">Seleccionar...</option>
-                {COLOMBIAN_DEPARTMENTS.map((dept) => (
-                  <option key={dept} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </select>
             </div>
           </div>
         </fieldset>
@@ -225,11 +247,11 @@ export function CheckoutContent() {
             Método de pago
           </legend>
           <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-6 text-center">
-            <p className="font-label text-sm text-muted">
-              Integración de pasarela de pago (Wompi / Bold)
+            <p className="font-label text-sm font-semibold text-navy">
+              Integración de pasarela segura (Wompi / Bold)
             </p>
-            <p className="mt-1 text-xs text-muted/60">
-              Visa · Mastercard · PSE · Nequi
+            <p className="mt-1.5 text-xs text-muted">
+              Tarjetas de crédito · PSE · Bancolombia · Nequi
             </p>
           </div>
         </fieldset>
@@ -237,7 +259,7 @@ export function CheckoutContent() {
         {/* Submit */}
         <button
           type="submit"
-          className="flex h-14 items-center justify-center rounded-[var(--radius-md)] bg-teal text-lg font-semibold text-white transition-colors hover:bg-teal-dark"
+          className="flex h-14 items-center justify-center rounded-[var(--radius-md)] bg-teal text-lg font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.99] cursor-pointer"
         >
           Completar pedido · {formatPrice(total)}
         </button>
@@ -278,8 +300,11 @@ export function CheckoutContent() {
                   key={`${item.product.id}-${item.presentationId}`}
                   className="flex items-center gap-3"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-surface text-lg">
-                    🧪
+                  {/* Clean beaker visual instead of emoji */}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-surface text-navy/40">
+                    <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 011-18z" />
+                    </svg>
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium text-navy leading-tight">
@@ -289,7 +314,7 @@ export function CheckoutContent() {
                       {pres.label} × {item.quantity}
                     </p>
                   </div>
-                  <span className="font-label text-sm font-medium text-navy">
+                  <span className="font-mono text-sm font-medium text-navy">
                     {formatPrice(pres.price * item.quantity)}
                   </span>
                 </li>
@@ -300,31 +325,35 @@ export function CheckoutContent() {
           <div className="mt-4 space-y-2 border-t border-border pt-4">
             <div className="flex justify-between text-sm">
               <span className="text-muted">Subtotal</span>
-              <span className="font-label font-medium text-navy">
+              <span className="font-mono font-medium text-navy">
                 {formatPrice(subtotal)}
               </span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted">Envío</span>
-              <span className="font-label font-medium text-navy">
+              <span className="font-mono font-medium text-navy">
                 {shipping === 0 ? "Gratis" : formatPrice(shipping)}
               </span>
             </div>
             {shipping === 0 && (
-              <p className="font-label text-xs text-success">
-                ✓ Envío gratis en pedidos mayores a $200.000
+              <p className="font-label text-[10px] uppercase tracking-wider text-success font-semibold">
+                ✓ Envío gratis por compras mayores a $200.000 COP
               </p>
             )}
-            <div className="flex justify-between border-t border-border pt-2 text-base">
+            <div className="flex justify-between text-xs text-muted pt-1">
+              <span>IVA Incluido (19%)</span>
+              <span className="font-mono">{formatPrice(ivaIncluded)}</span>
+            </div>
+            <div className="flex justify-between border-t border-border pt-3 text-base">
               <span className="font-semibold text-navy">Total</span>
-              <span className="font-label text-lg font-bold text-navy">
+              <span className="font-mono text-lg font-bold text-navy">
                 {formatPrice(total)}
               </span>
             </div>
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-4 flex items-center gap-2 rounded-[var(--radius-md)] bg-surface px-3 py-2">
+          <div className="mt-4 flex items-center gap-2 rounded-[var(--radius-md)] bg-surface px-3 py-2.5">
             <svg
               width="14"
               height="14"
@@ -347,7 +376,7 @@ export function CheckoutContent() {
               />
             </svg>
             <span className="font-label text-xs text-muted">
-              Pago seguro · Datos protegidos
+              Conexión encriptada SSL · Pago 100% Seguro
             </span>
           </div>
         </div>

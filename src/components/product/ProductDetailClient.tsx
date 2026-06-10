@@ -37,8 +37,34 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
       <section className="bg-white py-8 lg:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:gap-16 lg:px-8">
           {/* Image */}
-          <div className="flex items-center justify-center rounded-[var(--radius-xl)] bg-surface p-8 lg:aspect-square">
-            <span className="text-[120px] lg:text-[160px]">🧪</span>
+          <div className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 lg:aspect-square border border-border/40">
+            <svg
+              className="h-48 w-48 text-navy/10"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M35 25h30v6H35v-6z"
+                fill="currentColor"
+              />
+              <path
+                d="M42 31h16v16h-12V31z"
+                fill="currentColor"
+                opacity="0.5"
+              />
+              <path
+                d="M32 47c0-3 3-5 5-5h26c2 0 5 2 5 5v36c0 4-4 8-8 8H40c-4 0-8-4-8-8V47z"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line x1="40" y1="55" x2="48" y2="55" stroke="currentColor" strokeWidth="2" />
+              <line x1="40" y1="63" x2="54" y2="63" stroke="currentColor" strokeWidth="2" />
+              <line x1="40" y1="71" x2="48" y2="71" stroke="currentColor" strokeWidth="2" />
+              <line x1="40" y1="79" x2="54" y2="79" stroke="currentColor" strokeWidth="2" />
+            </svg>
           </div>
 
           {/* Info Column */}

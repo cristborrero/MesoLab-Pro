@@ -90,12 +90,16 @@ export function CartDrawer() {
         {/* Items */}
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
-            <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
-              <div className="text-4xl">🧪</div>
-              <p className="text-muted">Tu carrito está vacío</p>
+            <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-surface text-navy/40">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </div>
+              <p className="text-muted text-sm">Tu carrito está vacío</p>
               <button
                 onClick={closeCart}
-                className="mt-2 text-sm font-medium text-teal-dark hover:underline"
+                className="mt-2 text-sm font-semibold text-teal-dark hover:underline"
               >
                 Explorar catálogo
               </button>
@@ -114,8 +118,12 @@ export function CartDrawer() {
                     className="flex gap-4 rounded-lg border border-border p-3"
                   >
                     {/* Thumbnail placeholder */}
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-surface text-2xl">
-                      🧪
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] text-navy/20 p-2">
+                      <svg className="h-full w-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 30h20v5H40v-5z" fill="currentColor" />
+                        <path d="M40 45c0-1 1-3 3-3h14c2 0 3 2 3 3v33c0 2-2 4-4 4H44c-2 0-4-2-4-4V45z" stroke="currentColor" strokeWidth="4" />
+                        <path d="M45 55h10" stroke="currentColor" strokeWidth="2" />
+                      </svg>
                     </div>
 
                     {/* Info */}
