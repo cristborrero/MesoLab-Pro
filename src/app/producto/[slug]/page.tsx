@@ -26,8 +26,8 @@ export async function generateMetadata({
   if (!product) return {};
 
   return {
-    title: product.name,
-    description: product.shortDescription,
+    title: `${product.name} | Mesoterapia Profesional | MesoLab Pro`,
+    description: `${product.shortDescription} Insumo clínico certificado con registro INVIMA y trazabilidad controlada en Colombia. Adquiérelo hoy.`,
   };
 }
 

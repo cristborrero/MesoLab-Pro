@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { categories, getFeaturedProducts } from "@/lib/data";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProducts";
+
+export const metadata: Metadata = {
+  title: "MesoLab Pro | Insumos de Mesoterapia Certificados en Colombia",
+  description:
+    "Optimiza la precisión de tus tratamientos con insumos de mesoterapia de alta pureza. Distribución autorizada con registro INVIMA en Bogotá y a nivel nacional.",
+};
 
 const WHATSAPP_URL =
   "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
@@ -20,7 +27,7 @@ export default function HomePage() {
           </span>
 
           <h1 className="font-display text-4xl font-extrabold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-6xl max-w-3xl">
-            Optimizá tus protocolos con
+            Optimiza tus protocolos con
             <br />
             <span className="bg-gradient-to-r from-teal-dark to-navy bg-clip-text text-transparent">
               insumos de precisión médica.
@@ -28,7 +35,7 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg max-w-2xl">
-            Desbloqueá resultados predecibles y seguros en cada ampolleta. 
+            Desbloquea resultados predecibles y seguros en cada ampolleta. 
             Proporcionamos soluciones de mesoterapia certificadas con trazabilidad 
             completa y respaldo INVIMA para profesionales exigentes de la estética en Colombia.
           </p>
@@ -85,13 +92,12 @@ export default function HomePage() {
       {/* ─── BENTO GRID DE CATEGORÍAS ─── */}
       <section className="bg-surface py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12 text-center md:text-left md:max-w-xl">
-            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Líneas de Tratamiento</span>
-            <h2 className="font-display text-3xl font-bold text-navy mt-2">
-              Categorías de Suministros
+          <div className="text-center">
+            <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
+              Categorías
             </h2>
             <p className="mt-2 text-sm text-muted">
-              Explorá nuestra selección de fórmulas avanzadas estructurada para cada objetivo clínico.
+              Encuentra los insumos que necesitas para tu práctica profesional
             </p>
           </div>
 
@@ -342,7 +348,7 @@ export default function HomePage() {
       <section className="bg-navy">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-16 text-center lg:px-8 lg:py-20">
           <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-            ¿Necesitás un pedido personalizado?
+            ¿Necesitas un pedido personalizado?
           </h2>
           <p className="max-w-md text-sm text-white/70">
             Atendemos pedidos por volumen, cotizaciones especiales y asesoría

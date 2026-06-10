@@ -3,9 +3,8 @@ import { products, categories } from "@/lib/data";
 import { ShopContent } from "@/components/shop/ShopContent";
 
 export const metadata: Metadata = {
-  title: "Tienda",
-  description:
-    "Catálogo completo de insumos de mesoterapia certificados: lipolíticos, vitamínicos, anestésicos e insumos profesionales.",
+  title: "Catálogo de Suministros Clínicos | Tienda MesoLab Pro",
+  description: "Explora nuestro catálogo de insumos de mesoterapia certificados en Colombia. Fórmulas puras: lipolíticos, vitamínicos y anestésicos locales para cabina.",
 };
 
 export default function TiendaPage() {

@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sobre Nosotros",
-  description:
-    "Conocé a MesoLab Pro: tu proveedor de referencia para insumos de mesoterapia certificados en Colombia.",
+  title: "Sobre Nosotros | Compromiso Científico MesoLab Pro",
+  description: "Conoce MesoLab Pro: nuestro estándar de trazabilidad de lotes, almacenamiento certificado y principios activos autorizados por INVIMA en Colombia.",
 };
 
 export default function NosotrosPage() {
@@ -52,7 +51,7 @@ export default function NosotrosPage() {
               </p>
               <p>
                 Nuestro equipo está compuesto por profesionales que entienden el ritmo de tu práctica clínica. 
-                Sabemos que necesitás disponibilidad inmediata, precios coherentes sin intermediarios, 
+                Sabemos que necesitas disponibilidad inmediata, precios coherentes sin intermediarios, 
                 fichas técnicas claras y un soporte técnico que responda cuando de verdad importa.
               </p>
             </div>
@@ -170,10 +169,10 @@ export default function NosotrosPage() {
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-2xl px-4 text-center lg:px-8">
           <h2 className="font-display text-2xl font-bold text-navy">
-            ¿Buscás trabajar con calidad certificada?
+            ¿Buscas trabajar con calidad certificada?
           </h2>
           <p className="mt-3 text-sm text-muted">
-            Explorá nuestro catálogo o ponete en contacto para coordinar una cotización personalizada.
+            Explora nuestro catálogo o ponte en contacto para coordinar una cotización personalizada.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link

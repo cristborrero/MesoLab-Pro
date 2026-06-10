@@ -212,7 +212,7 @@ export function CartDrawer() {
               </span>
             </div>
             <p className="mb-4 text-xs text-muted">
-              Envío calculado en el checkout
+              El costo de envío se calcula en el checkout
             </p>
             <Link
               href="/checkout"

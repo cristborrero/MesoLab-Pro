@@ -5,9 +5,8 @@ const WHATSAPP_URL =
   "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 export const metadata: Metadata = {
-  title: "Contacto",
-  description:
-    "Ponete en contacto para pedidos, cotizaciones o asesoría técnica. WhatsApp, correo o formulario de contacto.",
+  title: "Contacto y Asesoría Técnica | MesoLab Pro",
+  description: "Ponte en contacto con nuestro departamento de soporte técnico farmacéutico para pedidos clínicos al por mayor, cotizaciones e indicaciones de protocolos.",
 };
 
 export default function ContactoPage() {
@@ -26,7 +25,7 @@ export default function ContactoPage() {
           <div className="mb-10">
             <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Canales Abiertos</span>
             <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl mt-1">
-              Ponete en contacto
+              Ponte en contacto
             </h1>
             <p className="mt-3 max-w-xl text-muted text-sm sm:text-base leading-relaxed">
               Estamos a disposición para ayudarte con tu pedido, resolver dudas sobre protocolos o coordinar una cotización a medida para tu clínica o consultorio.

@@ -81,7 +81,7 @@ export function CheckoutContent() {
           Tu carrito está vacío
         </h2>
         <p className="text-muted text-sm">
-          Agrega productos antes de continuar al checkout.
+          Agrega insumos antes de continuar al checkout.
         </p>
         <Link
           href="/tienda"
@@ -105,7 +105,7 @@ export function CheckoutContent() {
           ¡Pedido confirmado!
         </h2>
         <p className="text-muted text-sm leading-relaxed">
-          Hemos recibido tu solicitud. Recibirás una confirmación detallada por WhatsApp con la liquidación e información de facturación de tu pedido.
+          Hemos recibido tu solicitud. Vas a recibir una confirmación detallada por WhatsApp con la liquidación e información de facturación de tu pedido.
         </p>
         <Link
           href="/tienda"

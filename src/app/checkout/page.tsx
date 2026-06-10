@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CheckoutContent } from "@/components/checkout/CheckoutContent";
 
 export const metadata: Metadata = {
-  title: "Checkout",
-  description: "Completa tu pedido de insumos de mesoterapia certificados.",
+  title: "Checkout Seguro | MesoLab Pro",
+  description: "Finaliza tu compra de suministros clínicos de mesoterapia de forma rápida y segura con encriptación SSL y facturación formal en Colombia.",
 };
 
 export default function CheckoutPage() {
@@ -21,8 +21,8 @@ export default function CheckoutPage() {
           / <span className="text-navy">Checkout</span>
         </nav>
 
-        <h1 className="mb-8 font-display text-3xl font-bold text-navy sm:text-4xl">
-          Checkout
+        <h1 className="mb-8 font-display text-3xl font-extrabold text-navy sm:text-4xl">
+          Finaliza tu Compra
         </h1>
 
         <CheckoutContent />
