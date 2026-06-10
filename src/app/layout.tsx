@@ -65,13 +65,11 @@ export default function RootLayout({
       lang="es"
       className={`${dmSans.variable} ${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-surface text-foreground font-body">
+      <body className="min-h-full flex flex-col bg-white text-foreground font-body">
         <CartProvider>
-          <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col border-l border-r border-navy/5 bg-white shadow-[0_0_80px_rgba(0,0,0,0.025)]">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
           <CartDrawer />
           <WhatsAppButton />
         </CartProvider>
