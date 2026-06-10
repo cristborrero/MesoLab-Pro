@@ -21,12 +21,12 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link
-              href="/"
-              className="inline-flex items-baseline gap-0.5 font-display text-xl font-bold text-white"
-            >
-              Meso<span className="font-extrabold text-teal">Lab</span>
-              <span className="text-teal">Pro</span>
+            <Link href="/" className="inline-flex items-center">
+              <img
+                src="/logo_mesolab_pro_h_web-white.svg"
+                alt="MesoLab Pro"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/60">
               Ciencia en cada ampolleta. Insumos de mesoterapia certificados

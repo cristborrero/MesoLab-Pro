@@ -86,12 +86,12 @@ export function Header() {
           </button>
 
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-baseline gap-0.5 font-display text-xl font-bold text-navy lg:text-2xl"
-          >
-            Meso<span className="font-extrabold text-teal-dark">Lab</span>
-            <span className="text-teal-dark">Pro</span>
+          <Link href="/" className="flex items-center">
+            <img
+              src="/logo_mesolab_pro_h_web.svg"
+              alt="MesoLab Pro"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav Links with Premium Mega Menú */}
