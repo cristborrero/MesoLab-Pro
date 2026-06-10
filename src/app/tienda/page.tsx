@@ -20,11 +20,11 @@ export default function TiendaPage() {
             </a>{" "}
             / <span className="text-navy">Tienda</span>
           </nav>
-          <h1 className="font-display text-3xl font-bold text-navy sm:text-4xl">
-            Tienda
+          <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl">
+            Catálogo de Precisión
           </h1>
-          <p className="mt-2 text-muted">
-            {products.length} productos disponibles
+          <p className="mt-2 text-sm text-muted">
+            {products.length} insumos clínicos certificados y disponibles hoy en Colombia.
           </p>
         </div>
       </div>

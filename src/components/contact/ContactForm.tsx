@@ -14,7 +14,11 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] border border-success/20 bg-success/5 p-10 text-center">
-        <span className="text-4xl">✅</span>
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/15 text-success">
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+        </div>
         <h3 className="font-display text-xl font-semibold text-navy">
           ¡Mensaje enviado!
         </h3>

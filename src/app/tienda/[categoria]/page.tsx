@@ -56,7 +56,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </a>{" "}
             / <span className="text-navy">{category.name}</span>
           </nav>
-          <h1 className="font-display text-3xl font-bold text-navy sm:text-4xl">
+          <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl">
             {category.name}
           </h1>
           <p className="mt-2 max-w-2xl text-muted">{category.description}</p>

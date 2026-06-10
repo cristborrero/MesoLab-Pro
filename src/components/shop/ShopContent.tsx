@@ -55,10 +55,14 @@ export function ShopContent({
 
       {/* Product Grid */}
       {filteredProducts.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
-          <span className="text-4xl">🔍</span>
-          <p className="text-muted">
-            No hay productos en esta categoría todavía.
+        <div className="flex flex-col items-center justify-center gap-4 py-16 text-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface text-navy/40">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+          </div>
+          <p className="text-muted text-sm">
+            Aún no hay productos cargados en esta categoría.
           </p>
         </div>
       ) : (

@@ -75,8 +75,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {related.length > 0 && (
         <section className="border-t border-border bg-surface py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <h2 className="font-display text-xl font-bold text-navy sm:text-2xl">
-              Productos relacionados
+            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Sinergia Química</span>
+            <h2 className="font-display text-xl font-extrabold text-navy sm:text-2xl mt-1">
+              Insumos Clínicos Relacionados
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((p) => (

@@ -7,7 +7,7 @@ const WHATSAPP_URL =
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Contáctanos para pedidos, cotizaciones o asesoría técnica. WhatsApp, correo o formulario de contacto.",
+    "Ponete en contacto para pedidos, cotizaciones o asesoría técnica. WhatsApp, correo o formulario de contacto.",
 };
 
 export default function ContactoPage() {
@@ -16,7 +16,7 @@ export default function ContactoPage() {
       <section className="py-12 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="mb-6 font-label text-xs text-muted">
+          <nav className="mb-6 font-label text-[10px] uppercase tracking-widest text-muted">
             <a href="/" className="hover:text-teal-dark">
               Inicio
             </a>{" "}
@@ -24,12 +24,12 @@ export default function ContactoPage() {
           </nav>
 
           <div className="mb-10">
-            <h1 className="font-display text-3xl font-bold text-navy sm:text-4xl">
-              Hablemos
+            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Canales Abiertos</span>
+            <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl mt-1">
+              Ponete en contacto
             </h1>
-            <p className="mt-3 max-w-xl text-muted">
-              Estamos aquí para ayudarte con tu pedido, resolver tus dudas o
-              preparar una cotización personalizada.
+            <p className="mt-3 max-w-xl text-muted text-sm sm:text-base leading-relaxed">
+              Estamos a disposición para ayudarte con tu pedido, resolver dudas sobre protocolos o coordinar una cotización a medida para tu clínica o consultorio.
             </p>
           </div>
 
@@ -41,7 +41,7 @@ export default function ContactoPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border-2 border-whatsapp/20 bg-whatsapp/5 p-5 transition-colors hover:border-whatsapp/40"
+                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border-2 border-whatsapp/20 bg-whatsapp/5 p-5 transition-all hover:border-whatsapp/40"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-whatsapp text-white">
                   <svg
@@ -55,10 +55,10 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <p className="font-display font-semibold text-navy">
-                    WhatsApp
+                    WhatsApp Business
                   </p>
-                  <p className="text-sm text-muted">
-                    Respuesta inmediata · Canal preferido
+                  <p className="text-xs text-muted">
+                    Respuesta inmediata · Nuestro canal preferido
                   </p>
                 </div>
               </a>
@@ -66,10 +66,12 @@ export default function ContactoPage() {
               {/* Email */}
               <a
                 href="mailto:contacto@mesolabpro.com.co"
-                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border border-border bg-white p-5 transition-colors hover:border-teal/30"
+                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border border-border bg-white p-5 transition-all hover:border-teal/30"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface text-xl">
-                  ✉️
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface text-teal-dark">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
                 </div>
                 <div>
                   <p className="font-display font-semibold text-navy">
@@ -86,14 +88,17 @@ export default function ContactoPage() {
                 href="https://instagram.com/mesolabpro"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border border-border bg-white p-5 transition-colors hover:border-teal/30"
+                className="group flex items-center gap-4 rounded-[var(--radius-lg)] border border-border bg-white p-5 transition-all hover:border-teal/30"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface text-xl">
-                  📸
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface text-teal-dark">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+                  </svg>
                 </div>
                 <div>
                   <p className="font-display font-semibold text-navy">
-                    Instagram
+                    Comunidad Instagram
                   </p>
                   <p className="text-sm text-muted">@mesolabpro</p>
                 </div>
