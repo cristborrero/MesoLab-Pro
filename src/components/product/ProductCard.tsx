@@ -20,7 +20,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.article
-      whileHover={{ y: -4, shadow: "0 12px 30px rgba(0, 0, 0, 0.08)" }}
+      whileHover={{ y: -4, boxShadow: "0 12px 30px rgba(0, 0, 0, 0.08)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-colors duration-300 hover:border-teal/30"
     >
