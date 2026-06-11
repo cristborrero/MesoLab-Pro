@@ -1,123 +1,179 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
+const fields = [
+  {
+    id: "contact-name",
+    name: "name",
+    type: "text",
+    label: "Nombre completo",
+    placeholder: "Dra. María García",
+    required: true,
+  },
+  {
+    id: "contact-email",
+    name: "email",
+    type: "email",
+    label: "Correo electrónico",
+    placeholder: "maria@clinica.com",
+    required: true,
+  },
+  {
+    id: "contact-whatsapp",
+    name: "whatsapp",
+    type: "tel",
+    label: "WhatsApp (opcional)",
+    placeholder: "+57 300 123 4567",
+    required: false,
+  },
+];
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [focused, setFocused] = useState<string | null>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to actual form handler (email API, form backend, etc.)
     setSubmitted(true);
   };
 
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] border border-success/20 bg-success/5 p-10 text-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success/15 text-success">
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-          </svg>
-        </div>
-        <h3 className="font-display text-xl font-semibold text-navy">
-          ¡Mensaje enviado!
-        </h3>
-        <p className="text-muted">
-          Te responderemos lo antes posible. Si necesitas atención inmediata,
-          escríbenos por WhatsApp.
-        </p>
-        <button
-          onClick={() => setSubmitted(false)}
-          className="mt-2 text-sm font-medium text-teal-dark hover:underline"
-        >
-          Enviar otro mensaje
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-5 rounded-[var(--radius-lg)] border border-border bg-white p-6 shadow-card lg:p-8"
-    >
-      <h2 className="font-display text-lg font-semibold text-navy">
-        Envíanos un mensaje
-      </h2>
-
-      <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="contact-name"
-          className="font-label text-xs font-medium uppercase tracking-wider text-muted"
+    <AnimatePresence mode="wait">
+      {submitted ? (
+        <motion.div
+          key="success"
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: -12 }}
+          transition={{ duration: 0.45, ease }}
+          className="flex flex-col items-center gap-5 rounded-2xl border border-success/20 bg-gradient-to-b from-success/5 to-white p-12 text-center"
         >
-          Nombre completo
-        </label>
-        <input
-          id="contact-name"
-          name="name"
-          type="text"
-          required
-          placeholder="Tu nombre"
-          className="h-11 rounded-[var(--radius-md)] border border-border bg-white px-4 text-sm text-navy transition-colors placeholder:text-muted/50 focus:border-teal focus:outline-none"
-        />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="contact-email"
-          className="font-label text-xs font-medium uppercase tracking-wider text-muted"
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 20 }}
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-success/10 text-success"
+          >
+            <svg className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </motion.div>
+          <div>
+            <h3 className="font-display text-xl font-bold text-navy">¡Mensaje enviado!</h3>
+            <p className="mt-2 text-sm text-muted max-w-xs">
+              Te responderemos lo antes posible. Si necesitas atención inmediata,
+              escríbenos por WhatsApp.
+            </p>
+          </div>
+          <button
+            onClick={() => setSubmitted(false)}
+            className="mt-1 rounded-lg border border-border px-5 py-2 text-xs font-semibold font-label uppercase tracking-wider text-navy transition-colors hover:bg-surface"
+          >
+            Enviar otro mensaje
+          </button>
+        </motion.div>
+      ) : (
+        <motion.form
+          key="form"
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -16 }}
+          transition={{ duration: 0.45, ease }}
+          className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-7 shadow-[0_2px_16px_rgba(0,0,0,0.06)] lg:p-8"
         >
-          Correo electrónico
-        </label>
-        <input
-          id="contact-email"
-          name="email"
-          type="email"
-          required
-          placeholder="tu@correo.com"
-          className="h-11 rounded-[var(--radius-md)] border border-border bg-white px-4 text-sm text-navy transition-colors placeholder:text-muted/50 focus:border-teal focus:outline-none"
-        />
-      </div>
+          <div>
+            <h2 className="font-display text-xl font-bold text-navy">Envíanos un mensaje</h2>
+            <p className="mt-1 text-xs text-muted">Responderemos en menos de 24 horas hábiles</p>
+          </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="contact-whatsapp"
-          className="font-label text-xs font-medium uppercase tracking-wider text-muted"
-        >
-          WhatsApp
-        </label>
-        <input
-          id="contact-whatsapp"
-          name="whatsapp"
-          type="tel"
-          placeholder="300 123 4567"
-          className="h-11 rounded-[var(--radius-md)] border border-border bg-white px-4 text-sm text-navy transition-colors placeholder:text-muted/50 focus:border-teal focus:outline-none"
-        />
-      </div>
+          <div className="space-y-4">
+            {fields.map((field, i) => (
+              <motion.div
+                key={field.id}
+                className="flex flex-col gap-1.5"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07, duration: 0.35, ease }}
+              >
+                <label
+                  htmlFor={field.id}
+                  className="font-label text-[10px] font-bold uppercase tracking-widest text-muted"
+                >
+                  {field.label}
+                </label>
+                <div className="relative">
+                  <input
+                    id={field.id}
+                    name={field.name}
+                    type={field.type}
+                    required={field.required}
+                    placeholder={field.placeholder}
+                    onFocus={() => setFocused(field.id)}
+                    onBlur={() => setFocused(null)}
+                    className="h-11 w-full rounded-xl border border-border bg-white px-4 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10"
+                  />
+                  <motion.span
+                    className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: focused === field.id ? 1 : 0 }}
+                    transition={{ duration: 0.25, ease }}
+                  />
+                </div>
+              </motion.div>
+            ))}
 
-      <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="contact-message"
-          className="font-label text-xs font-medium uppercase tracking-wider text-muted"
-        >
-          Mensaje
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          required
-          rows={4}
-          placeholder="¿En qué podemos ayudarte?"
-          className="rounded-[var(--radius-md)] border border-border bg-white px-4 py-3 text-sm text-navy transition-colors placeholder:text-muted/50 focus:border-teal focus:outline-none resize-none"
-        />
-      </div>
+            <motion.div
+              className="flex flex-col gap-1.5"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: fields.length * 0.07, duration: 0.35, ease }}
+            >
+              <label
+                htmlFor="contact-message"
+                className="font-label text-[10px] font-bold uppercase tracking-widest text-muted"
+              >
+                Mensaje
+              </label>
+              <div className="relative">
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="¿En qué podemos ayudarte? (pedido, cotización, protocolo…)"
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10"
+                />
+                <motion.span
+                  className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: focused === "message" ? 1 : 0 }}
+                  transition={{ duration: 0.25, ease }}
+                />
+              </div>
+            </motion.div>
+          </div>
 
-      <button
-        type="submit"
-        className="flex h-12 items-center justify-center rounded-[var(--radius-md)] bg-teal font-semibold text-white transition-colors hover:bg-teal-dark"
-      >
-        Enviar mensaje
-      </button>
-    </form>
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex h-12 items-center justify-center rounded-xl bg-teal font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)]"
+          >
+            Enviar mensaje
+          </motion.button>
+
+          <p className="text-center text-[10px] font-label uppercase tracking-wider text-muted/60">
+            Tu información es confidencial y no será compartida
+          </p>
+        </motion.form>
+      )}
+    </AnimatePresence>
   );
 }

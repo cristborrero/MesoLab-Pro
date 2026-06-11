@@ -100,7 +100,7 @@ export function mapWooCommerceProductToFrontend(
   }
   
   const wcShortDesc = stripHtml(wcProduct.short_description);
-  const wcDesc = stripHtml(wcProduct.description);
+  const wcDesc = wcProduct.description; // Preserve rich text HTML from WordPress/WooCommerce
 
   return {
     id: String(wcProduct.id),

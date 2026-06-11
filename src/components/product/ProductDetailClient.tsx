@@ -223,7 +223,12 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
 
           {/* Tab Content */}
           <div className="mt-6 max-w-3xl leading-relaxed text-muted">
-            {activeTab === "descripcion" && <p>{product.description}</p>}
+            {activeTab === "descripcion" && (
+              <div 
+                className="prose-wp"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
+            )}
             {activeTab === "indicaciones" && <p>{product.indications}</p>}
             {activeTab === "certificaciones" && (
               <p>{product.certifications}</p>

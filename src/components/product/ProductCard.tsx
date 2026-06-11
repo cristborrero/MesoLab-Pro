@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/data";
 import { useCart } from "@/components/cart/CartProvider";
+import { motion } from "framer-motion";
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +19,11 @@ export function ProductCard({ product }: ProductCardProps) {
   );
 
   return (
-    <article className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated">
+    <motion.article
+      whileHover={{ y: -4, shadow: "0 12px 30px rgba(0, 0, 0, 0.08)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-colors duration-300 hover:border-teal/30"
+    >
       {/* Product Image */}
       <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6]">
         <Link href={`/producto/${product.slug}`} className="relative flex h-full w-full items-center justify-center p-4">
@@ -136,15 +141,16 @@ export function ProductCard({ product }: ProductCardProps) {
             {formatPrice(selectedPresentation.price)}
           </span>
 
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={() => addItem(product, selectedPresentation.id)}
             disabled={!product.inStock}
-            className="rounded-[var(--radius-md)] bg-teal px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-teal-dark hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
+            className="rounded-[var(--radius-md)] bg-teal px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
           >
             Agregar
-          </button>
+          </motion.button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

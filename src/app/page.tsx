@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getProducts, getCategories } from "@/lib/woocommerce";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProducts";
+import { FadeIn, Stagger, StaggerItem, HoverCard, SpotlightCard } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "MesoLab Pro | Insumos de Mesoterapia Certificados en Colombia",
@@ -33,102 +34,116 @@ export default async function HomePage() {
   return (
     <>
       {/* ─── HERO STACKED & NARRATIVA DE VALOR ─── */}
-      <section className="bg-white border-b border-border/40">
-        <div className="mx-auto max-w-4xl px-4 py-20 text-center lg:px-8 lg:py-28 flex flex-col items-center">
+      <section className="relative overflow-hidden bg-white border-b border-border/40 py-20 lg:py-28">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-40 -right-40 h-[480px] w-[480px] rounded-full bg-teal-light/30 blur-[100px]"
+        />
+        <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8 flex flex-col items-center">
           {/* Scientific badge */}
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-light px-3 py-1 font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark mb-6 border border-teal/15">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
-            Suministros de Alta Precisión Clínica
-          </span>
-
-          <h1 className="font-display text-4xl font-extrabold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-6xl max-w-3xl">
-            Optimiza tus protocolos con
-            <br />
-            <span className="bg-gradient-to-r from-teal-dark to-navy bg-clip-text text-transparent">
-              insumos de precisión médica.
+          <FadeIn variant="fadeDown" duration={0.45}>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-light px-3 py-1 font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark mb-6 border border-teal/15">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+              Suministros de Alta Precisión Clínica
             </span>
-          </h1>
+          </FadeIn>
 
-          <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg max-w-2xl">
-            Desbloquea resultados predecibles y seguros en cada ampolleta. 
-            Proporcionamos soluciones de mesoterapia certificadas con trazabilidad 
-            completa y respaldo INVIMA para profesionales exigentes de la estética en Colombia.
-          </p>
+          <FadeIn delay={0.08} duration={0.65}>
+            <h1 className="font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl max-w-3xl">
+              Optimiza tus protocolos con
+              <br />
+              <span className="bg-gradient-to-r from-teal-dark to-navy bg-clip-text text-transparent">
+                insumos de precisión médica.
+              </span>
+            </h1>
+          </FadeIn>
 
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row w-full justify-center">
-            <Link
-              href="/tienda"
-              className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] bg-teal px-8 text-base font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.98] sm:w-auto shadow-sm"
-            >
-              Explorar Catálogo
-            </Link>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-md)] border border-navy/15 bg-white px-8 text-base font-medium text-navy transition-all hover:bg-surface active:scale-[0.98] sm:w-auto"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="text-[#25D366]"
+          <FadeIn delay={0.16} duration={0.6}>
+            <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg max-w-2xl">
+              Desbloquea resultados predecibles y seguros en cada ampolleta. 
+              Proporcionamos soluciones de mesoterapia certificadas con trazabilidad 
+              completa y respaldo INVIMA para profesionales exigentes de la estética en Colombia.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.24} duration={0.55} className="w-full">
+            <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row w-full justify-center">
+              <Link
+                href="/tienda"
+                className="flex h-12 w-full items-center justify-center rounded-xl bg-teal px-8 text-base font-semibold text-white transition-colors hover:bg-teal-dark sm:w-auto shadow-sm"
               >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              Asesoría Inmediata
-            </a>
-          </div>
+                Explorar Catálogo
+              </Link>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-navy/15 bg-white px-8 text-base font-medium text-navy transition-all hover:bg-surface active:scale-[0.98] sm:w-auto"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="text-[#25D366]"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Asesoría Inmediata
+              </a>
+            </div>
+          </FadeIn>
 
           {/* Centered protagonist visual with architectural guide framing */}
-          <div className="mt-16 w-full max-w-2xl relative flex h-80 justify-center items-center rounded-2xl bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 border border-border/60 shadow-sm overflow-hidden">
-            {heroImage ? (
-              <Image
-                src={heroImage}
-                alt="L-Carnitina"
-                fill
-                className="object-contain p-8 mix-blend-multiply transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 640px"
-                priority
-              />
-            ) : (
-              <svg
-                className="h-48 w-48 text-teal-dark/15"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-                <path d="M40 70h20" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-                <path d="M40 60h20" stroke="currentColor" strokeWidth="1" />
-              </svg>
-            )}
-            <span className="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-wider text-navy/35">
-              Ref: L-Carnitina 500mg/5ml
-            </span>
-            <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border font-label text-[10px] font-bold text-navy shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#25D366]" />
-              Stock Disponible
+          <FadeIn variant="scaleIn" delay={0.32} duration={0.7} className="w-full max-w-2xl">
+            <div className="mt-16 relative flex h-80 justify-center items-center rounded-2xl bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 border border-border/60 shadow-[0_1px_3px_rgba(0,0,0,0.05)] overflow-hidden">
+              {heroImage ? (
+                <Image
+                  src={heroImage}
+                  alt="L-Carnitina"
+                  fill
+                  className="object-contain p-8 mix-blend-multiply transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  priority
+                />
+              ) : (
+                <svg
+                  className="h-48 w-48 text-teal-dark/15"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                  <path d="M40 70h20" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+                  <path d="M40 60h20" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              )}
+              <span className="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-wider text-navy/35">
+                Ref: L-Carnitina 500mg/5ml
+              </span>
+              <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1 border border-border font-label text-[10px] font-bold text-navy shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#25D366]" />
+                Stock Disponible
+              </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* ─── BENTO GRID DE CATEGORÍAS ─── */}
       <section className="bg-surface py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="text-center">
+          <FadeIn className="text-center">
             <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
               Categorías
             </h2>
             <p className="mt-2 text-sm text-muted">
               Encuentra los insumos que necesitas para tu práctica profesional
             </p>
-          </div>
+          </FadeIn>
 
           {/* Bento Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             {categories.slice(0, 4).map((category) => {
               // Obtener la configuración de estilo y etiqueta para esta categoría
               const config = CATEGORY_CONFIG[category.slug] || {
@@ -140,76 +155,81 @@ export default async function HomePage() {
               const minHeight = config.isLarge ? "min-h-[300px]" : "min-h-[240px]";
 
               return (
-                <Link
-                  key={category.slug}
-                  href={`/tienda/${category.slug}`}
-                  className={`group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated overflow-hidden ${colSpan} ${minHeight}`}
-                >
-                  {/* Background Image filling the right side and blending into the white background */}
-                  {category.image && (
-                    <div className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden">
-                      <div className="absolute right-0 top-0 w-[70%] h-full">
-                        <Image
-                          src={category.image}
-                          alt={category.name}
-                          fill
-                          className="object-cover object-right mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.02]"
-                          sizes={config.isLarge ? "600px" : "350px"}
-                        />
+                <StaggerItem key={category.slug} className={colSpan}>
+                  <HoverCard lift={3} className="h-full">
+                    <Link
+                      href={`/tienda/${category.slug}`}
+                      className={`group relative flex flex-col justify-between rounded-2xl border border-border bg-white p-8 overflow-hidden h-full ${minHeight}`}
+                    >
+                      {/* Background Image filling the right side and blending into the white background */}
+                      {category.image && (
+                        <div className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden">
+                          <div className="absolute right-0 top-0 w-[70%] h-full">
+                            <Image
+                              src={category.image}
+                              alt={category.name}
+                              fill
+                              className="object-cover object-right mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.03]"
+                              sizes={config.isLarge ? "600px" : "350px"}
+                            />
+                          </div>
+                          {/* Gradient covering the entire card to melt the image from left to right */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+                        </div>
+                      )}
+
+                      {/* Clean text container (max 50% width to stay on solid background) */}
+                      <div className="relative z-20 max-w-[50%] flex flex-col h-full justify-between">
+                        <div>
+                          <span className="inline-block font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">
+                            {config.label}
+                          </span>
+                          <h3
+                            className={`font-display font-bold text-navy mt-4 ${
+                              config.isLarge ? "text-2xl" : "text-xl"
+                            }`}
+                          >
+                            {category.name}
+                          </h3>
+                        </div>
+
+                        <div className="mt-6 flex flex-col gap-1">
+                          <span className="font-label text-[10px] text-muted">
+                            {category.productCount}{" "}
+                            {category.productCount === 1 ? "producto" : "productos"}
+                          </span>
+                          <span className="font-bold text-teal-dark text-xs md:text-sm group-hover:underline">
+                            Ver catálogo →
+                          </span>
+                        </div>
                       </div>
-                      {/* Gradient covering the entire card to melt the image from left to right */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
-                    </div>
-                  )}
-
-                  {/* Clean text container (max 50% width to stay on solid background) */}
-                  <div className="relative z-20 max-w-[50%] flex flex-col h-full justify-between">
-                    <div>
-                      <span className="inline-block font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">
-                        {config.label}
-                      </span>
-                      <h3
-                        className={`font-display font-bold text-navy mt-4 ${
-                          config.isLarge ? "text-2xl" : "text-xl"
-                        }`}
-                      >
-                        {category.name}
-                      </h3>
-                    </div>
-
-                    <div className="mt-6 flex flex-col gap-1">
-                      <span className="font-label text-[10px] text-muted">
-                        {category.productCount}{" "}
-                        {category.productCount === 1 ? "producto" : "productos"}
-                      </span>
-                      <span className="font-bold text-teal-dark text-xs md:text-sm group-hover:underline">
-                        Ver catálogo →
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                    </Link>
+                  </HoverCard>
+                </StaggerItem>
               );
             })}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       {/* ─── FEATURED PRODUCTS ─── */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex items-end justify-between mb-8">
-            <div>
+            <FadeIn>
               <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Catálogo Seleccionado</span>
               <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl mt-1">
                 Productos Destacados
               </h2>
-            </div>
-            <Link
-              href="/tienda"
-              className="hidden text-sm font-semibold text-teal-dark transition-colors hover:underline sm:inline-flex"
-            >
-              Ver todo →
-            </Link>
+            </FadeIn>
+            <FadeIn>
+              <Link
+                href="/tienda"
+                className="hidden text-sm font-semibold text-teal-dark transition-colors hover:underline sm:inline-flex"
+              >
+                Ver todo →
+              </Link>
+            </FadeIn>
           </div>
 
           <FeaturedProductsSection products={featuredProducts} />
@@ -268,7 +288,7 @@ export default async function HomePage() {
       {/* ─── TRUST PILLARS SECTION ─── */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-8 sm:grid-cols-3">
+          <Stagger className="grid gap-8 sm:grid-cols-3">
             {[
               {
                 icon: (
@@ -298,6 +318,8 @@ export default async function HomePage() {
                 icon: (
                   <svg className="h-8 w-8 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    <path d="M8 9h8" />
+                    <path d="M8 13h6" />
                   </svg>
                 ),
                 title: "Atención Especializada",
@@ -305,91 +327,98 @@ export default async function HomePage() {
                   "Asesoría de farmacéuticos matriculados para guiar tu compra o resolver consultas de protocolos.",
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="flex flex-col items-center gap-4 rounded-[var(--radius-lg)] bg-surface/50 p-8 text-center border border-border/40"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm">
-                  {item.icon}
-                </div>
-                <h3 className="font-display text-base font-semibold text-navy">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted">
-                  {item.description}
-                </p>
-              </div>
+              <StaggerItem key={item.title}>
+                <SpotlightCard lift={2} className="h-full rounded-2xl bg-surface/50 p-8 text-center border border-border/40 flex flex-col items-center gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm border border-border/50 relative z-10">
+                    {item.icon}
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-navy relative z-10">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted relative z-10">
+                    {item.description}
+                  </p>
+                </SpotlightCard>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       {/* ─── TESTIMONIAL ─── */}
-      <section className="py-16 lg:py-24 bg-white border-t border-border/40">
+      <section className="py-16 lg:py-24 bg-surface/40 border-t border-border/40">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
-            <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-teal to-teal-dark text-white font-display text-2xl font-bold shadow-md">
-              CM
-              <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm border border-border">
-                <svg className="h-3.5 w-3.5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <path d="m20 6-11 11-5-5" />
-                </svg>
-              </span>
-            </div>
+          <FadeIn duration={0.65}>
+            <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
+              <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-teal to-teal-dark text-white font-display text-2xl font-bold shadow-md">
+                CM
+                <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm border border-border">
+                  <svg className="h-3.5 w-3.5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                    <path d="m20 6-11 11-5-5" />
+                  </svg>
+                </span>
+              </div>
 
-            <blockquote className="text-center md:text-left">
-              <p className="font-display text-xl font-medium leading-relaxed text-navy sm:text-2xl">
-                &ldquo;Desde que trabajo con MesoLab Pro, mis pacientes notan la
-                diferencia en los resultados. La trazabilidad y la calidad de los
-                productos me dan la confianza que necesito.&rdquo;
-              </p>
-              <footer className="mt-4">
-                <p className="font-semibold text-navy">Dra. Carolina Martínez</p>
-                <p className="font-label text-xs uppercase tracking-wider text-muted mt-0.5">
-                  Medicina Estética · Reg. Médico 18402-5 · Bogotá
+              <blockquote className="text-center md:text-left">
+                <p className="font-display text-xl font-medium leading-relaxed text-navy sm:text-2xl">
+                  &ldquo;Desde que trabajo con MesoLab Pro, mis pacientes notan la
+                  diferencia en los resultados. La trazabilidad y la calidad de los
+                  productos me dan la confianza que necesito.&rdquo;
                 </p>
-              </footer>
-            </blockquote>
-          </div>
+                <footer className="mt-4">
+                  <p className="font-semibold text-navy">Dra. Carolina Martínez</p>
+                  <p className="font-label text-xs uppercase tracking-wider text-muted mt-0.5">
+                    Medicina Estética · Reg. Médico 18402-5 · Bogotá
+                  </p>
+                </footer>
+              </blockquote>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* ─── CTA BANNER ─── */}
-      <section className="bg-navy">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-16 text-center lg:px-8 lg:py-20">
-          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-            ¿Necesitas un pedido personalizado?
-          </h2>
-          <p className="max-w-md text-sm text-white/70">
-            Atendemos pedidos por volumen, cotizaciones especiales y asesoría
-            técnica para tu práctica profesional.
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row w-full sm:w-auto justify-center">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--radius-md)] bg-[#25D366] px-8 font-semibold text-white transition-all hover:bg-[#22bf5b] active:scale-[0.98] sm:w-auto"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
+      {/* ─── CTA BANNER WITH INTERACTIVE SPOTLIGHT ─── */}
+      <SpotlightCard lift={0} className="bg-navy relative overflow-hidden py-16 lg:py-20 w-full rounded-none border-none">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-36 left-1/2 -translate-x-1/2 h-[400px] w-[400px] rounded-full bg-teal/10 blur-[100px]"
+        />
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 text-center lg:px-8 z-10">
+          <FadeIn variant="scaleIn" duration={0.65}>
+            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+              ¿Necesitas un pedido personalizado?
+            </h2>
+            <p className="mt-3 max-w-md text-sm text-white/70 mx-auto">
+              Atendemos pedidos por volumen, cotizaciones especiales y asesoría
+              técnica para tu práctica profesional.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row w-full sm:w-auto justify-center">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-8 font-semibold text-white transition-all hover:bg-[#22bf5b] hover:shadow-[0_4px_20px_rgba(37,211,102,0.25)] sm:w-auto"
               >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              Hablar por WhatsApp
-            </a>
-            <Link
-              href="/contacto"
-              className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] border border-white/20 px-8 font-medium text-white transition-all hover:bg-white/10 active:scale-[0.98] sm:w-auto"
-            >
-              Contacto
-            </Link>
-          </div>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Hablar por WhatsApp
+              </a>
+              <Link
+                href="/contacto"
+                className="flex h-12 w-full items-center justify-center rounded-xl border border-white/20 px-8 font-medium text-white transition-all hover:bg-white/10 active:scale-[0.98] sm:w-auto"
+              >
+                Contacto
+              </Link>
+            </div>
+          </FadeIn>
         </div>
-      </section>
+      </SpotlightCard>
     </>
   );
 }
