@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "mesolabpro.com.co",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.mesolabpro.com.co",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 };
