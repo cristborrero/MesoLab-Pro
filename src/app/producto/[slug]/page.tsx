@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  products,
-  getProductBySlug,
-  getProductsByCategory,
-} from "@/lib/data";
+import { getProduct, getProducts } from "@/lib/woocommerce";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { ProductCard } from "@/components/product/ProductCard";
 
@@ -13,6 +9,7 @@ interface ProductPageProps {
 }
 
 export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((p) => ({
     slug: p.slug,
   }));
@@ -22,7 +19,7 @@ export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProduct(slug);
   if (!product) return {};
 
   return {
@@ -33,14 +30,15 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProduct(slug);
 
   if (!product) {
     notFound();
   }
 
-  const related = getProductsByCategory(product.category)
-    .filter((p) => p.id !== product.id)
+  const allProducts = await getProducts();
+  const related = allProducts
+    .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
   return (

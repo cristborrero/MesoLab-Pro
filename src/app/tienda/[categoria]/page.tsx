@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  categories,
-  getCategoryBySlug,
-  getProductsByCategory,
-  products,
-} from "@/lib/data";
+import { getCategories, getProducts } from "@/lib/woocommerce";
 import { ShopContent } from "@/components/shop/ShopContent";
 
 interface CategoryPageProps {
@@ -13,6 +8,7 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
+  const categories = await getCategories();
   return categories.map((cat) => ({
     categoria: cat.slug,
   }));
@@ -22,7 +18,8 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { categoria } = await params;
-  const category = getCategoryBySlug(categoria);
+  const categories = await getCategories();
+  const category = categories.find((c) => c.slug === categoria);
   if (!category) return {};
 
   return {
@@ -33,13 +30,15 @@ export async function generateMetadata({
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categoria } = await params;
-  const category = getCategoryBySlug(categoria);
+  const categories = await getCategories();
+  const category = categories.find((c) => c.slug === categoria);
 
   if (!category) {
     notFound();
   }
 
-  const categoryProducts = getProductsByCategory(categoria);
+  const allProducts = await getProducts();
+  const categoryProducts = allProducts.filter((p) => p.category === categoria);
 
   return (
     <>

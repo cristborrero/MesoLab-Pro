@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "./CartProvider";
 import { formatPrice } from "@/lib/data";
 
@@ -117,13 +118,25 @@ export function CartDrawer() {
                     key={`${item.product.id}-${item.presentationId}`}
                     className="flex gap-4 rounded-lg border border-border p-3"
                   >
-                    {/* Thumbnail placeholder */}
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] text-navy/20 p-2">
-                      <svg className="h-full w-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M40 30h20v5H40v-5z" fill="currentColor" />
-                        <path d="M40 45c0-1 1-3 3-3h14c2 0 3 2 3 3v33c0 2-2 4-4 4H44c-2 0-4-2-4-4V45z" stroke="currentColor" strokeWidth="4" />
-                        <path d="M45 55h10" stroke="currentColor" strokeWidth="2" />
-                      </svg>
+                    {/* Product or Variation Image */}
+                    <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-white">
+                      {(presentation.image || item.product.image) ? (
+                        <Image
+                          src={presentation.image || item.product.image || ""}
+                          alt={item.product.name}
+                          fill
+                          className="object-contain mix-blend-multiply p-1"
+                          sizes="64px"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] text-navy/20 p-2">
+                          <svg className="h-full w-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M40 30h20v5H40v-5z" fill="currentColor" />
+                            <path d="M40 45c0-1 1-3 3-3h14c2 0 3 2 3 3v33c0 2-2 4-4 4H44c-2 0-4-2-4-4V45z" stroke="currentColor" strokeWidth="4" />
+                            <path d="M45 55h10" stroke="currentColor" strokeWidth="2" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
 
                     {/* Info */}

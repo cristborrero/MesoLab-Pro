@@ -8,9 +8,12 @@ export type ProductCategory =
 
 export interface ProductPresentation {
   id: string;
+  variationId?: number; // WooCommerce variation ID
   label: string; // "Ampolleta 5ml", "Frasco 10ml"
   price: number; // COP
   sku: string;
+  image?: string; // Image specific to this variation
+  inStock: boolean;
 }
 
 export interface Product {
@@ -43,4 +46,5 @@ export interface CategoryInfo {
   description: string;
   productCount: number;
   icon: string; // Emoji or icon identifier
+  image?: string; // URL from WooCommerce category image
 }

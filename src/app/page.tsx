@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { categories, getFeaturedProducts } from "@/lib/data";
+import Image from "next/image";
+import { getProducts, getCategories } from "@/lib/woocommerce";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProducts";
 
 export const metadata: Metadata = {
@@ -12,8 +13,22 @@ export const metadata: Metadata = {
 const WHATSAPP_URL =
   "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
-export default function HomePage() {
-  const featuredProducts = getFeaturedProducts();
+export default async function HomePage() {
+  const allProducts = await getProducts();
+  const featuredProducts = allProducts.filter((p) => p.featured);
+  const categories = await getCategories();
+
+  // Buscar el producto L-Carnitina para el Hero visual
+  const lcarnitina = allProducts.find((p) => p.slug === "l-carnitina");
+  const heroImage = lcarnitina?.image || "";
+
+  // Diccionario de configuración de categorías para asegurar mapeo de tamaño y etiquetas correcto
+  const CATEGORY_CONFIG: Record<string, { label: string; isLarge: boolean }> = {
+    lipoliticos: { label: "Línea Reductora", isLarge: true },
+    vitaminicos: { label: "Línea Nutritiva", isLarge: false },
+    anestesicos: { label: "Línea de Base", isLarge: false },
+    insumos: { label: "Consumibles", isLarge: true },
+  };
 
   return (
     <>
@@ -67,17 +82,28 @@ export default function HomePage() {
           </div>
 
           {/* Centered protagonist visual with architectural guide framing */}
-          <div className="mt-16 w-full max-w-2xl relative flex justify-center items-center rounded-2xl bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 border border-border/60 shadow-sm">
-            <svg
-              className="h-48 w-48 text-teal-dark/15"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M40 70h20" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-              <path d="M40 60h20" stroke="currentColor" strokeWidth="1" />
-            </svg>
+          <div className="mt-16 w-full max-w-2xl relative flex h-80 justify-center items-center rounded-2xl bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-12 border border-border/60 shadow-sm overflow-hidden">
+            {heroImage ? (
+              <Image
+                src={heroImage}
+                alt="L-Carnitina"
+                fill
+                className="object-contain p-8 mix-blend-multiply transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 640px"
+                priority
+              />
+            ) : (
+              <svg
+                className="h-48 w-48 text-teal-dark/15"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                <path d="M40 70h20" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+                <path d="M40 60h20" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            )}
             <span className="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-wider text-navy/35">
               Ref: L-Carnitina 500mg/5ml
             </span>
@@ -102,84 +128,68 @@ export default function HomePage() {
           </div>
 
           {/* Bento Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* 1. Lipolíticos - Large Bento Card (Col span 2, Row span 2) */}
-            <Link
-              href="/tienda/lipoliticos"
-              className="group relative md:col-span-2 md:row-span-2 flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated overflow-hidden min-h-[320px]"
-            >
-              <div>
-                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Reductora</span>
-                <h3 className="font-display text-2xl font-bold text-navy mt-4">Lipolíticos</h3>
-                <p className="mt-2 text-sm text-muted max-w-md">
-                  Soluciones inyectables para protocolos de reducción localizada y lipólisis. Formulaciones con concentraciones óptimas para resultados visibles.
-                </p>
-              </div>
-              <div className="mt-8 flex items-baseline justify-between">
-                <span className="font-label text-xs text-muted">5 productos activos</span>
-                <span className="text-sm font-bold text-teal-dark group-hover:underline">Ver catálogo →</span>
-              </div>
-              {/* Backing decorative illustration */}
-              <div className="absolute -right-6 -bottom-6 opacity-5 text-navy group-hover:opacity-10 transition-opacity">
-                <svg className="h-40 w-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M6 3h12v3H6zm4 3v12h4V6zm-5 12h14v3H5z" />
-                </svg>
-              </div>
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            {categories.slice(0, 4).map((category) => {
+              // Obtener la configuración de estilo y etiqueta para esta categoría
+              const config = CATEGORY_CONFIG[category.slug] || {
+                label: "Línea Profesional",
+                isLarge: false,
+              };
 
-            {/* 2. Vitamínicos - Vertical Bento Card (Col span 1) */}
-            <Link
-              href="/tienda/vitaminicos"
-              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[260px]"
-            >
-              <div>
-                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Nutritiva</span>
-                <h3 className="font-display text-xl font-bold text-navy mt-4">Vitamínicos</h3>
-                <p className="mt-2 text-xs text-muted">
-                  Complejos antioxidantes para protocolos de biorevitalización y regeneración dérmica.
-                </p>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <span className="font-label text-xs text-muted">2 productos</span>
-                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
-              </div>
-            </Link>
+              const colSpan = config.isLarge ? "md:col-span-2" : "md:col-span-1";
+              const minHeight = config.isLarge ? "min-h-[300px]" : "min-h-[240px]";
 
-            {/* 3. Anestésicos - Horizontal Bento Card (Col span 1) */}
-            <Link
-              href="/tienda/anestesicos"
-              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[200px]"
-            >
-              <div>
-                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Línea Cabina</span>
-                <h3 className="font-display text-xl font-bold text-navy mt-4">Anestésicos</h3>
-                <p className="mt-2 text-xs text-muted">
-                  Anestésicos locales de uso profesional para procedimientos de confort en cabina.
-                </p>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <span className="font-label text-xs text-muted">1 producto</span>
-                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
-              </div>
-            </Link>
+              return (
+                <Link
+                  key={category.slug}
+                  href={`/tienda/${category.slug}`}
+                  className={`group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated overflow-hidden ${colSpan} ${minHeight}`}
+                >
+                  {/* Background Image filling the right side and blending into the white background */}
+                  {category.image && (
+                    <div className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden">
+                      <div className="absolute right-0 top-0 w-[70%] h-full">
+                        <Image
+                          src={category.image}
+                          alt={category.name}
+                          fill
+                          className="object-cover object-right mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.02]"
+                          sizes={config.isLarge ? "600px" : "350px"}
+                        />
+                      </div>
+                      {/* Gradient covering the entire card to melt the image from left to right */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+                    </div>
+                  )}
 
-            {/* 4. Insumos - Bento Card (Col span 1) */}
-            <Link
-              href="/tienda/insumos"
-              className="group relative flex flex-col justify-between rounded-[var(--radius-lg)] border border-border bg-white p-8 transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated min-h-[200px]"
-            >
-              <div>
-                <span className="font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">Consumibles</span>
-                <h3 className="font-display text-xl font-bold text-navy mt-4">Insumos</h3>
-                <p className="mt-2 text-xs text-muted">
-                  Jeringas, agujas y materiales complementarios descartables para clínica.
-                </p>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <span className="font-label text-xs text-muted">0 productos</span>
-                <span className="text-xs font-bold text-teal-dark group-hover:underline">Ver más →</span>
-              </div>
-            </Link>
+                  {/* Clean text container (max 50% width to stay on solid background) */}
+                  <div className="relative z-20 max-w-[50%] flex flex-col h-full justify-between">
+                    <div>
+                      <span className="inline-block font-label text-[9px] font-bold uppercase tracking-widest text-teal-dark bg-teal-light px-2.5 py-1 rounded">
+                        {config.label}
+                      </span>
+                      <h3
+                        className={`font-display font-bold text-navy mt-4 ${
+                          config.isLarge ? "text-2xl" : "text-xl"
+                        }`}
+                      >
+                        {category.name}
+                      </h3>
+                    </div>
+
+                    <div className="mt-6 flex flex-col gap-1">
+                      <span className="font-label text-[10px] text-muted">
+                        {category.productCount}{" "}
+                        {category.productCount === 1 ? "producto" : "productos"}
+                      </span>
+                      <span className="font-bold text-teal-dark text-xs md:text-sm group-hover:underline">
+                        Ver catálogo →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

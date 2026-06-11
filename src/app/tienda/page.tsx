@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { products, categories } from "@/lib/data";
+import { getProducts, getCategories } from "@/lib/woocommerce";
 import { ShopContent } from "@/components/shop/ShopContent";
 
 export const metadata: Metadata = {
@@ -7,7 +7,9 @@ export const metadata: Metadata = {
   description: "Explora nuestro catálogo de insumos de mesoterapia certificados en Colombia. Fórmulas puras: lipolíticos, vitamínicos y anestésicos locales para cabina.",
 };
 
-export default function TiendaPage() {
+export default async function TiendaPage() {
+  const products = await getProducts();
+  const categories = await getCategories();
   return (
     <>
       {/* Header */}

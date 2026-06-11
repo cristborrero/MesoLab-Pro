@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/components/cart/CartProvider";
+import { products as fallbackProducts } from "@/lib/data";
 
 const NAV_LINKS = [
   { href: "/tienda", label: "Tienda" },
@@ -13,7 +15,7 @@ const NAV_LINKS = [
 const WHATSAPP_URL =
   "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
-export function Header() {
+export function Header({ spotlightImage = "" }: { spotlightImage?: string }) {
   const { openCart, itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -141,10 +143,20 @@ export function Header() {
                     <div className="flex flex-col gap-3">
                       <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Spotlight</span>
                       <div className="flex flex-1 flex-col rounded-lg bg-surface/40 p-3">
-                        <div className="flex h-20 items-center justify-center rounded bg-white p-2">
-                          <svg className="h-10 w-10 text-teal-dark/30" viewBox="0 0 100 100" fill="none" stroke="currentColor">
-                            <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" strokeWidth="3" strokeLinejoin="round" />
-                          </svg>
+                        <div className="relative flex h-20 w-full items-center justify-center overflow-hidden rounded bg-white p-2 border border-border/50">
+                          {spotlightImage ? (
+                            <Image
+                              src={spotlightImage}
+                              alt="L-Carnitina"
+                              fill
+                              className="object-contain p-2 mix-blend-multiply"
+                              sizes="120px"
+                            />
+                          ) : (
+                            <svg className="h-10 w-10 text-teal-dark/30" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                              <path d="M45 15h10v20l8 12v38H37V47l8-12V15z" strokeWidth="3" strokeLinejoin="round" />
+                            </svg>
+                          )}
                         </div>
                         <span className="mt-2 text-xs font-semibold text-navy leading-tight">L-Carnitina 500mg</span>
                         <span className="text-[10px] text-muted">Estándar en lipólisis.</span>

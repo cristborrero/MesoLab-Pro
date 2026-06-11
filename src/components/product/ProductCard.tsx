@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/data";
 import { useCart } from "@/components/cart/CartProvider";
@@ -18,48 +19,47 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-all hover:-translate-y-[2px] hover:border-teal/30 hover:shadow-elevated">
-      {/* Product Image Beaker/Vial SVG Container */}
-      <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6] p-8">
-        <Link href={`/producto/${product.slug}`} className="relative flex h-full w-full items-center justify-center">
-          {/* Medical Grade Vial SVG */}
-          <svg
-            className="h-28 w-28 text-navy/15 transition-transform duration-500 group-hover:scale-105"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Liquid inside beaker */}
-            <path
-              d="M38 52h24v28H38z"
-              className="fill-teal/10 transition-colors group-hover:fill-teal/15"
+      {/* Product Image */}
+      <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6]">
+        <Link href={`/producto/${product.slug}`} className="relative flex h-full w-full items-center justify-center p-4">
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
-            {/* Beaker / vial outline */}
-            <path
-              d="M36 28h28v6H36v-6z"
-              className="fill-navy/20 group-hover:fill-navy/35"
-            />
-            <path
-              d="M44 34h12v12h-12V34z"
-              className="fill-navy/10 group-hover:fill-navy/20"
-            />
-            <path
-              d="M36 46c0-2 2-4 4-4h20c2 0 4 2 4 4v36c0 3-3 6-6 6H42c-3 0-6-3-6-6V46z"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Volumetric measurement marks */}
-            <line x1="42" y1="52" x2="48" y2="52" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="42" y1="60" x2="52" y2="60" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="42" y1="68" x2="48" y2="68" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="42" y1="76" x2="52" y2="76" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
+          ) : (
+            <svg
+              className="h-28 w-28 text-navy/15 transition-transform duration-500 group-hover:scale-105"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M38 52h24v28H38z" className="fill-teal/10 transition-colors group-hover:fill-teal/15" />
+              <path d="M36 28h28v6H36v-6z" className="fill-navy/20 group-hover:fill-navy/35" />
+              <path d="M44 34h12v12h-12V34z" className="fill-navy/10 group-hover:fill-navy/20" />
+              <path
+                d="M36 46c0-2 2-4 4-4h20c2 0 4 2 4 4v36c0 3-3 6-6 6H42c-3 0-6-3-6-6V46z"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line x1="42" y1="52" x2="48" y2="52" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="42" y1="60" x2="52" y2="60" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="42" y1="68" x2="48" y2="68" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="42" y1="76" x2="52" y2="76" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          )}
 
-          {/* Clinical certification watermark */}
-          <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-navy/20">
-            Certified ISO 13485
-          </span>
+          {/* Clinical certification watermark — only when no real image */}
+          {!product.image && (
+            <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-navy/20">
+              Certified ISO 13485
+            </span>
+          )}
         </Link>
 
         {/* Specs Hover Overlay (reveals technical specifications cleanly only when needed) */}
