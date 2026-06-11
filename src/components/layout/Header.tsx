@@ -15,10 +15,13 @@ const NAV_LINKS = [
 const WHATSAPP_URL =
   "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
-export function Header({ spotlightImage = "" }: { spotlightImage?: string }) {
+export function Header() {
   const { openCart, itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // Imagen spotlight del mega menú desde datos locales (sin depender de WooCommerce en layout)
+  const spotlightImage = fallbackProducts.find((p) => p.slug === "l-carnitina")?.image || "";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);

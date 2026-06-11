@@ -5,7 +5,6 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { getProducts } from "@/lib/woocommerce";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -56,22 +55,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let spotlightImage = "";
-  try {
-    const products = await getProducts();
-    const lcarnitina = products.find((p) => p.slug === "l-carnitina");
-    if (lcarnitina?.image) {
-      spotlightImage = lcarnitina.image;
-    }
-  } catch (err) {
-    console.error("Error fetching spotlight product:", err);
-  }
-
   return (
     <html
       lang="es"
@@ -79,7 +67,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-foreground font-body">
         <CartProvider>
-          <Header spotlightImage={spotlightImage} />
+          <Header />
           <main className="flex-1">{children}</main>
           <Footer />
           <CartDrawer />

@@ -8,15 +8,23 @@ const SECRET = process.env.WC_CONSUMER_SECRET;
 const auth = Buffer.from(`${KEY}:${SECRET}`).toString("base64");
 
 export async function wcFetch(endpoint: string) {
-  const res = await fetch(`${WC_URL}${endpoint}`, {
-    headers: {
-      Authorization: `Basic ${auth}`,
-      "Content-Type": "application/json",
-    },
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) throw new Error(`WC API error: ${res.status}`);
-  return res.json();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const res = await fetch(`${WC_URL}${endpoint}`, {
+      headers: {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
+      },
+      next: { revalidate: 3600 },
+      signal: controller.signal,
+    });
+    if (!res.ok) throw new Error(`WC API error: ${res.status}`);
+    return res.json();
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 /** Limpia etiquetas HTML para texto plano */
