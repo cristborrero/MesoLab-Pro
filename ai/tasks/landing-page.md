@@ -11,11 +11,13 @@ Create a premium, conversion-focused landing page. The goal is to immediately ca
 - **Behavior**: Sticky on scroll with a glassmorphism backdrop-blur effect.
 
 ### 2. Above the Fold (Hero Section)
+- **Background**: Fullscreen background video in a loop (`woman-facial-treatment-mesolabpro-low.mp4`) with dark/gradient overlays for high readability.
 - **Headline**: Bold, benefit-driven value proposition (max 2-3 lines).
 - **Subheadline**: Supporting explanation detailing how the product works (max 3 lines).
 - **Primary Call to Action (CTA)**: High-contrast button with action-oriented text, accompanied by a secondary link if necessary.
 - **Social Proof**: Micro-copy showing ratings or client count (e.g., "Trusted by 5,000+ professionals").
-- **Hero Image/Widget**: A pixel-perfect mockup, app interface, or product photo (no abstract vector illustrations).
+- **Hero Animation / Parallax**: Smooth parallax scroll effect using Framer Motion that gently fades the hero out as the user scrolls down.
+- **Hero Styling**: Removed the standalone product mockup/card to achieve a cleaner, more premium, and distraction-free design. The bottom gradient fades seamlessly into the next section's background color (`bg-surface` / `#efefef`).
 
 ### 3. Social Proof & Authority
 - **Logo Grid**: Grayscale, low-opacity logo strip of trusted partners/companies.
