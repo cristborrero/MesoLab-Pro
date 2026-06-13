@@ -256,6 +256,38 @@ export function CheckoutContent() {
           </div>
         </fieldset>
 
+        {/* Consentimiento de datos y Términos */}
+        <div className="space-y-4 border-t border-border pt-6 text-left">
+          <p className="text-[10px] leading-relaxed text-muted">
+            <strong>Información legal básica sobre protección de datos:</strong> MesolabPro (Cra. 56 #161-94, Suba, Bogotá, Colombia) es el responsable del tratamiento de los datos personales suministrados para gestionar tu pedido, facturación y envío. Podés ejercer tus derechos de acceso, rectificación, supresión y revocación escribiendo a <a href="mailto:info@mesolabpro.com.co" className="text-teal-dark underline hover:text-teal font-medium">info@mesolabpro.com.co</a>. El tratamiento se realiza bajo nuestra <Link href="/privacidad" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Política de Privacidad</Link> y las compras se rigen por nuestros <Link href="/terminos" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Términos y Condiciones</Link>.
+          </p>
+
+          <div className="flex items-start gap-3">
+            <input
+              id="checkout-privacy"
+              name="accept_privacy"
+              type="checkbox"
+              required
+              className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer"
+            />
+            <label htmlFor="checkout-privacy" className="text-xs text-navy/70 leading-normal select-none cursor-pointer">
+              Declaro que he leído y acepto la <Link href="/privacidad" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Política de Tratamiento de Datos Personales</Link> y los <Link href="/terminos" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Términos y Condiciones</Link> de MesolabPro. <span className="text-error font-bold">*</span>
+            </label>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <input
+              id="checkout-marketing"
+              name="accept_marketing"
+              type="checkbox"
+              className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer"
+            />
+            <label htmlFor="checkout-marketing" className="text-xs text-navy/70 leading-normal select-none cursor-pointer">
+              Autorizo a MesolabPro para enviarme información comercial, promociones y contenidos educativos sobre productos para profesionales de la salud/estética a través de correo electrónico y WhatsApp.
+            </label>
+          </div>
+        </div>
+
         {/* Submit */}
         <button
           type="submit"

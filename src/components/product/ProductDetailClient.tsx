@@ -7,7 +7,7 @@ import { formatPrice } from "@/lib/data";
 import { useCart } from "@/components/cart/CartProvider";
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20consultar%20sobre%20";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20consultar%20sobre%20";
 
 interface ProductDetailClientProps {
   product: Product;

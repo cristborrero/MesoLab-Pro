@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { FadeIn } from "@/components/ui/motion";
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 export function HeroVideo() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,10 +74,10 @@ export function HeroVideo() {
 
         <FadeIn delay={0.08} duration={0.65}>
           <h1 className="font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl max-w-3xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
-            Optimiza tus protocolos con
+            Insumos de mesoterapia
             <br />
             <span className="text-[#00cece]">
-              insumos de precisión médica.
+              certificados en Colombia.
             </span>
           </h1>
         </FadeIn>

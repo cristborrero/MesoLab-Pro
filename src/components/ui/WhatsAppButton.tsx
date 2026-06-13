@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);

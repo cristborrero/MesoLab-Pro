@@ -9,18 +9,16 @@ import { FadeIn, Stagger, StaggerItem, HoverCard, SpotlightCard } from "@/compon
 export const metadata: Metadata = {
   title: "MesoLab Pro | Insumos de Mesoterapia Certificados en Colombia",
   description:
-    "Optimiza la precisión de tus tratamientos con insumos de mesoterapia de alta pureza. Distribución autorizada con registro INVIMA en Bogotá y a nivel nacional.",
+    "Distribuidor de insumos de mesoterapia profesional en Colombia. Productos certificados con registro INVIMA y trazabilidad garantizada para clínicas de estética.",
 };
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 export default async function HomePage() {
   const allProducts = await getProducts();
   const featuredProducts = allProducts.filter((p) => p.featured);
   const categories = await getCategories();
-
-
 
   // Diccionario de configuración de categorías para asegurar mapeo de tamaño y etiquetas correcto
   const CATEGORY_CONFIG: Record<string, { label: string; isLarge: boolean }> = {
@@ -30,8 +28,54 @@ export default async function HomePage() {
     insumos: { label: "Consumibles", isLarge: true },
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MesoLab Pro",
+    "url": "https://mesolabpro.com.co",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://mesolabpro.com.co/tienda?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MesoLab Pro",
+    "alternateName": "MesoLabPro",
+    "url": "https://mesolabpro.com.co",
+    "logo": "https://mesolabpro.com.co/logo_mesolab_pro_h_web.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+57-313-3847436",
+      "contactType": "sales",
+      "areaServed": "CO",
+      "availableLanguage": "Spanish"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cra. 56 #161-94, Suba",
+      "addressLocality": "Bogotá",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "sameAs": [
+      "https://instagram.com/mesolabpro"
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       {/* ─── HERO VIDEO CON PARALLAX ─── */}
       <HeroVideo />
 

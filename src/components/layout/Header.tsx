@@ -14,7 +14,7 @@ const NAV_LINKS = [
 ];
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 export function Header() {
   const { openCart, itemCount } = useCart();

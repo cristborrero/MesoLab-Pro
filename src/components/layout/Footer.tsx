@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 const NAV_LINKS = [
   { href: "/tienda", label: "Tienda" },
@@ -11,6 +11,7 @@ const NAV_LINKS = [
 
 const LEGAL_LINKS = [
   { href: "/privacidad", label: "Política de privacidad" },
+  { href: "/cookies", label: "Política de cookies" },
   { href: "/terminos", label: "Términos y condiciones" },
 ];
 
@@ -79,10 +80,10 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contacto@mesolabpro.com.co"
+                  href="mailto:info@mesolabpro.com.co"
                   className="text-sm text-white/70 transition-colors hover:text-teal"
                 >
-                  contacto@mesolabpro.com.co
+                  info@mesolabpro.com.co
                 </a>
               </li>
               <li>
@@ -94,6 +95,10 @@ export function Footer() {
                 >
                   @mesolabpro
                 </a>
+              </li>
+              <li className="text-xs text-white/50 pt-1 leading-relaxed">
+                Cra. 56 #161-94, Suba<br />
+                Bogotá, Colombia
               </li>
             </ul>
           </div>

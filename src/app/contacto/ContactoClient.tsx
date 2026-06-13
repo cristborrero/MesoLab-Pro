@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn, Stagger, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 const WHATSAPP_URL =
-  "https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido";
+  "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
 const channels = [
   {
@@ -21,12 +21,12 @@ const channels = [
       </svg>
     ),
     label: "WhatsApp Business",
-    sublabel: "Respuesta inmediata · Canal preferido",
+    sublabel: "+57 313 3847436 · Respuesta inmediata",
     badge: "Más rápido",
   },
   {
     id: "email",
-    href: "mailto:contacto@mesolabpro.com.co",
+    href: "mailto:info@mesolabpro.com.co",
     external: false,
     primary: false,
     icon: (
@@ -35,7 +35,7 @@ const channels = [
       </svg>
     ),
     label: "Correo electrónico",
-    sublabel: "contacto@mesolabpro.com.co",
+    sublabel: "info@mesolabpro.com.co",
   },
   {
     id: "instagram",
