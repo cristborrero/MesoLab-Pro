@@ -43,20 +43,18 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <>
-      {/* Trust Strip */}
-      <div className="bg-navy text-white text-xs py-2 text-center font-label tracking-wide">
-        <span className="hidden sm:inline">
-          Envíos a toda Colombia · Productos certificados · Soporte vía
-          WhatsApp
-        </span>
-        <span className="sm:hidden">
-          Envíos nacionales · Productos certificados
-        </span>
-      </div>
-
-      {/* Navigation */}
-      <header className="sticky top-0 z-30 w-full bg-transparent px-4 py-3 sm:px-6 lg:px-8 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-30 w-full bg-transparent px-4 pt-3 pb-3 sm:px-6 lg:px-8 transition-all duration-300 flex flex-col gap-0">
+      {/* Trust Strip — only visible when header has solid bg */}
+      {(!isHome || scrolled) && (
+        <div className="bg-navy text-white text-xs py-1.5 text-center font-label tracking-wide rounded-t-2xl">
+          <span className="hidden sm:inline">
+            Envíos a toda Colombia · Productos certificados · Soporte vía WhatsApp
+          </span>
+          <span className="sm:hidden">
+            Envíos nacionales · Productos certificados
+          </span>
+        </div>
+      )}
         <div
           className={`mx-auto max-w-7xl h-16 rounded-2xl flex items-center justify-between px-6 transition-all duration-350 ${
             isHome && !scrolled
@@ -323,6 +321,5 @@ export function Header() {
           )}
         </AnimatePresence>
       </header>
-    </>
   );
 }
