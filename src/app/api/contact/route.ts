@@ -24,13 +24,25 @@ export async function POST(request: NextRequest) {
     // Endpoint oficial de Contact Form 7 para recibir el envío del formulario (ID 33)
     const cf7Endpoint = `${wpUrl}/wp-json/contact-form-7/v1/contact-forms/33/feedback`;
 
+    // Formatear dinámicamente el enlace de WhatsApp para que se renderice limpio en el mail
+    let whatsappValue = "";
+    let whatsappClean = "";
+    let whatsappDisplay = "none";
+    if (whatsapp && whatsapp.trim() !== "") {
+      whatsappValue = whatsapp;
+      whatsappClean = whatsapp.replace(/[^0-9]/g, "");
+      whatsappDisplay = "inline-block";
+    }
+
     // Contact Form 7 espera los datos en formato multipart/form-data (FormData)
     const formData = new FormData();
     formData.append("_wpcf7", "33"); // ID del formulario
     formData.append("_wpcf7_unit_tag", "wpcf7-f33-p33-o1"); // Tag de unidad requerido por la API
     formData.append("your-name", name);
     formData.append("your-email", email);
-    formData.append("your-whatsapp", whatsapp || "");
+    formData.append("your-whatsapp", whatsappValue);
+    formData.append("whatsapp-clean", whatsappClean);
+    formData.append("whatsapp-display", whatsappDisplay);
     formData.append("your-subject", "Mensaje de contacto desde el sitio web");
     formData.append("your-message", message);
 
