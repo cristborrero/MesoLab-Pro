@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FadeIn, Stagger, StaggerItem, HoverCard, SpotlightCard } from "@/components/ui/motion";
+import { FadeIn, Stagger, StaggerItem, SpotlightCard } from "@/components/ui/motion";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 

@@ -7,7 +7,59 @@ const SECRET = process.env.WC_CONSUMER_SECRET;
 
 const auth = Buffer.from(`${KEY}:${SECRET}`).toString("base64");
 
-export async function wcFetch(endpoint: string) {
+// ── WooCommerce Interfaces for Strong Typing ──────────────────────────────
+export interface WooCommerceImage {
+  src: string;
+}
+
+export interface WooCommerceCategory {
+  slug: string;
+  name: string;
+}
+
+export interface WooCommerceProduct {
+  id: number;
+  slug: string;
+  name: string;
+  type: string;
+  price: string;
+  sku: string;
+  featured: boolean;
+  stock_status: string;
+  short_description: string;
+  description: string;
+  images?: WooCommerceImage[];
+  categories?: WooCommerceCategory[];
+  variations?: number[];
+}
+
+export interface WooCommerceVariationAttribute {
+  name?: string;
+  option: string;
+}
+
+export interface WooCommerceVariation {
+  id: number;
+  status: string;
+  purchasable: boolean;
+  menu_order: number;
+  name?: string;
+  price: string;
+  sku: string;
+  stock_status: string;
+  image?: WooCommerceImage;
+  attributes?: WooCommerceVariationAttribute[];
+}
+
+export interface WooCommerceCategoryResponse {
+  slug: string;
+  name: string;
+  description: string;
+  count?: number;
+  image?: WooCommerceImage;
+}
+
+export async function wcFetch(endpoint: string): Promise<unknown> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
 
@@ -37,8 +89,8 @@ const stripHtml = (html: string) =>
  * Si WooCommerce tiene campos vacíos (descripción clínica, specs), usa el fallback de data.ts.
  */
 export function mapWooCommerceProductToFrontend(
-  wcProduct: any,
-  wcVariations?: any[]
+  wcProduct: WooCommerceProduct,
+  wcVariations?: WooCommerceVariation[]
 ): Product {
   const fallback = fallbackProducts.find((p) => p.slug === wcProduct.slug);
 
@@ -47,7 +99,7 @@ export function mapWooCommerceProductToFrontend(
   let images: string[] = fallback?.images || [];
   if (wcProduct.images && wcProduct.images.length > 0) {
     image = wcProduct.images[0].src;
-    images = wcProduct.images.map((img: any) => img.src);
+    images = wcProduct.images.map((img: WooCommerceImage) => img.src);
   }
 
   // Parse category
@@ -63,9 +115,9 @@ export function mapWooCommerceProductToFrontend(
   let presentations: Product["presentations"] = [];
   if (wcVariations && wcVariations.length > 0) {
     presentations = wcVariations
-      .filter((v: any) => v.status === "publish" || v.purchasable)
-      .sort((a: any, b: any) => a.menu_order - b.menu_order)
-      .map((v: any) => ({
+      .filter((v: WooCommerceVariation) => v.status === "publish" || v.purchasable)
+      .sort((a: WooCommerceVariation, b: WooCommerceVariation) => a.menu_order - b.menu_order)
+      .map((v: WooCommerceVariation) => ({
         id: `var-${v.id}`,
         variationId: v.id,
         label: v.attributes?.[0]?.option || v.name || "Unidad",
@@ -76,7 +128,7 @@ export function mapWooCommerceProductToFrontend(
       }));
     // Agregar imágenes de variación al array de imágenes del producto
     const varImages = wcVariations
-      .map((v: any) => v.image?.src)
+      .map((v: WooCommerceVariation) => v.image?.src)
       .filter(Boolean) as string[];
     images = [image, ...varImages.filter((src) => src !== image)];
   }
@@ -121,7 +173,7 @@ export function mapWooCommerceProductToFrontend(
   };
 }
 
-export function mapWooCommerceCategoryToFrontend(wcCategory: any): CategoryInfo {
+export function mapWooCommerceCategoryToFrontend(wcCategory: WooCommerceCategoryResponse): CategoryInfo {
   const fallback = fallbackCategories.find((c) => c.slug === wcCategory.slug);
   const wcDesc = stripHtml(wcCategory.description);
 
@@ -144,15 +196,15 @@ export function mapWooCommerceCategoryToFrontend(wcCategory: any): CategoryInfo 
  */
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const wcProducts = await wcFetch("/products?per_page=100&status=publish");
+    const wcProducts = (await wcFetch("/products?per_page=100&status=publish")) as WooCommerceProduct[];
 
     const productsWithVariations = await Promise.all(
-      wcProducts.map(async (wcProduct: any) => {
-        if (wcProduct.type === "variable" && wcProduct.variations?.length > 0) {
+      wcProducts.map(async (wcProduct: WooCommerceProduct) => {
+        if (wcProduct.type === "variable" && wcProduct.variations && wcProduct.variations.length > 0) {
           try {
-            const variations = await wcFetch(
+            const variations = (await wcFetch(
               `/products/${wcProduct.id}/variations?per_page=100`
-            );
+            )) as WooCommerceVariation[];
             return mapWooCommerceProductToFrontend(wcProduct, variations);
           } catch {
             // Si falla el fetch de variaciones, mapear sin ellas
@@ -177,11 +229,11 @@ export const getProduct = async (
   idOrSlug: string | number
 ): Promise<Product | null> => {
   try {
-    let wcProduct = null;
+    let wcProduct: WooCommerceProduct | null = null;
     if (typeof idOrSlug === "number" || !isNaN(Number(idOrSlug))) {
-      wcProduct = await wcFetch(`/products/${idOrSlug}`);
+      wcProduct = (await wcFetch(`/products/${idOrSlug}`)) as WooCommerceProduct;
     } else {
-      const results = await wcFetch(`/products?slug=${idOrSlug}`);
+      const results = (await wcFetch(`/products?slug=${idOrSlug}`)) as WooCommerceProduct[];
       if (results && results.length > 0) wcProduct = results[0];
     }
 
@@ -189,12 +241,12 @@ export const getProduct = async (
       return fallbackProducts.find((p) => p.slug === idOrSlug) || null;
 
     // Resolver variaciones si el producto es variable
-    let variations: any[] = [];
-    if (wcProduct.type === "variable" && wcProduct.variations?.length > 0) {
+    let variations: WooCommerceVariation[] = [];
+    if (wcProduct.type === "variable" && wcProduct.variations && wcProduct.variations.length > 0) {
       try {
-        variations = await wcFetch(
+        variations = (await wcFetch(
           `/products/${wcProduct.id}/variations?per_page=100`
-        );
+        )) as WooCommerceVariation[];
       } catch {
         // silencioso: usar fallback de presentaciones
       }
@@ -212,12 +264,12 @@ export const getProduct = async (
 
 export const getCategories = async (): Promise<CategoryInfo[]> => {
   try {
-    const wcCats = await wcFetch(
+    const wcCats = (await wcFetch(
       "/products/categories?per_page=100&hide_empty=false"
-    );
+    )) as WooCommerceCategoryResponse[];
     // Filtrar "Sin categorizar" que WooCommerce incluye por defecto
     return wcCats
-      .filter((c: any) => c.slug !== "sin-categorizar" && c.slug !== "uncategorized")
+      .filter((c: WooCommerceCategoryResponse) => c.slug !== "sin-categorizar" && c.slug !== "uncategorized")
       .map(mapWooCommerceCategoryToFrontend);
   } catch (error) {
     console.error("Error fetching categories from WC, using fallback", error);
@@ -225,4 +277,4 @@ export const getCategories = async (): Promise<CategoryInfo[]> => {
   }
 };
 
-export const getOrders = () => wcFetch("/orders");
+export const getOrders = (): Promise<unknown> => wcFetch("/orders");

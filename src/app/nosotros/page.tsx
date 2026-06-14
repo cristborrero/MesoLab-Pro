@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { NosotrosClient } from "./NosotrosClient";
 
 export const metadata: Metadata = {

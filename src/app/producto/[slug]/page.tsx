@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getProduct, getProducts } from "@/lib/woocommerce";
 import { ProductDetailClient } from "@/components/product/ProductDetailClient";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -47,20 +48,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 pt-6 lg:px-8">
           <nav className="font-label text-xs text-muted">
-            <a href="/" className="hover:text-teal-dark">
+            <Link href="/" className="hover:text-teal-dark">
               Inicio
-            </a>{" "}
+            </Link>{" "}
             /{" "}
-            <a href="/tienda" className="hover:text-teal-dark">
+            <Link href="/tienda" className="hover:text-teal-dark">
               Tienda
-            </a>{" "}
+            </Link>{" "}
             /{" "}
-            <a
+            <Link
               href={`/tienda/${product.category}`}
               className="hover:text-teal-dark"
             >
               {product.categoryLabel.split(" / ")[0]}
-            </a>{" "}
+            </Link>{" "}
             / <span className="text-navy">{product.name}</span>
           </nav>
         </div>

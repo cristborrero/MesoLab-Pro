@@ -21,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 2. Productos dinámicos de WooCommerce
-  let productUrls: any[] = [];
+  let productUrls: MetadataRoute.Sitemap = [];
   try {
     const products = await getProducts();
     productUrls = products.map((product) => ({
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // 3. Categorías dinámicas de WooCommerce
-  let categoryUrls: any[] = [];
+  let categoryUrls: MetadataRoute.Sitemap = [];
   try {
     const categories = await getCategories();
     categoryUrls = categories.map((category) => ({

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const WHATSAPP_URL =
   "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
@@ -23,9 +24,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center">
-              <img
+              <Image
                 src="/logo_mesolab_pro_h_web-white.svg"
                 alt="MesoLab Pro"
+                width={180}
+                height={40}
                 className="h-10 w-auto object-contain"
               />
             </Link>

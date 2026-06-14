@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getCategories, getProducts } from "@/lib/woocommerce";
 import { ShopContent } from "@/components/shop/ShopContent";
 
@@ -46,13 +47,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-12">
           <nav className="mb-4 font-label text-xs text-muted">
-            <a href="/" className="hover:text-teal-dark">
+            <Link href="/" className="hover:text-teal-dark">
               Inicio
-            </a>{" "}
+            </Link>{" "}
             /{" "}
-            <a href="/tienda" className="hover:text-teal-dark">
+            <Link href="/tienda" className="hover:text-teal-dark">
               Tienda
-            </a>{" "}
+            </Link>{" "}
             / <span className="text-navy">{category.name}</span>
           </nav>
           <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl">

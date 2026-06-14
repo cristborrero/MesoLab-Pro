@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { FadeIn, Stagger, StaggerItem, HoverCard } from "@/components/ui/motion";
 
@@ -128,52 +127,63 @@ export function ContactoClient() {
 
               <Stagger slow>
                 {channels.map((ch) => {
-                  const Tag = ch.external ? "a" : Link;
-                  const tagProps = ch.external
-                    ? { href: ch.href, target: "_blank", rel: "noopener noreferrer" }
-                    : { href: ch.href };
+                  const content = (
+                    <>
+                      <div
+                        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
+                          ch.primary
+                            ? "bg-[#25D366] text-white"
+                            : "bg-teal-light/70 text-teal-dark border border-teal/10"
+                        }`}
+                      >
+                        {ch.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="font-display font-semibold text-navy text-sm">{ch.label}</p>
+                          {ch.badge && (
+                            <span className="rounded-full bg-[#25D366]/15 px-2 py-0.5 text-[9px] font-bold font-label uppercase tracking-wider text-[#128C7E]">
+                              {ch.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted mt-0.5 truncate">{ch.sublabel}</p>
+                      </div>
+                      <svg
+                        className="h-4 w-4 text-muted/40 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-teal-dark shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </>
+                  );
+
+                  const className = `group flex items-center gap-4 rounded-2xl border p-5 transition-all duration-200 ${
+                    ch.primary
+                      ? "border-[#25D366]/25 bg-[#25D366]/5 hover:border-[#25D366]/50 hover:bg-[#25D366]/8"
+                      : "border-border bg-white hover:border-teal/25 hover:bg-white"
+                  }`;
 
                   return (
                     <StaggerItem key={ch.id}>
                       <HoverCard lift={3}>
-                        <Tag
-                          {...(tagProps as any)}
-                          className={`group flex items-center gap-4 rounded-2xl border p-5 transition-all duration-200 ${
-                            ch.primary
-                              ? "border-[#25D366]/25 bg-[#25D366]/5 hover:border-[#25D366]/50 hover:bg-[#25D366]/8"
-                              : "border-border bg-white hover:border-teal/25 hover:bg-white"
-                          }`}
-                        >
-                          <div
-                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                              ch.primary
-                                ? "bg-[#25D366] text-white"
-                                : "bg-teal-light/70 text-teal-dark border border-teal/10"
-                            }`}
+                        {ch.external ? (
+                          <a
+                            href={ch.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={className}
                           >
-                            {ch.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                              <p className="font-display font-semibold text-navy text-sm">{ch.label}</p>
-                              {ch.badge && (
-                                <span className="rounded-full bg-[#25D366]/15 px-2 py-0.5 text-[9px] font-bold font-label uppercase tracking-wider text-[#128C7E]">
-                                  {ch.badge}
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-xs text-muted mt-0.5 truncate">{ch.sublabel}</p>
-                          </div>
-                          <svg
-                            className="h-4 w-4 text-muted/40 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-teal-dark shrink-0"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                          </svg>
-                        </Tag>
+                            {content}
+                          </a>
+                        ) : (
+                          <Link href={ch.href} className={className}>
+                            {content}
+                          </Link>
+                        )}
                       </HoverCard>
                     </StaggerItem>
                   );

@@ -102,9 +102,12 @@ export function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src={isTransparent ? "/logo_mesolab_pro_h_web-white.svg" : "/logo_mesolab_pro_h_web.svg"}
             alt="MesoLab Pro"
+            width={180}
+            height={40}
+            priority
             className="h-10 w-auto object-contain transition-all duration-500"
           />
         </Link>
