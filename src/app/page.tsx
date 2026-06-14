@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     "Distribuidor de insumos de mesoterapia profesional en Colombia. Productos certificados con registro INVIMA y trazabilidad garantizada para clínicas de estética.",
 };
 
+const VIDEO_URL =
+  "https://api.mesolabpro.com.co/wp-content/uploads/2026/06/woman-facial-treatment-mesolabpro-low.mp4";
+
 const WHATSAPP_URL =
   "https://wa.me/573133847436?text=Hola%2C%20quiero%20hacer%20un%20pedido";
 
@@ -68,6 +71,14 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Preload del video hero — App Router lo eleva al <head> automáticamente */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <link
+        rel="preload"
+        as="video"
+        href={VIDEO_URL}
+        type="video/mp4"
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

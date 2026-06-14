@@ -36,7 +36,7 @@ export function HeroVideo() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           className="h-full w-full object-cover scale-110"
           style={{ minHeight: "120%" }}
         >
