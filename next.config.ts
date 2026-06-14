@@ -2,9 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -30,7 +27,7 @@ const nextConfig: NextConfig = {
     return [
       {
         // HSTS completo para todas las rutas
-        source: "/(.*)",
+        source: "/:path*",
         headers: [
           {
             key: "Strict-Transport-Security",
@@ -49,7 +46,7 @@ const nextConfig: NextConfig = {
       },
       {
         // Cache largo para assets estáticos de Next.js (immutable con hash en filename)
-        source: "/_next/static/(.*)",
+        source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",
@@ -59,7 +56,7 @@ const nextConfig: NextConfig = {
       },
       {
         // Cache para fuentes y SVGs públicos
-        source: "/(.*\\.(woff|woff2|ttf|otf|svg|ico|png|jpg|jpeg|webp|avif))",
+        source: "/:path*\\.:ext(woff|woff2|ttf|otf|svg|ico|png|jpg|jpeg|webp|avif)",
         headers: [
           {
             key: "Cache-Control",
