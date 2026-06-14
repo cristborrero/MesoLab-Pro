@@ -21,13 +21,13 @@ export async function POST(request: NextRequest) {
     }
 
     const wpUrl = process.env.NEXT_PUBLIC_WP_URL || "https://api.mesolabpro.com.co";
-    // Endpoint oficial de Contact Form 7 para recibir el envío del formulario (ID 33)
-    const cf7Endpoint = `${wpUrl}/wp-json/contact-form-7/v1/contact-forms/33/feedback`;
+    // Endpoint oficial de Contact Form 7 para recibir el envío del formulario (ID 209d873)
+    const cf7Endpoint = `${wpUrl}/wp-json/contact-form-7/v1/contact-forms/209d873/feedback`;
 
     // Contact Form 7 espera los datos en formato multipart/form-data (FormData)
     const formData = new FormData();
-    formData.append("_wpcf7", "33"); // ID del formulario
-    formData.append("_wpcf7_unit_tag", "wpcf7-f33-p33-o1"); // Tag de unidad requerido por la API
+    formData.append("_wpcf7", "209d873"); // ID del formulario
+    formData.append("_wpcf7_unit_tag", "wpcf7-f209d873-p209d873-o1"); // Tag de unidad requerido por la API
     formData.append("your-name", name);
     formData.append("your-email", email);
     formData.append("your-whatsapp", whatsapp || "");
