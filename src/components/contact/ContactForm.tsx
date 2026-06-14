@@ -34,17 +34,54 @@ const fields = [
 ];
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    whatsapp: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Ocurrió un error al enviar el mensaje.");
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", whatsapp: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error ? error.message : "Error inesperado. Intenta de nuevo."
+      );
+    }
   };
 
   return (
     <AnimatePresence mode="wait">
-      {submitted ? (
+      {status === "success" ? (
         <motion.div
           key="success"
           initial={{ opacity: 0, scale: 0.96, y: 12 }}
@@ -71,7 +108,7 @@ export function ContactForm() {
             </p>
           </div>
           <button
-            onClick={() => setSubmitted(false)}
+            onClick={() => setStatus("idle")}
             className="mt-1 rounded-lg border border-border px-5 py-2 text-xs font-semibold font-label uppercase tracking-wider text-navy transition-colors hover:bg-surface"
           >
             Enviar otro mensaje
@@ -114,9 +151,12 @@ export function ContactForm() {
                     type={field.type}
                     required={field.required}
                     placeholder={field.placeholder}
+                    value={formData[field.name as keyof typeof formData]}
+                    onChange={handleChange}
+                    disabled={status === "loading"}
                     onFocus={() => setFocused(field.id)}
                     onBlur={() => setFocused(null)}
-                    className="h-11 w-full rounded-xl border border-border bg-white px-4 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10"
+                    className="h-11 w-full rounded-xl border border-border bg-white px-4 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10 disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   <motion.span
                     className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
@@ -147,9 +187,12 @@ export function ContactForm() {
                   required
                   rows={4}
                   placeholder="¿En qué podemos ayudarte? (pedido, cotización, protocolo…)"
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={status === "loading"}
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10"
+                  className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10 disabled:opacity-60 disabled:cursor-not-allowed"
                 />
                 <motion.span
                   className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
@@ -172,7 +215,8 @@ export function ContactForm() {
                 name="accept_privacy"
                 type="checkbox"
                 required
-                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer"
+                disabled={status === "loading"}
+                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
               />
               <label htmlFor="accept-privacy" className="text-[11px] text-navy/70 leading-normal select-none cursor-pointer">
                 Declaro que he leído la <Link href="/privacidad" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Política de Tratamiento de Datos Personales</Link> de MesolabPro y autorizo de manera previa, expresa e informada el tratamiento de mis datos. <span className="text-error font-bold">*</span>
@@ -184,7 +228,8 @@ export function ContactForm() {
                 id="accept-marketing"
                 name="accept_marketing"
                 type="checkbox"
-                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer"
+                disabled={status === "loading"}
+                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
               />
               <label htmlFor="accept-marketing" className="text-[11px] text-navy/70 leading-normal select-none cursor-pointer">
                 Autorizo a MesolabPro para enviarme información comercial, promociones y contenidos educativos sobre productos para profesionales de la salud/estética a través de correo electrónico y WhatsApp.
@@ -192,13 +237,20 @@ export function ContactForm() {
             </div>
           </div>
 
+          {status === "error" && (
+            <div className="rounded-xl border border-error/20 bg-error/5 p-4 text-xs text-error text-left">
+              {errorMessage}
+            </div>
+          )}
+
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.97 }}
-            className="flex h-12 items-center justify-center rounded-xl bg-teal font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)]"
+            whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
+            whileTap={{ scale: status === "loading" ? 1 : 0.97 }}
+            disabled={status === "loading"}
+            className="flex h-12 items-center justify-center rounded-xl bg-teal font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Enviar mensaje
+            {status === "loading" ? "Enviando mensaje..." : "Enviar mensaje"}
           </motion.button>
 
           <p className="text-center text-[10px] font-label uppercase tracking-wider text-muted/60">
@@ -209,3 +261,5 @@ export function ContactForm() {
     </AnimatePresence>
   );
 }
+
+
