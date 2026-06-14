@@ -85,7 +85,7 @@ export function CheckoutContent() {
         </p>
         <Link
           href="/tienda"
-          className="mt-2 flex h-12 items-center justify-center rounded-[var(--radius-md)] bg-teal px-8 font-semibold text-white transition-colors hover:bg-teal-dark"
+          className="mt-2 flex h-12 items-center justify-center rounded-[var(--radius-md)] bg-teal-accessible px-8 font-semibold text-white transition-colors hover:bg-teal-dark"
         >
           Ir a la tienda
         </Link>
@@ -109,7 +109,7 @@ export function CheckoutContent() {
         </p>
         <Link
           href="/tienda"
-          className="mt-4 flex h-12 items-center justify-center rounded-[var(--radius-md)] bg-teal px-8 font-semibold text-white transition-colors hover:bg-teal-dark"
+          className="mt-4 flex h-12 items-center justify-center rounded-[var(--radius-md)] bg-teal-accessible px-8 font-semibold text-white transition-colors hover:bg-teal-dark"
         >
           Seguir comprando
         </Link>
@@ -291,7 +291,7 @@ export function CheckoutContent() {
         {/* Submit */}
         <button
           type="submit"
-          className="flex h-14 items-center justify-center rounded-[var(--radius-md)] bg-teal text-lg font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.99] cursor-pointer"
+          className="flex h-14 items-center justify-center rounded-[var(--radius-md)] bg-teal-accessible text-lg font-semibold text-white transition-all hover:bg-teal-dark active:scale-[0.99] cursor-pointer"
         >
           Completar pedido · {formatPrice(total)}
         </button>

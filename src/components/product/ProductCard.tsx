@@ -69,23 +69,23 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Specs Hover Overlay (reveals technical specifications cleanly only when needed) */}
         <div className="absolute inset-0 flex flex-col justify-end bg-navy/90 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px] pointer-events-none">
-          <span className="font-label text-[10px] uppercase tracking-widest text-teal font-bold mb-2">Ficha Técnica</span>
+          <span className="font-label text-[10px] uppercase tracking-widest text-white font-bold mb-2">Ficha Técnica</span>
           <div className="grid grid-cols-2 gap-x-2 gap-y-2 text-white">
             {Object.entries(product.specs).slice(0, 4).map(([key, val]) => (
               <div key={key}>
-                <span className="block text-[8px] uppercase tracking-wider text-slate-400 font-label">{key}</span>
-                <span className="block text-[11px] font-medium leading-tight text-white/95">{val}</span>
+                <span className="block text-[8px] uppercase tracking-wider text-slate-300 font-label">{key}</span>
+                <span className="block text-[11px] font-medium leading-tight text-white">{val}</span>
               </div>
             ))}
           </div>
-          <Link href={`/producto/${product.slug}`} className="mt-3 block border-t border-white/10 pt-2 text-center font-label text-[10px] uppercase tracking-wider text-teal hover:text-white pointer-events-auto">
+          <Link href={`/producto/${product.slug}`} className="mt-3 block border-t border-white/20 pt-2 text-center font-label text-[10px] uppercase tracking-wider text-white/80 hover:text-white pointer-events-auto">
             Detalles completos →
           </Link>
         </div>
 
         {/* Real-time Stock Badge */}
         {product.inStock ? (
-          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-border font-label text-[9px] font-bold uppercase tracking-wider text-success">
+          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-border font-label text-[10px] font-bold uppercase tracking-wider text-success">
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             Disponible
           </span>
@@ -98,7 +98,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Information */}
       <div className="flex flex-1 flex-col gap-2 p-4 pt-5">
-        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-teal-dark">
+        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-teal-accessible">
           {product.categoryLabel}
         </span>
 
@@ -112,7 +112,12 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Presentation Dropdown Selector */}
         {product.presentations.length > 1 ? (
           <div className="mt-1">
+            <label htmlFor={`presentation-${product.id}`} className="sr-only">
+              Presentación de {product.name}
+            </label>
             <select
+              id={`presentation-${product.id}`}
+              aria-label={`Presentación de ${product.name}`}
               value={selectedPresentation.id}
               onChange={(e) => {
                 const found = product.presentations.find(
@@ -145,7 +150,7 @@ export function ProductCard({ product }: ProductCardProps) {
             whileTap={{ scale: 0.95 }}
             onClick={() => addItem(product, selectedPresentation.id)}
             disabled={!product.inStock}
-            className="rounded-[var(--radius-md)] bg-teal px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
+            className="rounded-[var(--radius-md)] bg-teal-accessible px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
           >
             Agregar
           </motion.button>

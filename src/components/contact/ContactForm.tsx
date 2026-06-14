@@ -248,7 +248,7 @@ export function ContactForm() {
             whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
             whileTap={{ scale: status === "loading" ? 1 : 0.97 }}
             disabled={status === "loading"}
-            className="flex h-12 items-center justify-center rounded-xl bg-teal font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex h-12 items-center justify-center rounded-xl bg-teal-accessible font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)] disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {status === "loading" ? "Enviando mensaje..." : "Enviar mensaje"}
           </motion.button>

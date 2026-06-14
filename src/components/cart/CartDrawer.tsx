@@ -230,7 +230,7 @@ export function CartDrawer() {
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] bg-teal font-semibold text-white transition-colors hover:bg-teal-dark"
+              className="flex h-12 w-full items-center justify-center rounded-[var(--radius-md)] bg-teal-accessible font-semibold text-white transition-colors hover:bg-teal-dark"
             >
               Ir al checkout
             </Link>

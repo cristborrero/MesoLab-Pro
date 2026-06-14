@@ -95,7 +95,7 @@ export function HeroVideo() {
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row w-full justify-center">
             <Link
               href="/tienda"
-              className="flex h-12 w-full items-center justify-center rounded-xl bg-teal px-8 text-base font-semibold text-white transition-all hover:bg-teal-dark hover:shadow-[0_4px_20px_rgba(0,206,206,0.3)] sm:w-auto"
+              className="flex h-12 w-full items-center justify-center rounded-xl bg-teal-accessible px-8 text-base font-semibold text-white transition-all hover:bg-teal-dark hover:shadow-[0_4px_20px_rgba(0,206,206,0.3)] sm:w-auto"
             >
               Explorar Catálogo
             </Link>

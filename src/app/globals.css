@@ -10,6 +10,8 @@
   --color-teal: #00cece;
   --color-teal-dark: #00a8a8;
   --color-teal-light: #e0fafa;
+  /* WCAG AA accessible teal for text on white (ratio 4.8:1) */
+  --color-teal-accessible: #007a7a;
 
   /* Semantic Colors */
   --color-foreground: #1a1a1a;
