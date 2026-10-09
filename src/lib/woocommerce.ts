@@ -31,6 +31,7 @@ export interface WooCommerceProduct {
   images?: WooCommerceImage[];
   categories?: WooCommerceCategory[];
   variations?: number[];
+  meta_data?: Array<{ id?: number; key: string; value: string }>;
 }
 
 export interface WooCommerceVariationAttribute {
@@ -154,6 +155,23 @@ export function mapWooCommerceProductToFrontend(
   const wcShortDesc = stripHtml(wcProduct.short_description);
   const wcDesc = wcProduct.description; // Preserve rich text HTML from WordPress/WooCommerce
 
+  const getMeta = (key: string) => wcProduct.meta_data?.find((m) => m.key === key)?.value;
+  let specs = fallback?.specs || {};
+  if (Object.keys(specs).length === 0) {
+    const specsRaw = getMeta("_specs_json");
+    if (specsRaw) {
+      try {
+        specs = JSON.parse(specsRaw);
+      } catch {
+        // Ignorar error de parsing si el formato no es JSON
+      }
+    }
+  }
+
+  const subcategory = fallback?.subcategory || getMeta("_subcategory") || undefined;
+  const isFreeShipping = getMeta("_free_shipping") === "yes" ? true : (fallback?.freeShipping ?? true);
+  const isCodAvailable = getMeta("_cod_available") === "yes" ? true : (fallback?.codAvailable ?? true);
+
   return {
     id: String(wcProduct.id),
     slug: wcProduct.slug,
@@ -164,14 +182,14 @@ export function mapWooCommerceProductToFrontend(
     description: wcDesc || fallback?.description || "",
     indications: fallback?.indications || "",
     certifications: fallback?.certifications || "",
-    specs: fallback?.specs || {},
+    specs,
     presentations,
     image,
     images,
-    subcategory: fallback?.subcategory,
+    subcategory,
     tags: fallback?.tags || [],
-    freeShipping: fallback?.freeShipping ?? true,
-    codAvailable: fallback?.codAvailable ?? true,
+    freeShipping: isFreeShipping,
+    codAvailable: isCodAvailable,
     featured: wcProduct.featured || fallback?.featured || false,
     inStock: wcProduct.stock_status === "instock",
   };
