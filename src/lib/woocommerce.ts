@@ -168,6 +168,10 @@ export function mapWooCommerceProductToFrontend(
     presentations,
     image,
     images,
+    subcategory: fallback?.subcategory,
+    tags: fallback?.tags || [],
+    freeShipping: fallback?.freeShipping ?? true,
+    codAvailable: fallback?.codAvailable ?? true,
     featured: wcProduct.featured || fallback?.featured || false,
     inStock: wcProduct.stock_status === "instock",
   };
@@ -215,7 +219,11 @@ export const getProducts = async (): Promise<Product[]> => {
       })
     );
 
-    return productsWithVariations;
+    // Estrategia Híbrida: fusionar productos de WC con el catálogo local para productos aún no creados en el backend
+    const wcSlugs = new Set(productsWithVariations.map((p) => p.slug));
+    const extraFallbacks = fallbackProducts.filter((p) => !wcSlugs.has(p.slug));
+
+    return [...productsWithVariations, ...extraFallbacks];
   } catch (error) {
     console.error("Error fetching products from WC, using fallback", error);
     return fallbackProducts;
@@ -268,9 +276,15 @@ export const getCategories = async (): Promise<CategoryInfo[]> => {
       "/products/categories?per_page=100&hide_empty=false"
     )) as WooCommerceCategoryResponse[];
     // Filtrar "Sin categorizar" que WooCommerce incluye por defecto
-    return wcCats
+    const mappedWcCats = wcCats
       .filter((c: WooCommerceCategoryResponse) => c.slug !== "sin-categorizar" && c.slug !== "uncategorized")
       .map(mapWooCommerceCategoryToFrontend);
+
+    // Fusión híbrida: asegurar que las nuevas colecciones (facial, beauty-tech, etc.) estén siempre disponibles
+    const wcSlugs = new Set(mappedWcCats.map((c) => c.slug));
+    const extraCategories = fallbackCategories.filter((c) => !wcSlugs.has(c.slug));
+
+    return [...extraCategories, ...mappedWcCats];
   } catch (error) {
     console.error("Error fetching categories from WC, using fallback", error);
     return fallbackCategories;

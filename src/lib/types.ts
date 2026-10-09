@@ -1,6 +1,11 @@
 /* ─── Product Types ─── */
 
 export type ProductCategory =
+  | "facial"
+  | "beauty-tech"
+  | "corporal"
+  | "capilar"
+  | "profesional"
   | "lipoliticos"
   | "vitaminicos"
   | "anestesicos"
@@ -30,6 +35,10 @@ export interface Product {
   presentations: ProductPresentation[];
   image: string; // URL or path to product image
   images?: string[];
+  subcategory?: string;
+  tags?: string[];
+  freeShipping?: boolean;
+  codAvailable?: boolean;
   featured: boolean;
   inStock: boolean;
 }

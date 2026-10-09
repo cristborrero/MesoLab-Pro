@@ -26,6 +26,9 @@ export async function generateMetadata({
   return {
     title: category.name,
     description: category.description,
+    alternates: {
+      canonical: `/tienda/${categoria}`,
+    },
   };
 }
 
@@ -44,29 +47,33 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <>
       {/* Header */}
-      <div className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-12">
-          <nav className="mb-4 font-label text-xs text-muted">
-            <Link href="/" className="hover:text-teal-dark">
+      <div className="border-b border-border/70 bg-[#FAF9F7]/60">
+        <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">
+          <nav className="mb-4 flex items-center gap-1.5 font-label text-[11px] font-semibold uppercase tracking-wider text-muted">
+            <Link href="/" className="transition-colors hover:text-navy">
               Inicio
-            </Link>{" "}
-            /{" "}
-            <Link href="/tienda" className="hover:text-teal-dark">
+            </Link>
+            <span className="text-border">/</span>
+            <Link href="/tienda" className="transition-colors hover:text-navy">
               Tienda
-            </Link>{" "}
-            / <span className="text-navy">{category.name}</span>
+            </Link>
+            <span className="text-border">/</span>
+            <span className="text-navy">{category.name}</span>
           </nav>
-          <h1 className="font-display text-3xl font-extrabold text-navy sm:text-4xl">
+          <span className="inline-block rounded-full bg-navy/5 px-2.5 py-0.5 font-label text-[10px] font-bold uppercase tracking-widest text-navy mb-2">
+            Colección Especializada
+          </span>
+          <h1 className="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
             {category.name}
           </h1>
-          <p className="mt-2 max-w-2xl text-muted">{category.description}</p>
+          <p className="mt-1.5 max-w-2xl text-xs text-muted sm:text-sm">{category.description}</p>
         </div>
       </div>
 
       {/* Products */}
       <div className="mx-auto max-w-7xl px-4 pb-16 lg:px-8 lg:pb-24">
         <ShopContent
-          products={categoryProducts}
+          products={allProducts}
           categories={categories}
           initialCategory={categoria}
         />

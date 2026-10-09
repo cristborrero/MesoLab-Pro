@@ -7,9 +7,12 @@ import { HeroVideo } from "@/components/home/HeroVideo";
 import { FadeIn, Stagger, StaggerItem, HoverCard, SpotlightCard } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
-  title: "MesoLab Pro | Insumos de Mesoterapia Certificados en Colombia",
+  title: "MesoLab Pro | Belleza, Cuidado Facial y Beauty Tech en Colombia",
   description:
-    "Distribuidor de insumos de mesoterapia profesional en Colombia. Productos certificados con registro INVIMA y trazabilidad garantizada para clínicas de estética.",
+    "Tienda online de dispositivos de belleza inteligente, dermo-cuidado activo y cuidado corporal en Colombia. Envíos nacionales con Pago Contra Entrega.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const VIDEO_URL =
@@ -25,10 +28,15 @@ export default async function HomePage() {
 
   // Diccionario de configuración de categorías para asegurar mapeo de tamaño y etiquetas correcto
   const CATEGORY_CONFIG: Record<string, { label: string; isLarge: boolean }> = {
-    lipoliticos: { label: "Línea Reductora", isLarge: true },
-    vitaminicos: { label: "Línea Nutritiva", isLarge: false },
-    anestesicos: { label: "Línea de Base", isLarge: false },
-    insumos: { label: "Consumibles", isLarge: true },
+    facial: { label: "Cuidado Facial", isLarge: true },
+    "beauty-tech": { label: "Beauty Tech & Dispositivos", isLarge: false },
+    corporal: { label: "Silueta & Reducción", isLarge: false },
+    capilar: { label: "Cuidado Capilar", isLarge: true },
+    profesional: { label: "Línea Profesional", isLarge: false },
+    lipoliticos: { label: "Silueta & Firmeza", isLarge: true },
+    vitaminicos: { label: "Cuidado Facial", isLarge: false },
+    anestesicos: { label: "Línea Profesional", isLarge: false },
+    insumos: { label: "Beauty Tech & Accesorios", isLarge: true },
   };
 
   const websiteJsonLd = {
@@ -96,10 +104,10 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <FadeIn className="text-center">
             <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl">
-              Categorías
+              Colecciones Destacadas
             </h2>
             <p className="mt-2 text-sm text-muted">
-              Encuentra los insumos que necesitas para tu práctica profesional
+              Tecnología estética y cosmética formulada para transformar tu rutina diaria
             </p>
           </FadeIn>
 
@@ -108,7 +116,7 @@ export default async function HomePage() {
             {categories.slice(0, 4).map((category) => {
               // Obtener la configuración de estilo y etiqueta para esta categoría
               const config = CATEGORY_CONFIG[category.slug] || {
-                label: "Línea Profesional",
+                label: "Colección Especial",
                 isLarge: false,
               };
 
@@ -160,7 +168,7 @@ export default async function HomePage() {
                             {category.productCount === 1 ? "producto" : "productos"}
                           </span>
                           <span className="font-bold text-teal-dark text-xs md:text-sm group-hover:underline">
-                            Ver catálogo →
+                            Ver colección →
                           </span>
                         </div>
                       </div>
@@ -178,9 +186,9 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <FadeIn>
-              <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Catálogo Seleccionado</span>
+              <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Tendencias &amp; Más Vendidos</span>
               <h2 className="font-display text-2xl font-bold text-navy sm:text-3xl mt-1">
-                Productos Destacados
+                Favoritos de Nuestra Comunidad
               </h2>
             </FadeIn>
             <FadeIn>
@@ -210,7 +218,7 @@ export default async function HomePage() {
       <section className="bg-surface py-12 border-t border-b border-border/50 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 lg:px-8 mb-6">
           <h3 className="text-center font-label text-[10px] font-bold uppercase tracking-widest text-muted/70">
-            Médicos y Clínicas Estéticas Aliadas
+            Confianza, Cobertura y Garantía en Toda Colombia
           </h3>
         </div>
         <div className="relative w-full overflow-hidden">
@@ -220,24 +228,20 @@ export default async function HomePage() {
           
           <div className="animate-marquee flex gap-12 whitespace-nowrap">
             {[
-              "Dra. Carolina Martínez • Derma",
-              "INVIMA Registro Sanitario Vigente",
-              "Clínica Cutis Bogotá",
-              "Dr. Alejandro Gómez • Medicina Estética",
-              "Calidad Certificada ISO 13485",
-              "Dra. Laura Rojas • Cirugía Plástica",
-              "Clínica Renacer Cali",
-              "Trazabilidad Controlada por Lote",
-              "Dra. Carolina Martínez • Derma",
-              "INVIMA Registro Sanitario Vigente",
-              "Clínica Cutis Bogotá",
-              "Dr. Alejandro Gómez • Medicina Estética",
-              "Calidad Certificada ISO 13485",
-              "Dra. Laura Rojas • Cirugía Plástica",
-              "Clínica Renacer Cali",
-              "Trazabilidad Controlada por Lote"
+              "Pago Contra Entrega en Colombia",
+              "Envíos Seguros con Servientrega y Coordinadora",
+              "Dispositivos Dermo-Estéticos Certificados",
+              "+10.000 Clientes Satisfechos",
+              "Garantía de Satisfacción 100%",
+              "Asesoría Personalizada por WhatsApp",
+              "Pago Contra Entrega en Colombia",
+              "Envíos Seguros con Servientrega y Coordinadora",
+              "Dispositivos Dermo-Estéticos Certificados",
+              "+10.000 Clientes Satisfechos",
+              "Garantía de Satisfacción 100%",
+              "Asesoría Personalizada por WhatsApp"
             ].map((text, idx) => (
-              <span key={idx} className="font-display text-sm font-semibold text-navy/50 flex items-center gap-2">
+              <span key={idx} className="font-display text-sm font-semibold text-navy/60 flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal" />
                 {text}
               </span>
@@ -254,26 +258,26 @@ export default async function HomePage() {
               {
                 icon: (
                   <svg className="h-8 w-8 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <path d="m9 11 2 2 4-4" />
-                  </svg>
-                ),
-                title: "Garantía de Origen",
-                description:
-                  "Trazabilidad documental total de cada ampolleta. Registro INVIMA verificado.",
-              },
-              {
-                icon: (
-                  <svg className="h-8 w-8 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="1" y="3" width="15" height="13" />
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 8" />
                     <circle cx="5.5" cy="18.5" r="2.5" />
                     <circle cx="18.5" cy="18.5" r="2.5" />
                   </svg>
                 ),
-                title: "Cadena de Custodia",
+                title: "Paga al Recibir en Casa",
                 description:
-                  "Embalaje térmico controlado para mantener la temperatura óptima de los principios activos.",
+                  "Pide con total tranquilidad y abona tu pedido contra entrega en efectivo o transferencia en las principales ciudades de Colombia.",
+              },
+              {
+                icon: (
+                  <svg className="h-8 w-8 text-teal-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 11 2 2 4-4" />
+                  </svg>
+                ),
+                title: "Calidad & Resultados Reales",
+                description:
+                  "Formulaciones con activos puros y aparatología estética portátil diseñada para brindar cambios visibles desde las primeras semanas.",
               },
               {
                 icon: (
@@ -283,9 +287,9 @@ export default async function HomePage() {
                     <path d="M8 13h6" />
                   </svg>
                 ),
-                title: "Atención Especializada",
+                title: "Asesoría 1 a 1 por WhatsApp",
                 description:
-                  "Asesoría de farmacéuticos matriculados para guiar tu compra o resolver consultas de protocolos.",
+                  "¿Dudas con tu rutina o producto? Te acompañamos antes, durante y después de tu compra con orientación personalizada.",
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
@@ -312,7 +316,7 @@ export default async function HomePage() {
           <FadeIn duration={0.65}>
             <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
               <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-teal to-teal-dark text-white font-display text-2xl font-bold shadow-md">
-                CM
+                VR
                 <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm border border-border">
                   <svg className="h-3.5 w-3.5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                     <path d="m20 6-11 11-5-5" />
@@ -322,14 +326,12 @@ export default async function HomePage() {
 
               <blockquote className="text-center md:text-left">
                 <p className="font-display text-xl font-medium leading-relaxed text-navy sm:text-2xl">
-                  &ldquo;Desde que trabajo con MesoLab Pro, mis pacientes notan la
-                  diferencia en los resultados. La trazabilidad y la calidad de los
-                  productos me dan la confianza que necesito.&rdquo;
+                  &ldquo;La calidad de los productos y la facilidad para pagar cuando el pedido llegó a la puerta de mi casa me encantó. Mi piel se ve mucho más luminosa y firme desde que uso el tratamiento facial.&rdquo;
                 </p>
                 <footer className="mt-4">
-                  <p className="font-semibold text-navy">Dra. Carolina Martínez</p>
+                  <p className="font-semibold text-navy">Valentina Restrepo</p>
                   <p className="font-label text-xs uppercase tracking-wider text-muted mt-0.5">
-                    Medicina Estética · Reg. Médico 18402-5 · Bogotá
+                    Cliente Verificada · Medellín, Colombia
                   </p>
                 </footer>
               </blockquote>
@@ -347,11 +349,10 @@ export default async function HomePage() {
         <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 text-center lg:px-8 z-10">
           <FadeIn variant="scaleIn" duration={0.65}>
             <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-              ¿Necesitas un pedido personalizado?
+              ¿Quieres asesoría para armar tu rutina o pedido?
             </h2>
             <p className="mt-3 max-w-md text-sm text-white/70 mx-auto">
-              Atendemos pedidos por volumen, cotizaciones especiales y asesoría
-              técnica para tu práctica profesional.
+              Escríbenos a WhatsApp. Nuestro equipo te guía para elegir el producto o dispositivo ideal según las necesidades de tu piel.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row w-full sm:w-auto justify-center">
               <a
@@ -368,7 +369,7 @@ export default async function HomePage() {
                 >
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
-                Hablar por WhatsApp
+                Asesoría por WhatsApp
               </a>
               <Link
                 href="/contacto"

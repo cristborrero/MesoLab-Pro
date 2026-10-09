@@ -5,6 +5,9 @@ import { CheckoutContent } from "@/components/checkout/CheckoutContent";
 export const metadata: Metadata = {
   title: "Checkout Seguro | MesoLab Pro",
   description: "Finaliza tu compra de suministros clínicos de mesoterapia de forma rápida y segura con encriptación SSL y facturación formal en Colombia.",
+  alternates: {
+    canonical: "/checkout",
+  },
 };
 
 export default function CheckoutPage() {

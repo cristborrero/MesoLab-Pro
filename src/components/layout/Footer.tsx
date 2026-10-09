@@ -33,8 +33,7 @@ export function Footer() {
               />
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/60">
-              Ciencia en cada ampolleta. Insumos de mesoterapia certificados
-              para profesionales de la estética en Colombia.
+              Tecnología dermo-estética, fórmulas activas y cuidado personal avanzado. Envíos a toda Colombia con opción de Pago Contra Entrega.
             </p>
           </div>
 

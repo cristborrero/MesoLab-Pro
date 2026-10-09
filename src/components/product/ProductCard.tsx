@@ -85,13 +85,23 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Real-time Stock Badge */}
         {product.inStock ? (
-          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.05)] border border-border font-label text-[10px] font-bold uppercase tracking-wider text-success">
+          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 shadow-sm border border-border font-label text-[10px] font-bold uppercase tracking-wider text-success backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             Disponible
           </span>
         ) : (
-          <span className="absolute top-3 right-3 rounded-[var(--radius-sm)] bg-error/10 px-2.5 py-1 font-label text-[10px] font-bold uppercase tracking-wider text-error">
+          <span className="absolute top-3 left-3 rounded-full bg-error/10 px-2.5 py-1 font-label text-[10px] font-bold uppercase tracking-wider text-error">
             Agotado
+          </span>
+        )}
+
+        {/* Pago Contra Entrega Trust Badge */}
+        {product.codAvailable !== false && (
+          <span className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-emerald-600/95 px-2.5 py-1 font-label text-[9px] font-bold uppercase tracking-wider text-white shadow-sm backdrop-blur-sm">
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Contra Entrega
           </span>
         )}
       </div>

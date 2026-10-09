@@ -155,39 +155,43 @@ export function Header() {
                     <div className="grid grid-cols-3 gap-6">
                       {/* Columns 1 & 2: Categories */}
                       <div className="col-span-2 grid grid-cols-2 gap-4 border-r border-border/60 pr-6">
-                        <div className="flex flex-col gap-3">
-                          <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Tratamientos</span>
-                          <Link href="/tienda/lipoliticos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
-                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Lipolíticos</span>
-                            <span className="text-[11px] text-muted leading-tight">Reducción localizada y contornos.</span>
+                        <div className="flex flex-col gap-2.5">
+                          <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Cuidado Personal</span>
+                          <Link href="/tienda" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Cuidado Facial</span>
+                            <span className="text-[11px] text-muted leading-tight">Sueros activos, tónicos y mascarillas.</span>
                           </Link>
-                          <Link href="/tienda/vitaminicos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
-                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Vitamínicos</span>
-                            <span className="text-[11px] text-muted leading-tight">Revitalización y nutrición.</span>
+                          <Link href="/tienda" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Beauty Tech</span>
+                            <span className="text-[11px] text-muted leading-tight">Aparatología y dispositivos en casa.</span>
+                          </Link>
+                          <Link href="/tienda" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Cuidado Capilar</span>
+                            <span className="text-[11px] text-muted leading-tight">Biotina, cepillos térmicos y nutrición.</span>
                           </Link>
                         </div>
-                        <div className="flex flex-col gap-3">
-                          <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Especialidades</span>
-                          <Link href="/tienda/anestesicos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
-                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Anestésicos</span>
-                            <span className="text-[11px] text-muted leading-tight">Manejo del dolor en cabina.</span>
+                        <div className="flex flex-col gap-2.5">
+                          <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Silueta &amp; Cabina</span>
+                          <Link href="/tienda" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Cuidado Corporal</span>
+                            <span className="text-[11px] text-muted leading-tight">Geles reductores, silueta y firmeza.</span>
                           </Link>
-                          <Link href="/tienda/insumos" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
-                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Insumos</span>
-                            <span className="text-[11px] text-muted leading-tight">Agujas y consumibles.</span>
+                          <Link href="/tienda" className="group/item flex flex-col gap-0.5 rounded-md p-2 transition-all hover:bg-surface/60">
+                            <span className="text-sm font-semibold text-navy transition-colors group-hover/item:text-teal-dark">Línea Profesional</span>
+                            <span className="text-[11px] text-muted leading-tight">Mesoterapia e insumos de cabina.</span>
                           </Link>
                         </div>
                       </div>
 
                       {/* Column 3: Editorial spotlight */}
                       <div className="flex flex-col gap-3">
-                        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Spotlight</span>
+                        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-muted/60">Destacado</span>
                         <div className="flex flex-1 flex-col rounded-lg bg-surface/40 p-3">
                           <div className="relative flex h-20 w-full items-center justify-center overflow-hidden rounded bg-white p-2 border border-border/50">
                             {spotlightImage ? (
                               <Image
                                 src={spotlightImage}
-                                alt="L-Carnitina"
+                                alt="Beauty Tech"
                                 fill
                                 className="object-contain p-2 mix-blend-multiply"
                                 sizes="120px"
@@ -198,10 +202,10 @@ export function Header() {
                               </svg>
                             )}
                           </div>
-                          <span className="mt-2 text-xs font-semibold text-navy leading-tight">L-Carnitina 500mg</span>
-                          <span className="text-[10px] text-muted">Estándar en lipólisis.</span>
-                          <Link href="/producto/l-carnitina" className="mt-auto text-xs font-bold text-teal-dark hover:underline">
-                            Ver detalles →
+                          <span className="mt-2 text-xs font-semibold text-navy leading-tight">Tecnología Dermo-Estética</span>
+                          <span className="text-[10px] text-muted">Pago Contra Entrega disponible.</span>
+                          <Link href="/tienda" className="mt-auto text-xs font-bold text-teal-dark hover:underline">
+                            Ver catálogo →
                           </Link>
                         </div>
                       </div>

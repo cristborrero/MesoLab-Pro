@@ -24,8 +24,11 @@ export async function generateMetadata({
   if (!product) return {};
 
   return {
-    title: `${product.name} | Mesoterapia Profesional | MesoLab Pro`,
-    description: `${product.shortDescription} Insumo clínico certificado con registro INVIMA y trazabilidad controlada en Colombia. Adquiérelo hoy.`,
+    title: `${product.name} | MesoLab Pro`,
+    description: `${product.shortDescription} Envíos a toda Colombia con opción de Pago Contra Entrega.`,
+    alternates: {
+      canonical: `/producto/${slug}`,
+    },
   };
 }
 
@@ -74,9 +77,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {related.length > 0 && (
         <section className="border-t border-border bg-surface py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Sinergia Química</span>
+            <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">Recomendados</span>
             <h2 className="font-display text-xl font-extrabold text-navy sm:text-2xl mt-1">
-              Insumos Clínicos Relacionados
+              Productos Relacionados
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((p) => (

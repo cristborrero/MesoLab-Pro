@@ -12,27 +12,30 @@ const pillars = [
   {
     icon: (
       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+        <rect x="1" y="3" width="15" height="13" />
+        <polygon points="16 8 20 8 23 11 23 16 16 16 8" />
+        <circle cx="5.5" cy="18.5" r="2.5" />
+        <circle cx="18.5" cy="18.5" r="2.5" />
       </svg>
     ),
-    label: "Calidad Certificada",
+    label: "Entrega Sin Riesgo",
     description:
-      "Todos nuestros productos cuentan con registro sanitario vigente y cumplen con las normativas del INVIMA. Cada lote es auditado antes de despacharse.",
+      "Compra con total tranquilidad. Pide hoy y paga únicamente cuando el repartidor llegue a la puerta de tu casa en efectivo o transferencia.",
     stat: "100%",
-    statLabel: "Registros INVIMA vigentes",
+    statLabel: "Pago Contra Entrega Seguro",
     color: "teal",
   },
   {
     icon: (
       <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
       </svg>
     ),
-    label: "Trazabilidad Completa",
+    label: "Eficacia Comprobada",
     description:
-      "Desde el laboratorio de producción hasta la entrega final en tus manos, cada producto cuenta con un registro exhaustivo de origen y conservación.",
-    stat: "5+",
-    statLabel: "Años distribuyendo",
+      "Cada producto, suero dermo-activo y dispositivo Beauty Tech es rigurosamente evaluado para garantizar resultados visibles y seguros.",
+    stat: "Top Tier",
+    statLabel: "Calidad y respaldo",
     color: "navy",
   },
   {
@@ -41,27 +44,28 @@ const pillars = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
       </svg>
     ),
-    label: "Soporte Profesional",
+    label: "Acompañamiento 1 a 1",
     description:
-      "Asesoría técnica disponible por canales directos. Te proporcionamos fichas de seguridad, sugerencias de almacenamiento y guías analíticas.",
-    stat: "24h",
-    statLabel: "Tiempo de respuesta",
+      "Asesoría directa y personalizada por WhatsApp antes, durante y después de tu compra para resolver cualquier duda sobre tu rutina.",
+    stat: "24/7",
+    statLabel: "Soporte personalizado",
     color: "teal",
   },
 ];
 
 const certs = [
-  "Registro Sanitario INVIMA",
-  "Cadena de Frío Controlada",
-  "Trazabilidad de Lote",
-  "Almacenamiento Certificado",
+  "Pago Contra Entrega en Colombia",
+  "Garantía de Satisfacción 100%",
+  "Dispositivos con Certificación CE / RoHS",
+  "Envíos Asegurados a Nivel Nacional",
+  "Insumos Profesionales con Registro INVIMA",
 ];
 
 const timeline = [
-  { year: "2019", event: "Fundación de MesoLab Pro en Colombia" },
-  { year: "2020", event: "Primera certificación de cadena de frío controlada" },
-  { year: "2022", event: "Expansión a distribución nacional certificada" },
-  { year: "2024", event: "Más de 500 profesionales confían en nosotros" },
+  { year: "2019", event: "Fundación de MesoLab Pro en Colombia para insumos estéticos" },
+  { year: "2021", event: "Consolidación de red logística y cadena de custodia nacional" },
+  { year: "2024", event: "Más de 10.000 clientes y profesionales confían en nosotros" },
+  { year: "2026", event: "Evolución multilínea: Beauty Tech, Skincare y Pago Contra Entrega" },
 ];
 
 function CheckIcon() {
@@ -127,35 +131,33 @@ export function NosotrosClient() {
           <FadeIn delay={0.05} duration={0.65}>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-light border border-teal/20 px-3 py-1 font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" />
-              Compromiso Científico
+              Laboratorio Dermo-Estético &amp; Bienestar
             </span>
           </FadeIn>
 
           <FadeIn delay={0.1} duration={0.7}>
             <h1 className="font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-[3.5rem]">
-              Ciencia y confianza para{" "}
+              Ciencia, tecnología y resultados reales para{" "}
               <span className="text-[#00cece]">
-                tu práctica profesional
+                tu belleza
               </span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.18} duration={0.65}>
             <p className="mt-6 text-base leading-relaxed text-navy/70 max-w-2xl mx-auto font-medium">
-              MesoLab Pro es el proveedor de referencia para profesionales de la
-              estética y la medicina estética en Colombia. Insumos certificados,
-              trazabilidad completa y entrega confiable en tu consultorio.
+              En MesoLab Pro democratizamos el cuidado estético avanzado en Colombia. Combinamos dispositivos inteligentes en casa, cosmética activa de alto rendimiento y una división profesional, con la tranquilidad de envíos rápidos y Pago Contra Entrega.
             </p>
           </FadeIn>
 
           {/* Translucent Stats bar with Teal stats */}
           <FadeIn delay={0.28} duration={0.6} className="mt-14">
             <div className="inline-flex flex-wrap justify-center gap-8 sm:gap-16 rounded-2xl border border-teal/15 bg-white/80 px-8 py-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-sm">
-              <StatCounter value="500+" label="Profesionales activos" />
+              <StatCounter value="+15.000" label="Clientes en Colombia" />
               <div className="hidden sm:block w-px bg-navy/10" />
-              <StatCounter value="100%" label="Registros INVIMA" />
+              <StatCounter value="100%" label="Pago Contra Entrega" />
               <div className="hidden sm:block w-px bg-navy/10" />
-              <StatCounter value="5+" label="Años de experiencia" />
+              <StatCounter value="32" label="Departamentos con Cobertura" />
             </div>
           </FadeIn>
         </div>
@@ -169,36 +171,29 @@ export function NosotrosClient() {
             <FadeIn variant="fadeRight" duration={0.65}>
               <div>
                 <span className="font-label text-[10px] font-bold uppercase tracking-widest text-teal-dark">
-                  Propósito Clínico
+                  Nuestro Enfoque
                 </span>
                 <h2 className="font-display mt-2 text-3xl font-bold text-navy lg:text-4xl">
                   Nuestra misión
                 </h2>
                 <div className="mt-6 space-y-4 text-muted text-[15px] leading-relaxed">
                   <p>
-                    No distribuimos simples viales: te brindamos la tranquilidad de
-                    trabajar con calidad verificada. Cada ampolleta cuenta con
-                    trazabilidad completa desde el laboratorio hasta tu consultorio.
+                    Creemos que el cuidado estético efectivo no debe estar limitado únicamente a cabinas inaccesibles ni depender de productos genéricos sin respaldo. En MesoLab Pro seleccionamos aparatología estética portátil y fórmulas con principios activos puros para que experimentes transformaciones visibles desde casa.
                   </p>
                   <p>
-                    Entendemos que al aplicar un principio activo en tu paciente,
-                    estás comprometiendo tu prestigio profesional y la confianza de
-                    quien deposita su salud en tus manos. Por eso, no tomamos
-                    atajos.
+                    Preservamos con rigor nuestra división especializada de mesoterapia e insumos para profesionales de la salud estética, garantizando trazabilidad, cadena de custodia y acompañamiento técnico.
                   </p>
                   <p>
-                    Nuestro equipo está compuesto por profesionales que entienden el
-                    ritmo de tu práctica clínica: disponibilidad inmediata, precios
-                    coherentes sin intermediarios y soporte técnico real.
+                    Operamos con un modelo transparente pensado para Colombia: te guiamos antes y después de tu compra con atención humana por WhatsApp, despachos asegurados y la total tranquilidad de pagar solo cuando recibes tu pedido en tus manos.
                   </p>
                 </div>
 
                 <ul className="mt-8 space-y-2.5">
                   {[
-                    "Distribución directa sin intermediarios",
-                    "Cadena de frío garantizada desde origen",
-                    "Fichas técnicas con cada despacho",
-                    "Respaldo INVIMA en cada producto",
+                    "Envíos a todo el país con opción de Pago Contra Entrega",
+                    "Dispositivos Beauty Tech certificados y testeados",
+                    "Asesoría personalizada y seguimiento 1 a 1 por WhatsApp",
+                    "Línea profesional con registro y trazabilidad documental",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-navy font-medium">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-light text-teal-dark">
@@ -345,11 +340,10 @@ export function NosotrosClient() {
         <div className="relative mx-auto max-w-2xl px-4 text-center lg:px-8">
           <FadeIn variant="scaleIn" duration={0.6}>
             <h2 className="font-display text-3xl font-bold text-navy lg:text-4xl">
-              ¿Buscas trabajar con calidad certificada?
+              ¿Lista para transformar tu rutina con resultados reales?
             </h2>
             <p className="mt-4 text-[15px] text-muted max-w-md mx-auto">
-              Explora nuestro catálogo o ponte en contacto para coordinar una
-              cotización personalizada para tu clínica.
+              Explora nuestro catálogo de dermo-cuidado, belleza inteligente y aparatología en casa, o escríbenos para una asesoría personalizada.
             </p>
             <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <motion.div whileTap={{ scale: 0.97 }}>

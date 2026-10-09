@@ -26,6 +26,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mesolabpro.com.co"),
   title: {
     default: "MesoLab Pro — Ciencia en cada ampolleta",
     template: "%s | MesoLab Pro",
