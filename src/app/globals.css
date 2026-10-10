@@ -3,27 +3,36 @@
 /* ─── MesoLab Pro Design Tokens ─── */
 
 @theme inline {
-  /* Brand Colors */
-  --color-navy: #324047;
-  --color-navy-light: #3d4f58;
-  --color-surface: #efefef;
-  --color-teal: #00cece;
-  --color-teal-dark: #00a8a8;
-  --color-teal-light: #e0fafa;
-  /* WCAG AA accessible teal for text on white (ratio 4.8:1) */
-  --color-teal-accessible: #007a7a;
+  /* Brand Colors — Master Prompt Approved Tokens */
+  --color-graphite: #26373b;
+  --color-graphite-dark: #1d2b2e;
+  --color-navy: #26373b;
+  --color-navy-light: #324449;
+  
+  --color-teal: #00b9b5;
+  --color-teal-hover: #009f9b;
+  --color-teal-dark: #009f9b;
+  --color-teal-light: #e6f8f8;
+  --color-teal-accessible: #007a77;
+
+  --color-mist: #f3f5f5;
+  --color-surface: #f3f5f5;
+  --color-surface-card: #ffffff;
 
   /* Semantic Colors */
-  --color-foreground: #1a1a1a;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --color-foreground: #26373b;
+  --color-secondary-text: #647579;
+  --color-muted: #647579;
+  --color-subtle-border: #e4eaea;
+  --color-border: #e4eaea;
+  
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-error: #dc2626;
 
   /* Backgrounds */
   --color-background: #ffffff;
-  --color-background-alt: #f9fafb;
+  --color-background-alt: #f3f5f5;
 
   /* WhatsApp */
   --color-whatsapp: #25d366;
@@ -34,15 +43,17 @@
   --font-label: var(--font-label);
 
   /* Shadows */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 1px 3px rgba(38, 55, 59, 0.04);
+  --shadow-elevated: 0 8px 24px rgba(38, 55, 59, 0.08);
+  --shadow-modal: 0 12px 32px rgba(38, 55, 59, 0.14);
 
   /* Radii */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
 
   /* Transitions */
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);

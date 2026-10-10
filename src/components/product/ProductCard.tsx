@@ -20,13 +20,16 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.article
-      whileHover={{ y: -4, boxShadow: "0 12px 30px rgba(0, 0, 0, 0.08)" }}
+      whileHover={{ y: -4, boxShadow: "0 12px 30px rgba(38, 55, 59, 0.08)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group flex flex-col rounded-[var(--radius-lg)] border border-border bg-white transition-colors duration-300 hover:border-teal/30"
+      className="group flex flex-col rounded-2xl border border-border bg-white transition-all duration-300 hover:border-teal/40 overflow-hidden"
     >
-      {/* Product Image */}
-      <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-t-[var(--radius-lg)] bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6]">
-        <Link href={`/producto/${product.slug}`} className="relative flex h-full w-full items-center justify-center p-4">
+      {/* Product Image Container */}
+      <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-surface p-6">
+        <Link
+          href={`/producto/${product.slug}`}
+          className="relative flex h-full w-full items-center justify-center"
+        >
           {product.image ? (
             <Image
               src={product.image}
@@ -36,69 +39,43 @@ export function ProductCard({ product }: ProductCardProps) {
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
           ) : (
-            <svg
-              className="h-28 w-28 text-navy/15 transition-transform duration-500 group-hover:scale-105"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M38 52h24v28H38z" className="fill-teal/10 transition-colors group-hover:fill-teal/15" />
-              <path d="M36 28h28v6H36v-6z" className="fill-navy/20 group-hover:fill-navy/35" />
-              <path d="M44 34h12v12h-12V34z" className="fill-navy/10 group-hover:fill-navy/20" />
-              <path
-                d="M36 46c0-2 2-4 4-4h20c2 0 4 2 4 4v36c0 3-3 6-6 6H42c-3 0-6-3-6-6V46z"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <line x1="42" y1="52" x2="48" y2="52" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="42" y1="60" x2="52" y2="60" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="42" y1="68" x2="48" y2="68" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="42" y1="76" x2="52" y2="76" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
-          )}
-
-          {/* Clinical certification watermark — only when no real image */}
-          {!product.image && (
-            <span className="absolute bottom-2 left-2 font-mono text-[8px] uppercase tracking-wider text-navy/20">
-              Certified ISO 13485
-            </span>
+            <div className="flex h-full w-full items-center justify-center">
+              <svg
+                className="h-20 w-20 text-navy/20 transition-transform duration-500 group-hover:scale-105"
+                viewBox="0 0 100 100"
+                fill="none"
+              >
+                <path d="M38 52h24v28H38z" className="fill-teal/10" />
+                <path d="M36 28h28v6H36v-6z" className="fill-navy/20" />
+                <path d="M44 34h12v12h-12V34z" className="fill-navy/10" />
+                <path
+                  d="M36 46c0-2 2-4 4-4h20c2 0 4 2 4 4v36c0 3-3 6-6 6H42c-3 0-6-3-6-6V46z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           )}
         </Link>
 
-        {/* Specs Hover Overlay (reveals technical specifications cleanly only when needed) */}
-        <div className="absolute inset-0 flex flex-col justify-end bg-navy/90 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px] pointer-events-none">
-          <span className="font-label text-[10px] uppercase tracking-widest text-white font-bold mb-2">Ficha Técnica</span>
-          <div className="grid grid-cols-2 gap-x-2 gap-y-2 text-white">
-            {Object.entries(product.specs).slice(0, 4).map(([key, val]) => (
-              <div key={key}>
-                <span className="block text-[8px] uppercase tracking-wider text-slate-300 font-label">{key}</span>
-                <span className="block text-[11px] font-medium leading-tight text-white">{val}</span>
-              </div>
-            ))}
-          </div>
-          <Link href={`/producto/${product.slug}`} className="mt-3 block border-t border-white/20 pt-2 text-center font-label text-[10px] uppercase tracking-wider text-white/80 hover:text-white pointer-events-auto">
-            Detalles completos →
-          </Link>
-        </div>
-
         {/* Real-time Stock Badge */}
         {product.inStock ? (
-          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 shadow-sm border border-border font-label text-[10px] font-bold uppercase tracking-wider text-success backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
+          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 shadow-sm border border-border font-label text-[10px] font-bold uppercase tracking-wider text-emerald-700 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             Disponible
           </span>
         ) : (
-          <span className="absolute top-3 left-3 rounded-full bg-error/10 px-2.5 py-1 font-label text-[10px] font-bold uppercase tracking-wider text-error">
+          <span className="absolute top-3 left-3 rounded-full bg-red-50 border border-red-200 px-2.5 py-1 font-label text-[10px] font-bold uppercase tracking-wider text-red-600">
             Agotado
           </span>
         )}
 
         {/* Pago Contra Entrega Trust Badge */}
         {product.codAvailable !== false && (
-          <span className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-emerald-600/95 px-2.5 py-1 font-label text-[9px] font-bold uppercase tracking-wider text-white shadow-sm backdrop-blur-sm">
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+          <span className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-navy/80 px-2.5 py-1 font-label text-[9px] font-medium text-white shadow-sm backdrop-blur-sm">
+            <svg className="h-3 w-3 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             Contra Entrega
@@ -106,22 +83,35 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
 
-      {/* Product Information */}
-      <div className="flex flex-1 flex-col gap-2 p-4 pt-5">
-        <span className="font-label text-[10px] font-bold uppercase tracking-wider text-teal-accessible">
-          {product.categoryLabel}
-        </span>
+      {/* Product Details */}
+      <div className="flex flex-1 flex-col p-5">
+        {/* Category & Star Rating */}
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-label text-[10px] font-bold uppercase tracking-wider text-teal-accessible">
+            {product.categoryLabel}
+          </span>
+          {/* 5-Star Rating Preview */}
+          <div className="flex items-center gap-0.5 text-amber-400">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} className="h-3 w-3 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+            <span className="ml-1 text-[10px] text-muted font-medium">5.0</span>
+          </div>
+        </div>
 
+        {/* Name */}
         <Link
           href={`/producto/${product.slug}`}
-          className="font-display text-base font-semibold text-navy leading-tight transition-colors hover:text-teal-dark"
+          className="mt-2 font-display text-sm sm:text-base font-bold text-navy leading-snug transition-colors hover:text-teal-dark line-clamp-2"
         >
           {product.name}
         </Link>
 
-        {/* Presentation Dropdown Selector */}
+        {/* Presentation Selector */}
         {product.presentations.length > 1 ? (
-          <div className="mt-1">
+          <div className="mt-2.5">
             <label htmlFor={`presentation-${product.id}`} className="sr-only">
               Presentación de {product.name}
             </label>
@@ -135,7 +125,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 );
                 if (found) setSelectedPresentation(found);
               }}
-              className="w-full rounded-[var(--radius-sm)] border border-border bg-white px-2 py-1.5 font-label text-[11px] text-navy focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy"
+              className="w-full rounded-lg border border-border bg-surface/50 px-2.5 py-1.5 font-label text-[11px] text-navy focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
             >
               {product.presentations.map((pres) => (
                 <option key={pres.id} value={pres.id}>
@@ -145,24 +135,36 @@ export function ProductCard({ product }: ProductCardProps) {
             </select>
           </div>
         ) : (
-          <p className="font-label text-xs text-muted">
+          <p className="mt-2 font-label text-[11px] text-muted">
             {selectedPresentation.label}
           </p>
         )}
 
-        {/* Price + Cart Action */}
-        <div className="mt-auto flex items-center justify-between gap-3 pt-3">
-          <span className="font-mono text-base font-semibold text-navy">
-            {formatPrice(selectedPresentation.price)}
-          </span>
+        {/* Price & Add to Cart Button */}
+        <div className="mt-auto pt-4 flex flex-col gap-3">
+          <div className="flex items-baseline justify-between">
+            <span className="font-mono text-base sm:text-lg font-bold text-navy">
+              {formatPrice(selectedPresentation.price)}
+            </span>
+            <span className="text-[10px] text-muted">COP</span>
+          </div>
 
           <motion.button
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => addItem(product, selectedPresentation.id)}
             disabled={!product.inStock}
-            className="rounded-[var(--radius-md)] bg-teal-accessible px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-teal px-4 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-teal-dark hover:shadow-[0_4px_12px_rgba(0,185,181,0.25)] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
           >
-            Agregar
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            Añadir al carrito
           </motion.button>
         </div>
       </div>
