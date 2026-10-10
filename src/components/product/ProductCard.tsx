@@ -140,31 +140,19 @@ export function ProductCard({ product }: ProductCardProps) {
           </p>
         )}
 
-        {/* Price & Add to Cart Button */}
-        <div className="mt-auto pt-4 flex flex-col gap-3">
-          <div className="flex items-baseline justify-between">
-            <span className="font-mono text-base sm:text-lg font-bold text-navy">
-              {formatPrice(selectedPresentation.price)}
-            </span>
-            <span className="text-[10px] text-muted">COP</span>
-          </div>
+        {/* Price + Action */}
+        <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+          <span className="font-mono text-base sm:text-lg font-bold text-navy">
+            {formatPrice(selectedPresentation.price)}
+          </span>
 
           <motion.button
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => addItem(product, selectedPresentation.id)}
             disabled={!product.inStock}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-teal px-4 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-teal-dark hover:shadow-[0_4px_12px_rgba(0,185,181,0.25)] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
+            className="rounded-full bg-teal-accessible px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-teal-dark hover:shadow-[0_4px_12px_rgba(0,122,119,0.25)] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
           >
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            Añadir al carrito
+            Agregar
           </motion.button>
         </div>
       </div>
