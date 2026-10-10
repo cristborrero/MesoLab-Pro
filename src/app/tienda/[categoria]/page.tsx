@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCategories, getProducts } from "@/lib/woocommerce";
@@ -147,11 +148,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       {/* Products */}
       <div className="mx-auto max-w-7xl px-4 pb-16 lg:px-8 lg:pb-24">
-        <ShopContent
-          products={allProducts}
-          categories={categories}
-          initialCategory={categoria}
-        />
+        <Suspense fallback={<div className="py-20 text-center text-sm text-muted">Cargando colección...</div>}>
+          <ShopContent
+            products={allProducts}
+            categories={categories}
+            initialCategory={categoria}
+          />
+        </Suspense>
       </div>
     </>
   );

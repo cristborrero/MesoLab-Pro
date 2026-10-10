@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import type { Product, CategoryInfo } from "@/lib/types";
 import { ProductCard } from "@/components/product/ProductCard";
 import { motion, AnimatePresence } from "framer-motion";
@@ -163,7 +164,9 @@ export function ShopContent({
   initialCategory,
 }: ShopContentProps) {
   // Estados de filtrado
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchParams = useSearchParams();
+  const urlQuery = searchParams.get("s") || searchParams.get("q") || "";
+  const [searchQuery, setSearchQuery] = useState(urlQuery);
   const [activeCategory, setActiveCategory] = useState<string>(
     initialCategory ?? "todos"
   );
@@ -174,6 +177,13 @@ export function ShopContent({
   const [onlyFeatured, setOnlyFeatured] = useState(false);
   const [priceRange, setPriceRange] = useState<PriceFilter>("all");
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+
+  // Sincronizar búsqueda si cambia en la URL
+  useEffect(() => {
+    if (urlQuery !== undefined) {
+      setSearchQuery(urlQuery);
+    }
+  }, [urlQuery]);
 
   // Sincronizar initialCategory si cambia la URL
   useEffect(() => {

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getProducts } from "@/lib/woocommerce";
 import { EditorialHero } from "@/components/home/EditorialHero";
-import { TrustBar } from "@/components/home/TrustBar";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
 import { FeaturedProductsSection } from "@/components/home/FeaturedProducts";
 import { EditorialBrandSection } from "@/components/home/EditorialBrandSection";
@@ -69,13 +68,10 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
 
-      {/* 1. Hero Editorial */}
+      {/* 1. Hero Editorial Slider (con micro-trust strip y controles integrados) */}
       <EditorialHero />
 
-      {/* 2. Trust Bar */}
-      <TrustBar />
-
-      {/* 3. Category Grid */}
+      {/* 2. Category Grid */}
       <CategoryGrid />
 
       {/* 4. Real Featured Products Section */}

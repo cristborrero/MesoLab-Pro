@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { getProducts, getCategories } from "@/lib/woocommerce";
 import { ShopContent } from "@/components/shop/ShopContent";
@@ -45,7 +46,9 @@ export default async function TiendaPage() {
 
       {/* Shop Content */}
       <div className="mx-auto max-w-7xl px-4 pb-16 lg:px-8 lg:pb-24">
-        <ShopContent products={products} categories={categories} />
+        <Suspense fallback={<div className="py-20 text-center text-sm text-muted">Cargando catálogo...</div>}>
+          <ShopContent products={products} categories={categories} />
+        </Suspense>
       </div>
     </>
   );
