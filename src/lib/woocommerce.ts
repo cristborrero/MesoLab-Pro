@@ -62,7 +62,7 @@ export interface WooCommerceCategoryResponse {
 
 export async function wcFetch(endpoint: string): Promise<unknown> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 5000);
+  const timeout = setTimeout(() => controller.abort(), 15000);
 
   try {
     const res = await fetch(`${WC_URL}${endpoint}`, {
@@ -218,7 +218,15 @@ export function mapWooCommerceCategoryToFrontend(wcCategory: WooCommerceCategory
  */
 export const getProducts = async (): Promise<Product[]> => {
   try {
-    const wcProducts = (await wcFetch("/products?per_page=100&status=publish")) as WooCommerceProduct[];
+    let page = 1;
+    const wcProducts: WooCommerceProduct[] = [];
+    while (true) {
+      const batch = (await wcFetch(`/products?per_page=100&page=${page}&status=publish`)) as WooCommerceProduct[];
+      if (!batch || !Array.isArray(batch) || batch.length === 0) break;
+      wcProducts.push(...batch);
+      if (batch.length < 100) break;
+      page++;
+    }
 
     const productsWithVariations = await Promise.all(
       wcProducts.map(async (wcProduct: WooCommerceProduct) => {
