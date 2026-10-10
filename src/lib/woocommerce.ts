@@ -245,14 +245,11 @@ export const getProducts = async (): Promise<Product[]> => {
       })
     );
 
-    // Estrategia Híbrida: fusionar productos de WC con el catálogo local para productos aún no creados en el backend
-    const wcSlugs = new Set(productsWithVariations.map((p) => p.slug));
-    const extraFallbacks = fallbackProducts.filter((p) => !wcSlugs.has(p.slug));
-
-    return [...productsWithVariations, ...extraFallbacks];
+    // Catálogo 100% WooCommerce: usar exclusivamente productos reales de la API
+    return productsWithVariations;
   } catch (error) {
-    console.error("Error fetching products from WC, using fallback", error);
-    return fallbackProducts;
+    console.error("Error fetching products from WC", error);
+    return [];
   }
 };
 
@@ -271,8 +268,7 @@ export const getProduct = async (
       if (results && results.length > 0) wcProduct = results[0];
     }
 
-    if (!wcProduct)
-      return fallbackProducts.find((p) => p.slug === idOrSlug) || null;
+    if (!wcProduct) return null;
 
     // Resolver variaciones si el producto es variable
     let variations: WooCommerceVariation[] = [];
@@ -289,10 +285,10 @@ export const getProduct = async (
     return mapWooCommerceProductToFrontend(wcProduct, variations);
   } catch (error) {
     console.error(
-      `Error fetching product ${idOrSlug} from WC, using fallback`,
+      `Error fetching product ${idOrSlug} from WC`,
       error
     );
-    return fallbackProducts.find((p) => p.slug === idOrSlug) || null;
+    return null;
   }
 };
 
