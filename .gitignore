@@ -48,4 +48,6 @@ next-env.d.ts
 _bmad/
 _bmad-output/
 
-
+# python cache
+__pycache__/
+*.py[cod]
