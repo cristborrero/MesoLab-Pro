@@ -122,11 +122,11 @@ export function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.45, ease }}
-          className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-7 shadow-[0_2px_16px_rgba(0,0,0,0.06)] lg:p-8"
+          className="flex flex-col gap-5 rounded-2xl border border-navy/10 bg-white p-7 sm:p-8"
         >
           <div>
             <h2 className="font-display text-xl font-bold text-navy">Envíanos un mensaje</h2>
-            <p className="mt-1 text-xs text-muted">Responderemos en menos de 24 horas hábiles</p>
+            <p className="mt-1 text-xs text-navy/70">Responderemos en menos de 24 horas hábiles</p>
           </div>
 
           <div className="space-y-4">
@@ -140,7 +140,7 @@ export function ContactForm() {
               >
                 <label
                   htmlFor={field.id}
-                  className="font-label text-[10px] font-bold uppercase tracking-widest text-muted"
+                  className="text-xs font-semibold text-navy/85"
                 >
                   {field.label}
                 </label>
@@ -156,7 +156,7 @@ export function ContactForm() {
                     disabled={status === "loading"}
                     onFocus={() => setFocused(field.id)}
                     onBlur={() => setFocused(null)}
-                    className="h-11 w-full rounded-xl border border-border bg-white px-4 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="h-11 w-full rounded-xl border border-navy/15 bg-white px-4 text-sm text-navy transition-colors placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/15 disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   <motion.span
                     className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
@@ -176,7 +176,7 @@ export function ContactForm() {
             >
               <label
                 htmlFor="contact-message"
-                className="font-label text-[10px] font-bold uppercase tracking-widest text-muted"
+                className="text-xs font-semibold text-navy/85"
               >
                 Mensaje
               </label>
@@ -192,7 +192,7 @@ export function ContactForm() {
                   disabled={status === "loading"}
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className="w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-navy transition-all placeholder:text-muted/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/10 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full resize-none rounded-xl border border-navy/15 bg-white px-4 py-3 text-sm text-navy transition-colors placeholder:text-navy/40 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/15 disabled:opacity-60 disabled:cursor-not-allowed"
                 />
                 <motion.span
                   className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-center bg-teal"
@@ -204,9 +204,9 @@ export function ContactForm() {
             </motion.div>
           </div>
 
-          <div className="space-y-4 border-t border-border pt-4 text-left">
-            <p className="text-[10px] leading-relaxed text-muted">
-              <strong>Aviso de Privacidad:</strong> MesolabPro (Cra. 56 #161-94, Suba, Bogotá, Colombia) es el responsable del tratamiento de los datos personales que suministres. Tus datos serán utilizados para gestionar tu solicitud, brindar soporte y, cuando lo autorices, enviarte información comercial. Podés ejercer tus derechos de conocer, actualizar, rectificar y suprimir tus datos escribiendo a <a href="mailto:info@mesolabpro.com.co" className="text-teal-dark underline hover:text-teal font-medium">info@mesolabpro.com.co</a>. El tratamiento se realiza conforme a nuestra <Link href="/privacidad" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Política de Privacidad</Link>.
+          <div className="space-y-4 border-t border-navy/10 pt-4 text-left">
+            <p className="text-[11px] leading-relaxed text-navy/70">
+              <strong>Aviso de Privacidad:</strong> MesolabPro (Cra. 56 #161-94, Suba, Bogotá, Colombia) es el responsable del tratamiento de los datos personales suministrados. Serán utilizados para gestionar tu solicitud, brindar soporte y remitirte información comercial cuando lo autorices. Puedes ejercer tus derechos escribiendo a <a href="mailto:info@mesolabpro.com.co" className="text-teal-accessible underline hover:text-teal font-medium">info@mesolabpro.com.co</a> conforme a nuestra <Link href="/privacidad" target="_blank" className="text-teal-accessible underline hover:text-teal font-medium">Política de Privacidad</Link>.
             </p>
 
             <div className="flex items-start gap-3">
@@ -216,10 +216,10 @@ export function ContactForm() {
                 type="checkbox"
                 required
                 disabled={status === "loading"}
-                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
+                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-navy/20 bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
               />
-              <label htmlFor="accept-privacy" className="text-[11px] text-navy/70 leading-normal select-none cursor-pointer">
-                Declaro que he leído la <Link href="/privacidad" target="_blank" className="text-teal-dark underline hover:text-teal font-medium">Política de Tratamiento de Datos Personales</Link> de MesolabPro y autorizo de manera previa, expresa e informada el tratamiento de mis datos. <span className="text-error font-bold">*</span>
+              <label htmlFor="accept-privacy" className="text-[11px] text-navy/80 leading-normal select-none cursor-pointer">
+                Declaro que he leído la <Link href="/privacidad" target="_blank" className="text-teal-accessible underline hover:text-teal font-medium">Política de Tratamiento de Datos Personales</Link> de MesolabPro y autorizo de manera previa, expresa e informada el tratamiento de mis datos. <span className="text-error font-bold">*</span>
               </label>
             </div>
 
@@ -229,9 +229,9 @@ export function ContactForm() {
                 name="accept_marketing"
                 type="checkbox"
                 disabled={status === "loading"}
-                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-border bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
+                className="mt-0.5 h-4.5 w-4.5 shrink-0 rounded border-navy/20 bg-white text-teal accent-teal focus:ring-teal/20 cursor-pointer disabled:cursor-not-allowed"
               />
-              <label htmlFor="accept-marketing" className="text-[11px] text-navy/70 leading-normal select-none cursor-pointer">
+              <label htmlFor="accept-marketing" className="text-[11px] text-navy/80 leading-normal select-none cursor-pointer">
                 Autorizo a MesolabPro para enviarme información comercial, promociones y contenidos educativos sobre productos para profesionales de la salud/estética a través de correo electrónico y WhatsApp.
               </label>
             </div>
@@ -248,13 +248,13 @@ export function ContactForm() {
             whileHover={{ scale: status === "loading" ? 1 : 1.01 }}
             whileTap={{ scale: status === "loading" ? 1 : 0.97 }}
             disabled={status === "loading"}
-            className="flex h-12 items-center justify-center rounded-xl bg-teal-accessible font-semibold text-white transition-colors hover:bg-teal-dark shadow-sm hover:shadow-[0_4px_20px_rgba(0,206,206,0.25)] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex h-12 items-center justify-center rounded-xl bg-teal-accessible font-semibold text-white transition-colors hover:bg-teal-dark shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {status === "loading" ? "Enviando mensaje..." : "Enviar mensaje"}
           </motion.button>
 
-          <p className="text-center text-[10px] font-label uppercase tracking-wider text-muted/60">
-            Tu información es confidencial y no será compartida
+          <p className="text-center text-[11px] text-navy/60">
+            Tu información es confidencial y tratada con los más estrictos estándares de seguridad
           </p>
         </motion.form>
       )}
