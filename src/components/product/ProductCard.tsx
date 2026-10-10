@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/data";
-import { useCart } from "@/components/cart/CartProvider";
 import { motion } from "framer-motion";
 
 interface ProductCardProps {
@@ -13,7 +12,6 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { addItem } = useCart();
   const [selectedPresentation, setSelectedPresentation] = useState(
     product.presentations[0]
   );
@@ -146,14 +144,18 @@ export function ProductCard({ product }: ProductCardProps) {
             {formatPrice(selectedPresentation.price)}
           </span>
 
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={() => addItem(product, selectedPresentation.id)}
-            disabled={!product.inStock}
-            className="rounded-full bg-teal-accessible px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-teal-dark hover:shadow-[0_4px_12px_rgba(0,122,119,0.25)] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted"
-          >
-            Agregar
-          </motion.button>
+          {product.inStock ? (
+            <Link
+              href={`/producto/${product.slug}`}
+              className="rounded-full bg-teal-accessible px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-teal-dark hover:shadow-[0_4px_12px_rgba(0,122,119,0.25)]"
+            >
+              Ver producto
+            </Link>
+          ) : (
+            <span className="rounded-full bg-border px-4 py-2 text-xs font-semibold text-muted cursor-not-allowed">
+              Agotado
+            </span>
+          )}
         </div>
       </div>
     </motion.article>
