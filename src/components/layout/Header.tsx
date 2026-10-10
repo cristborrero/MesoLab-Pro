@@ -196,7 +196,7 @@ export function Header() {
 
                       <div className="flex flex-col gap-2 border-l border-border pl-6">
                         <span className="font-label text-[10px] font-bold uppercase tracking-wider text-teal-accessible">
-                          Silueta &amp; Cabina
+                          Silueta &amp; Profesional
                         </span>
                         <Link href="/tienda?categoria=cuidado-corporal" className="group/item flex flex-col rounded-lg p-2 transition-all hover:bg-surface">
                           <span className="text-xs font-bold text-navy group-hover/item:text-teal-dark">Cuidado Corporal</span>
@@ -204,7 +204,7 @@ export function Header() {
                         </Link>
                         <Link href="/tienda?categoria=linea-profesional" className="group/item flex flex-col rounded-lg p-2 transition-all hover:bg-surface">
                           <span className="text-xs font-bold text-navy group-hover/item:text-teal-dark">Línea Profesional</span>
-                          <span className="text-[11px] text-muted">Mesoterapia y cabina estética.</span>
+                          <span className="text-[11px] text-muted">Mesoterapia y línea profesional.</span>
                         </Link>
 
                         <Link

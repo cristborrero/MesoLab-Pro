@@ -81,7 +81,7 @@ export function EditorialBrandSection() {
                   +5.000
                 </span>
                 <span className="block mt-1 text-xs text-muted">
-                  Clientes y cabinas en toda Colombia
+                  Clientes y centros estéticos en toda Colombia
                 </span>
               </div>
             </div>

@@ -46,8 +46,8 @@ const SLIDES: SlideData[] = [
     primaryCtaHref: "/tienda?categoria=cuidado-facial",
   },
   {
-    tag: "CABINA PROFESIONAL & BIENESTAR",
-    titleLine1: "Soluciones de cabina.",
+    tag: "LÍNEA PROFESIONAL & BIENESTAR",
+    titleLine1: "Soluciones para tu centro estético.",
     titleLine2: "Respaldo clínico para ",
     highlight: "tu centro estético.",
     description:

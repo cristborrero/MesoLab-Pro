@@ -45,7 +45,7 @@ const pillars = [
     label: "Acompañamiento 1 a 1",
     headline: "Asesoría humana antes y después de comprar",
     description:
-      "Nuestro equipo te orienta por WhatsApp sobre modos de uso, compatibilidad con tu tipo de piel y protocolos de cabina para sacar el máximo rendimiento a tu inversión.",
+      "Nuestro equipo te orienta por WhatsApp sobre modos de uso, compatibilidad con tu tipo de piel y protocolos de aplicación para profesionales, optimizando cada tratamiento en tu centro estético.",
     badge: "Soporte Directo",
   },
 ];
@@ -59,7 +59,7 @@ const certs = [
 ];
 
 const timeline = [
-  { year: "2019", title: "Origen clínico", event: "Nacimiento de MesoLab Pro en Colombia como distribuidor de insumos de mesoterapia y cabina." },
+  { year: "2019", title: "Origen clínico", event: "Nacimiento de MesoLab Pro en Colombia como distribuidor de insumos de mesoterapia estética para profesionales de la salud y la cosmetología." },
   { year: "2021", title: "Cadena de custodia", event: "Consolidación de red logística directa y despacho seguro a las principales ciudades del país." },
   { year: "2024", title: "Comunidad en crecimiento", event: "Más de 15.000 clientes particulares y profesionales del cuidado estético eligen nuestras soluciones." },
   { year: "2026", title: "Ecosistema integral", event: "Fusión de aparatología Beauty Tech, cosmecéutica formulada y compras protegidas con Pago Contra Entrega." },
@@ -151,7 +151,7 @@ export function NosotrosClient() {
             <div className="lg:col-span-7 space-y-6">
               <FadeIn duration={0.5}>
                 <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-navy leading-tight">
-                  Tratamientos efectivos al alcance de tu hogar y de tu cabina
+                  Tratamientos efectivos al alcance de tu hogar y de tu centro estético
                 </h2>
               </FadeIn>
 

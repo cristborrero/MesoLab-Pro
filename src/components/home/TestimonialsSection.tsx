@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const TESTIMONIALS = [
   {
     quote:
-      "La calidad de los equipos de fototerapia y la pureza de los sueros han elevado notablemente los resultados en mi cabina. El servicio de pago contra entrega y el despacho inmediato brindan una tranquilidad insuperable.",
+      "La calidad de los equipos de fototerapia y la pureza de los sueros han elevado notablemente los resultados en mi centro estético. El servicio de pago contra entrega y el despacho inmediato brindan una tranquilidad insuperable.",
     author: "Dra. Valentina Restrepo",
     role: "Especialista en Medicina Estética",
     city: "Medellín, Colombia",

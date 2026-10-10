@@ -42,7 +42,7 @@ export const categories: CategoryInfo[] = [
     slug: "profesional",
     name: "Línea Profesional",
     description:
-      "Insumos y soluciones de mesoterapia certificados con registro INVIMA para cabina estética, reducción localizada y revitalización.",
+      "Insumos y soluciones de mesoterapia certificados con registro INVIMA para uso en centros de estética, reducción localizada y revitalización.",
     productCount: 8,
     icon: "flask",
     image: "https://api.mesolabpro.com.co/wp-content/uploads/2026/06/L-Carnitina-5ml-mesolabpro.webp",
@@ -65,14 +65,14 @@ export const categories: CategoryInfo[] = [
   {
     slug: "anestesicos",
     name: "Anestésicos",
-    description: "Anestésicos locales de uso profesional para cabina estética.",
+    description: "Anestésicos locales de uso profesional para procedimientos en centros de estética.",
     productCount: 1,
     icon: "syringe",
   },
   {
     slug: "insumos",
     name: "Insumos",
-    description: "Material complementario y consumibles para cabina y estética.",
+    description: "Material complementario y consumibles para procedimientos estéticos y centros de cosmetología.",
     productCount: 0,
     icon: "box",
   },
@@ -425,7 +425,7 @@ export const products: Product[] = [
     inStock: true,
   },
 
-  // ── 5. LÍNEA PROFESIONAL (Mesoterapia & Cabina) ──
+  // ── 5. LÍNEA PROFESIONAL (Mesoterapia & Uso Profesional) ──
   {
     id: "prod-001",
     slug: "l-carnitina",

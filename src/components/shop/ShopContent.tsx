@@ -210,7 +210,7 @@ export function ShopContent({
         { label: "Geles Reductores", value: "Geles Reductores & Masajes" },
         { label: "Tónicos Anticaída", value: "Tónicos Anticaída & Biotina" },
         { label: "Cepillos de Estilizado", value: "Cepillos & Estilizado" },
-        { label: "Mesoterapia & Cabina", value: "Lipolíticos & Reductores" },
+        { label: "Mesoterapia Profesional", value: "Lipolíticos & Reductores" },
       ];
     }
 
