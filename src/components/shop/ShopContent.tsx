@@ -111,6 +111,14 @@ function IconStar({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+function IconMedical({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+  );
+}
+
 // ── TAXONOMÍA ESTRUCTURAL ──────────────────────────────────────────────────
 
 interface CategoryMetaItem {
@@ -152,6 +160,16 @@ const CATEGORY_MAP: Record<string, CategoryMetaItem> = {
       "Drenaje & Depurativos",
       "Firmeza & Reafirmantes",
       "Cócteles Combinados",
+    ],
+  },
+  insumos: {
+    label: "Insumos Médicos & Desechables",
+    renderIcon: IconMedical,
+    subcategories: [
+      "Agujas & Jeringas",
+      "Cartuchos Dermapen",
+      "Bioseguridad & Guantes",
+      "Desechables de Cabina",
     ],
   },
 };
@@ -211,6 +229,7 @@ export function ShopContent({
         { label: "Tónicos Anticaída", value: "Tónicos Anticaída & Biotina" },
         { label: "Cepillos de Estilizado", value: "Cepillos & Estilizado" },
         { label: "Mesoterapia Profesional", value: "Lipolíticos & Reductores" },
+        { label: "Insumos & Desechables", value: "Agujas & Jeringas" },
       ];
     }
 
@@ -228,7 +247,7 @@ export function ShopContent({
     const counts: Record<string, number> = { todos: products.length };
     products.forEach((p) => {
       const catKey =
-        ["lipoliticos", "vitaminicos", "anestesicos", "insumos"].includes(p.category)
+        ["lipoliticos", "vitaminicos", "anestesicos"].includes(p.category)
           ? "profesional"
           : p.category;
       counts[catKey] = (counts[catKey] || 0) + 1;
@@ -275,10 +294,11 @@ export function ShopContent({
         if (activeCategory !== "todos") {
           const isProf =
             activeCategory === "profesional" &&
-            ["profesional", "lipoliticos", "vitaminicos", "anestesicos", "insumos"].includes(
+            ["profesional", "lipoliticos", "vitaminicos", "anestesicos"].includes(
               p.category
             );
-          if (!isProf && p.category !== activeCategory) {
+          const isIns = activeCategory === "insumos" && p.category === "insumos";
+          if (!isProf && !isIns && p.category !== activeCategory) {
             return false;
           }
         }

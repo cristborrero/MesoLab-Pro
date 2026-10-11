@@ -71,8 +71,8 @@ export const categories: CategoryInfo[] = [
   },
   {
     slug: "insumos",
-    name: "Insumos",
-    description: "Material complementario y consumibles para procedimientos estéticos y centros de cosmetología.",
+    name: "Insumos Médicos & Desechables",
+    description: "Material descartable, bioseguridad, guantes de nitrilo, jeringas, agujas mesodérmicas y consumibles de cabina.",
     productCount: 0,
     icon: "box",
   },

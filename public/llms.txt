@@ -13,7 +13,7 @@
 - **Transportadoras:** Servientrega, Coordinadora, Interrapidísimo, Envía.
 
 ## Catálogo de Productos y Colecciones
-MesoLab Pro cuenta con 150 referencias activas organizadas en 5 categorías principales:
+MesoLab Pro cuenta con 156 referencias activas organizadas en 6 categorías principales:
 
 1. **Beauty Tech & Dispositivos:**
    - Máscaras de fototerapia LED de 7 colores para rejuvenecimiento facial y control de acné.
@@ -37,9 +37,15 @@ MesoLab Pro cuenta con 150 referencias activas organizadas en 5 categorías prin
    - Sueros y tónicos activadores con biotina, queratina y extractos botánicos para frenar la caída.
    - Dispositivos de fototerapia capilar con microcorriente para estimulación folicular.
 
-5. **Línea Profesional:**
+5. **Línea Profesional (Mesoterapia):**
    - Soluciones cosmecéuticas estériles para mesoterapia y electroporación (L-Carnitina, Silicio Orgánico, Alcachofa, Cafeína).
-   - Insumos de bioseguridad, agujas mesodérmicas y repuestos para dermapen.
+   - Cócteles bioestimuladores y principios activos concentrados con registro INVIMA.
+
+6. **Insumos Médicos & Desechables (Cabina & Bioseguridad):**
+   - Agujas mesodérmicas (30G x 4mm, 31G, 32G) y jeringas descartables (1ml tuberculina, 3ml, 5ml Luer Lock).
+   - Cartuchos y repuestos para Dermapen (12, 36 pines y Nano agujas).
+   - Bioseguridad y protección: Guantes de nitrilo (negro, rosa, azul), tapabocas termosellados, gorros de oruga y polainas.
+   - Descartables de cabina y spa: Kits para paciente (top y tanga desechable), sábanas y rollos de papel para camilla, bajalenguas de madera y guardianes de cortopunzantes.
 
 ## Política de Envíos y Garantías
 - **Tiempos de Entrega:** 1 a 3 días hábiles en ciudades principales (Bogotá, Medellín, Cali, Barranquilla, Bucaramanga); 2 a 5 días en otros municipios.
@@ -53,6 +59,7 @@ MesoLab Pro cuenta con 150 referencias activas organizadas en 5 categorías prin
 - [Cuidado Corporal](https://mesolabpro.com.co/tienda/cuidado-corporal)
 - [Cuidado Capilar](https://mesolabpro.com.co/tienda/cuidado-capilar)
 - [Línea Profesional](https://mesolabpro.com.co/tienda/linea-profesional)
+- [Insumos Médicos & Desechables](https://mesolabpro.com.co/tienda?categoria=insumos)
 - [Sobre Nosotros](https://mesolabpro.com.co/nosotros)
 - [Contacto](https://mesolabpro.com.co/contacto)
 - [Sitemap XML](https://mesolabpro.com.co/sitemap.xml)

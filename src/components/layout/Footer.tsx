@@ -10,6 +10,7 @@ const CATEGORY_LINKS = [
   { href: "/tienda?categoria=cuidado-corporal", label: "Cuidado Corporal" },
   { href: "/tienda?categoria=cuidado-capilar", label: "Cuidado Capilar" },
   { href: "/tienda?categoria=linea-profesional", label: "Línea Profesional" },
+  { href: "/tienda?categoria=insumos", label: "Insumos Médicos & Desechables" },
 ];
 
 const LEGAL_LINKS = [

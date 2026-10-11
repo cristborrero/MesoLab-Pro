@@ -204,14 +204,18 @@ export function Header() {
                         </Link>
                         <Link href="/tienda?categoria=linea-profesional" className="group/item flex flex-col rounded-lg p-2 transition-all hover:bg-surface">
                           <span className="text-xs font-bold text-navy group-hover/item:text-teal-dark">Línea Profesional</span>
-                          <span className="text-[11px] text-muted">Mesoterapia y línea profesional.</span>
+                          <span className="text-[11px] text-muted">Mesoterapia y fórmulas estériles.</span>
+                        </Link>
+                        <Link href="/tienda?categoria=insumos" className="group/item flex flex-col rounded-lg p-2 transition-all hover:bg-surface">
+                          <span className="text-xs font-bold text-navy group-hover/item:text-teal-dark">Insumos Médicos &amp; Desechables</span>
+                          <span className="text-[11px] text-muted">Agujas, jeringas, guantes y cabina.</span>
                         </Link>
 
                         <Link
                           href="/tienda"
                           className="mt-auto pt-2 block font-label text-xs font-bold text-teal-dark hover:underline"
                         >
-                          Ver todos los 150 productos →
+                          Ver todos los 156 productos →
                         </Link>
                       </div>
                     </div>
@@ -467,6 +471,13 @@ export function Header() {
                     className="rounded-lg px-3 py-2 text-xs text-navy hover:bg-surface"
                   >
                     Línea Profesional
+                  </Link>
+                  <Link
+                    href="/tienda?categoria=insumos"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-lg px-3 py-2 text-xs text-navy hover:bg-surface"
+                  >
+                    Insumos Médicos &amp; Desechables
                   </Link>
                 </div>
               </div>
