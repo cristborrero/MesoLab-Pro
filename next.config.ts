@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: "api.mesolabpro.com.co",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "d39ru7awumhhs2.cloudfront.net",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {

@@ -11,5 +11,45 @@ export const metadata: Metadata = {
 };
 
 export default function NosotrosPage() {
-  return <NosotrosClient />;
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Sobre MesoLab Pro — Ciencia, Belleza y Tecnología",
+    "description":
+      "Estándar en dispositivos Beauty Tech, cosmética activa, cobertura nacional con Pago Contra Entrega e insumos profesionales en Colombia.",
+    "url": "https://mesolabpro.com.co/nosotros",
+  };
+
+  const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://mesolabpro.com.co",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Nosotros",
+        "item": "https://mesolabpro.com.co/nosotros",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+      />
+      <NosotrosClient />
+    </>
+  );
 }

@@ -16,8 +16,55 @@ export const metadata: Metadata = {
 export default async function TiendaPage() {
   const products = await getProducts();
   const categories = await getCategories();
+
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Catálogo & Dispositivos — MesoLab Pro",
+    "description":
+      "Tecnología estética en casa, fórmulas activas y suministros profesionales certificados. Pago Contra Entrega y despacho a toda Colombia.",
+    "url": "https://mesolabpro.com.co/tienda",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": products.length,
+      "itemListElement": products.slice(0, 24).map((p, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://mesolabpro.com.co/producto/${p.slug}`,
+        "name": p.name,
+      })),
+    },
+  };
+
+  const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://mesolabpro.com.co",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tienda",
+        "item": "https://mesolabpro.com.co/tienda",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+      />
       {/* Header */}
       <div className="border-b border-border/70 bg-[#FAF9F7]/60">
         <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">

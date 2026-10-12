@@ -1,52 +1,44 @@
 import { MetadataRoute } from "next";
-import { getProducts, getCategories } from "@/lib/woocommerce";
+import { getSitemapData } from "@/lib/woocommerce";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://mesolabpro.com.co";
+  const staticFallbackDate = new Date("2026-10-10T12:00:00.000Z");
 
-  // 1. Páginas estáticas del sitio web
-  const staticUrls = [
-    "",
-    "/nosotros",
-    "/contacto",
-    "/privacidad",
-    "/cookies",
-    "/terminos",
-    "/tienda",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+  // 1. Páginas institucionales y estáticas
+  const staticUrls: MetadataRoute.Sitemap = [
+    { route: "", priority: 1.0, changeFrequency: "daily" as const },
+    { route: "/tienda", priority: 0.9, changeFrequency: "daily" as const },
+    { route: "/nosotros", priority: 0.8, changeFrequency: "weekly" as const },
+    { route: "/contacto", priority: 0.8, changeFrequency: "weekly" as const },
+    { route: "/privacidad", priority: 0.5, changeFrequency: "monthly" as const },
+    { route: "/cookies", priority: 0.5, changeFrequency: "monthly" as const },
+    { route: "/terminos", priority: 0.5, changeFrequency: "monthly" as const },
+  ].map((item) => ({
+    url: `${baseUrl}${item.route}`,
+    lastModified: staticFallbackDate,
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
   }));
 
-  // 2. Productos dinámicos de WooCommerce
-  let productUrls: MetadataRoute.Sitemap = [];
-  try {
-    const products = await getProducts();
-    productUrls = products.map((product) => ({
-      url: `${baseUrl}/producto/${product.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    }));
-  } catch (error) {
-    console.error("Error al obtener productos para el sitemap:", error);
-  }
+  // 2. Carga optimizada de productos y categorías activas
+  const { products, categories } = await getSitemapData();
 
-  // 3. Categorías dinámicas de WooCommerce
-  let categoryUrls: MetadataRoute.Sitemap = [];
-  try {
-    const categories = await getCategories();
-    categoryUrls = categories.map((category) => ({
-      url: `${baseUrl}/tienda/${category.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    }));
-  } catch (error) {
-    console.error("Error al obtener categorías para el sitemap:", error);
-  }
+  // Productos con su fecha real de modificación en WooCommerce
+  const productUrls: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${baseUrl}/producto/${product.slug}`,
+    lastModified: product.date_modified ? new Date(product.date_modified) : staticFallbackDate,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
 
-  return [...staticUrls, ...productUrls, ...categoryUrls];
+  // Colecciones de tienda con productos activos (evita Soft 404 / Thin Content)
+  const categoryUrls: MetadataRoute.Sitemap = categories.map((cat) => ({
+    url: `${baseUrl}/tienda/${cat.slug}`,
+    lastModified: staticFallbackDate,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticUrls, ...categoryUrls, ...productUrls];
 }

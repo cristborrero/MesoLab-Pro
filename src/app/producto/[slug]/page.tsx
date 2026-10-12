@@ -85,16 +85,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
     .slice(0, 4);
 
   const primaryPrice = product.presentations[0]?.price || 0;
+  const cleanDescription = (product.shortDescription || product.description || "")
+    .replace(/<[^>]*>/g, "")
+    .trim();
+  const productSku = product.presentations?.[0]?.sku || product.id;
 
   // Schema.org Product Rich Snippet
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": product.name,
-    "description": product.description || product.shortDescription,
+    "description": cleanDescription,
     "image": product.image ? [product.image] : ["https://mesolabpro.com.co/images/hero-clinical-treatment.webp"],
-    "sku": product.id,
-    "mpn": product.id,
+    "sku": productSku,
+    "mpn": productSku,
     "brand": {
       "@type": "Brand",
       "name": "MesoLab Pro",

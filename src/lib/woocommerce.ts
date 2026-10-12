@@ -314,3 +314,44 @@ export const getCategories = async (): Promise<CategoryInfo[]> => {
 };
 
 export const getOrders = (): Promise<unknown> => wcFetch("/orders");
+
+/**
+ * Helper ultraligero y de alta velocidad para sitemap.xml.
+ * Consulta solo slug y fecha de modificación sin variaciones ni imágenes pesadas.
+ */
+export const getSitemapData = async (): Promise<{
+  products: { slug: string; date_modified: string }[];
+  categories: { slug: string; count: number }[];
+}> => {
+  try {
+    let page = 1;
+    const products: { slug: string; date_modified: string }[] = [];
+    while (true) {
+      const batch = (await wcFetch(
+        `/products?per_page=100&page=${page}&status=publish&_fields=id,slug,date_modified`
+      )) as { id: number; slug: string; date_modified: string }[];
+      if (!batch || !Array.isArray(batch) || batch.length === 0) break;
+      products.push(...batch);
+      if (batch.length < 100) break;
+      page++;
+    }
+
+    const categories = (await wcFetch(
+      `/products/categories?per_page=100&hide_empty=true&_fields=id,slug,count`
+    )) as { id: number; slug: string; count: number }[];
+
+    const validCategories = Array.isArray(categories)
+      ? categories.filter(
+          (c) =>
+            c.count > 0 &&
+            c.slug !== "sin-categorizar" &&
+            c.slug !== "uncategorized"
+        )
+      : [];
+
+    return { products, categories: validCategories };
+  } catch (error) {
+    console.error("Error fetching sitemap data from WC", error);
+    return { products: [], categories: [] };
+  }
+};
